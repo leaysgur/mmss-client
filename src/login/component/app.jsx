@@ -1,10 +1,12 @@
 // @flow
 import React from 'react';
 
+import type { LoginEventType } from '../event';
+
 
 class LoginApp extends React.Component {
   props: {
-    event: Object;
+    event: LoginEventType;
   };
   onSubmit: (ev: Event) => void;
 
@@ -17,8 +19,8 @@ class LoginApp extends React.Component {
         // XXX: ほんとはフォーム要素ごとに型をつける
         const form: any = ev.currentTarget.elements;
         this.props.event.onLoginSubmit({
-          user: form.user.value,
-          pass: form.pass.value,
+          id: form.id.value,
+          pw: form.pw.value,
         });
       }
     };
@@ -28,8 +30,8 @@ class LoginApp extends React.Component {
     return (
       <div>
         <form action="/" onSubmit={this.onSubmit}>
-          <input name="user" type="text" />
-          <input name="pass" type="password" />
+          <input name="id" type="text" />
+          <input name="pw" type="password" />
           <button type="submit">Login</button>
         </form>
       </div>
