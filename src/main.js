@@ -1,18 +1,18 @@
 // @flow
 import LoginMain from './login/main';
-const MmssMain = () => {};
+const MmssMain = () => { console.log('logined'); };
 
 
-fetch('/api/check')
+fetch('/api/check', {
+    credentials: 'same-origin',
+  })
   .then(res => res.json())
   .then(res => {
-    switch (res.error) {
-      case 3:
-        LoginMain();
-        break;
-      default:
-        MmssMain();
+    if (res === null) {
+      return MmssMain();
     }
+
+    LoginMain();
   })
   .catch(console.error);
 
