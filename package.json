@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "webpack -w",
     "build": "webpack -p",
+    "typecheck": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,9 +23,12 @@
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "babel-preset-react": "^6.23.0",
+    "flow-bin": "^0.39.0",
     "webpack": "^2.2.1"
   },
   "babel": {
-    "presets": ["react"]
+    "presets": [
+      "react"
+    ]
   }
 }
