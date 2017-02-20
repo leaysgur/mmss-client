@@ -1,7 +1,7 @@
 // @flow
 
 class LoginEvent {
-  onLoginSubmit(item: LoginItem) {
+  onLoginSubmit(item: LoginItem): void {
     fetch('/api/login', {
       method: 'POST',
       credentials: 'same-origin',
@@ -13,8 +13,10 @@ class LoginEvent {
       .then(res => res.json())
       .then(res => {
         if (res === null) {
-          location.reload(true);
+          return location.reload(true);
         }
+        // TODO: create store -> show error msg
+        console.error(res.error);
       });
   }
 }
@@ -24,8 +26,6 @@ type LoginItem = {
   pw: string;
 };
 
-export type LoginEventType = {
-  onLoginSubmit: (LoginItem) => void;
-};
+export type LoginEventType = LoginEvent;
 
 export default LoginEvent;
