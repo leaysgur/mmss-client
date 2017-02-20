@@ -1,16 +1,18 @@
 // @flow
-const React = require('react');
-const ReactDOM = require('react-dom');
-
-const LoginApp = require('./login/main.jsx');
-const MmssApp = () => <div>App!</div>;
+import LoginMain from './login/main';
+const MmssMain = () => {};
 
 
 fetch('/api/check')
   .then(res => res.json())
   .then(res => {
-    const App = 'error' in res ? LoginApp : MmssApp;
-    ReactDOM.render(<App />, document.getElementById('root'));
+    switch (res.error) {
+      case 3:
+        LoginMain();
+        break;
+      default:
+        MmssMain();
+    }
   })
   .catch(console.error);
 

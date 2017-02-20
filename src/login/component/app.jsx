@@ -1,8 +1,11 @@
 // @flow
-const React = require('react');
+import React from 'react';
 
 
 class LoginApp extends React.Component {
+  props: {
+    event: Object;
+  };
   onSubmit: (ev: Event) => void;
 
   constructor() {
@@ -13,7 +16,10 @@ class LoginApp extends React.Component {
       if (ev.currentTarget instanceof HTMLFormElement) {
         // XXX: ほんとはフォーム要素ごとに型をつける
         const form: any = ev.currentTarget.elements;
-        console.log(form.user.value, form.pass.value);
+        this.props.event.onLoginSubmit({
+          user: form.user.value,
+          pass: form.pass.value,
+        });
       }
     };
   }
@@ -31,4 +37,4 @@ class LoginApp extends React.Component {
   }
 }
 
-module.exports = LoginApp;
+export default LoginApp;
