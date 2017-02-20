@@ -4,7 +4,7 @@
 [include]
 
 [libs]
-# ./src/_decls
+./decls
 
 [options]
 munge_underscores=true
