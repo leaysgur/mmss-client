@@ -5,9 +5,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack -w",
+    "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "leader22",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mobx": "^3.1.0",
+    "mobx-react": "^4.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  },
+  "babel": {
+    "presets": ["react"]
+  }
 }

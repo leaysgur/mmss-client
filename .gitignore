@@ -1,4 +1,8 @@
+# Misc
 yarn.lock
 node_modules
 
 .DS_Store
+
+# Pj
+main-bundle.js
