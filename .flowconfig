@@ -1,0 +1,11 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+# ./src/_decls
+
+[options]
+munge_underscores=true
+module.ignore_non_literal_requires=true

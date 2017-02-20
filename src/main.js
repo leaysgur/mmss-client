@@ -1,8 +1,10 @@
+// @flow
 const React = require('react');
 const ReactDOM = require('react-dom');
 
 const LoginApp = require('./login/main.jsx');
 const MmssApp = () => <div>App!</div>;
+
 
 fetch('/api/check')
   .then(res => res.json())
