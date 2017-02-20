@@ -4,7 +4,7 @@
 [include]
 
 [libs]
-./decls
+node_modules/mobx/lib/mobx.js.flow
 
 [options]
 munge_underscores=true
