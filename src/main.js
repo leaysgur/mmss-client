@@ -1,20 +1,16 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const LoginApp = () => <div>Login!</div>;
+const LoginApp = require('./login/main.jsx');
 const MmssApp = () => <div>App!</div>;
 
 fetch('/api/check')
   .then(res => res.json())
   .then(res => {
-    if ('error' in res) {
-      ReactDOM.render(<LoginApp />, document.getElementById('root'));
-    } else {
-      ReactDOM.render(<MmssApp />, document.getElementById('root'));
-    }
+    const App = 'error' in res ? LoginApp : MmssApp;
+    ReactDOM.render(<App />, document.getElementById('root'));
   })
   .catch(console.error);
-
 
 // const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
 // fetch(`./dist/music.json?_=${YYYYMMDD}`)
@@ -23,4 +19,3 @@ fetch('/api/check')
 //     const App = () => <div>Hello</div>;
 //     ReactDOM.render(<App />, document.getElementById('root'));
 //   });
-
