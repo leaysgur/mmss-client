@@ -42,7 +42,7 @@ module.exports = {
     main: './src/main.js',
   },
   output: {
-    filename: '[name]-bundle.js',
+    filename: '[name].js',
     path: './dist',
   },
   module: {
