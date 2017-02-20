@@ -43,7 +43,7 @@ module.exports = {
   },
   output: {
     filename: '[name]-bundle.js',
-    path: './',
+    path: './dist',
   },
   module: {
     rules: [
