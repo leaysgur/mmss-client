@@ -2,6 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import Header from '../../shared/component/header.jsx';
 import LoginForm from './form.jsx';
 
 import type { LoginStoreType } from '../store';
@@ -20,7 +21,8 @@ class LoginApp extends React.Component {
 
     return (
       <div>
-        <p>LOGOとか</p>
+        <Header />
+        <p>LOGOとか説明とか</p>
         <LoginForm
           onSubmit={onLoginSubmit}
           hasError={hasLoginError}
