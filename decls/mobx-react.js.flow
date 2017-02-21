@@ -1,0 +1,3 @@
+declare module 'mobx-react' {
+  declare function observer(c: React$Component): React$Component;
+}
