@@ -1,6 +1,13 @@
 // @flow
+import type { LoginStoreType } from './store';
 
 class LoginEvent {
+  store: LoginStoreType;
+
+  constructor(store: LoginStoreType) {
+    this.store = store;
+  }
+
   onLoginSubmit(item: LoginItem): void {
     fetch('/api/login', {
       method: 'POST',
@@ -13,10 +20,10 @@ class LoginEvent {
       .then(res => res.json())
       .then(res => {
         if (res === null) {
+          this.store.hasLoginError = false;
           return location.reload(true);
         }
-        // TODO: create store -> show error msg
-        console.error(res.error);
+        this.store.hasLoginError = true;
       });
   }
 }
@@ -27,5 +34,4 @@ type LoginItem = {
 };
 
 export type LoginEventType = LoginEvent;
-
 export default LoginEvent;

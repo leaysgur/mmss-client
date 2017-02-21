@@ -1,12 +1,15 @@
 // @flow
 import React from 'react';
+import { observer } from 'mobx-react';
 
+import type { LoginStoreType } from '../store';
 import type { LoginEventType } from '../event';
 
 
 class LoginApp extends React.Component {
   props: {
     event: LoginEventType;
+    store: LoginStoreType;
   };
   onSubmit: (ev: Event) => void;
 
@@ -27,6 +30,8 @@ class LoginApp extends React.Component {
   }
 
   render() {
+    const { hasLoginError } = this.props.store;
+
     return (
       <div>
         <form action="/" onSubmit={this.onSubmit}>
@@ -34,9 +39,10 @@ class LoginApp extends React.Component {
           <input name="pw" type="password" />
           <button type="submit">Login</button>
         </form>
+        { hasLoginError && 'error!!' }
       </div>
     );
   }
 }
 
-export default LoginApp;
+export default observer(LoginApp);
