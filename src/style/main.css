@@ -1,12 +1,2 @@
-.App {
-  color: tomato;
-
-  &_Finder {
-    color: red;
-
-
-    &_Column {
-      color: orange;
-    }
-  }
-}
+@import "shared/global.css";
+@import "mmss/finder.css";

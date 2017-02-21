@@ -1,0 +1,7 @@
+.Finder {
+  display: flex;
+
+  &_Column {
+    width: 100%;
+  }
+}

@@ -28,8 +28,8 @@ class MmssApp extends React.Component {
     return (
       <div>
         <Header />
-        <div style={{ display: 'flex' }}>
-          <ul style={{ width: '100%' }}>
+        <div className="Finder">
+          <ul className="Finder_Column">
             { artists.map(name => (
             <li key={name}>
               <a href="#" onClick={(ev) => {
@@ -39,7 +39,7 @@ class MmssApp extends React.Component {
             </li>
             )) }
           </ul>
-          <ul style={{ width: '100%' }}>
+          <ul className="Finder_Column">
             { albums.map(name => (
             <li key={name}>
               <a href="#" onClick={(ev) => {
@@ -49,7 +49,7 @@ class MmssApp extends React.Component {
             </li>
             )) }
           </ul>
-          <ul style={{ width: '100%' }}>
+          <ul className="Finder_Column">
             { songs.map(song => (
             <li key={song.name}>
               <a href="#" onClick={(ev) => {
