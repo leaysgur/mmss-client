@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -w",
-    "build": "webpack -p",
+    "dev:js": "webpack -w",
+    "dev:css": "postcss ./src/style/main.css -w",
     "typecheck": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,9 @@
     "babel-loader": "^6.3.2",
     "babel-preset-react": "^6.23.0",
     "flow-bin": "^0.39.0",
+    "postcss-cli": "^3.0.0-beta",
+    "postcss-import": "^9.1.0",
+    "postcss-nested": "^1.0.0",
     "webpack": "^2.2.1"
   },
   "babel": {

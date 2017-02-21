@@ -39,7 +39,7 @@ if (isProd) {
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    main: './src/script/main.js',
   },
   output: {
     filename: '[name].js',

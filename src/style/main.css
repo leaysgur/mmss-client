@@ -1,0 +1,12 @@
+.App {
+  color: tomato;
+
+  &_Finder {
+    color: red;
+
+
+    &_Column {
+      color: orange;
+    }
+  }
+}
