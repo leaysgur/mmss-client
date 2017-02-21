@@ -10,8 +10,8 @@ class MmssEvent {
 
     const forBindThis: any = this;
     [
-      'onClickArtist',
-      'onClickAlbum',
+      'onClickArtist', 'onClickAlbum',
+      'onClickPlaySong',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
@@ -23,6 +23,25 @@ class MmssEvent {
 
   onClickAlbum(item: Object): void {
     this.store.selectAlbum(item.name);
+  }
+
+  onClickPlaySong(item: Object): void {
+    // TODO: ここでやらない
+    fetch(`/api/track?path=${item.path}`, {
+      credentials: 'same-origin',
+    })
+      .then(res => res.blob())
+      .then(blob => {
+        const objectUrl = URL.createObjectURL(blob);
+
+        const audio: HTMLAudioElement = document.createElement('audio');
+        audio.autoplay = true;
+        audio.onload = () => {
+          URL.revokeObjectURL(objectUrl);
+        };
+
+        audio.src = objectUrl;
+      });
   }
 }
 
