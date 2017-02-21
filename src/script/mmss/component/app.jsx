@@ -67,7 +67,7 @@ class MmssApp extends React.Component {
               <li key={song.name}>
                 <FinderItem
                   item={song}
-                  onClick={(s) => { console.log(s); }}
+                  onClickPlay={(s) => { console.log(s); }}
                 />
               </li>
               )) }

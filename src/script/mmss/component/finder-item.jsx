@@ -6,14 +6,22 @@ import { observer } from 'mobx-react';
 const FinderItem = ({
   item,
   onClick,
+  onClickPlay,
 }: {
   item: Object;
-  onClick: (item: Object) => void;
+  onClick: ?(item: Object) => void;
+  onClickPlay: (item: Object) => void;
 }) => (
-  <a href="#" onClick={(ev) => {
-    ev.preventDefault();
-    onClick(item);
-  }}>{item.name}</a>
+  <div onClick={() => {
+    onClick && onClick(item);
+  }}>
+    {item.name}
+    <a href="#" onClick={(ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      onClickPlay(item);
+    }}>[再生]</a>
+  </div>
 );
 
 export default observer(FinderItem);
