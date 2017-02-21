@@ -2,7 +2,7 @@
 import { useStrict } from 'mobx';
 
 import LoginMain from './login/main';
-const MmssMain = () => { console.log('logined'); };
+import MmssMain from './mmss/main';
 
 
 useStrict(true);
@@ -19,11 +19,3 @@ fetch('/api/check', {
     MmssMain();
   })
   .catch(console.error);
-
-// const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
-// fetch(`./dist/music.json?_=${YYYYMMDD}`)
-//   .then((res) => res.json())
-//   .then(() => {
-//     const App = () => <div>Hello</div>;
-//     ReactDOM.render(<App />, document.getElementById('root'));
-//   });
