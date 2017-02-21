@@ -16,7 +16,10 @@ class MmssStore {
     album: ?string;
   };
 
-  constructor() {
+  constructor(json: Object) {
+    console.log(json);
+    this.json = json;
+
     extendObservable(this, {
       selected: {
         artist: null,
@@ -37,16 +40,10 @@ class MmssStore {
 
     const forBindThis: any = this;
     [
-      'load',
       'selectArtist', 'selectAlbum',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
-  }
-
-  load(json: Object): void {
-    console.log(json);
-    this.json = json;
   }
 
   selectArtist(name: string): void {

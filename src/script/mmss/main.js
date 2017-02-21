@@ -11,14 +11,12 @@ import type { MmssEventType } from './event';
 
 
 export default function() {
-  const store: MmssStoreType = new MmssStore();
-  const event: MmssEventType = new MmssEvent(store);
-
   const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
   fetch(`./dist/music.json?_=${YYYYMMDD}`)
     .then((res) => res.json())
     .then(json => {
-      store.load(json);
+      const store: MmssStoreType = new MmssStore(json);
+      const event: MmssEventType = new MmssEvent(store);
 
       ReactDOM.render(
         <MmssApp event={event} store={store} />,
