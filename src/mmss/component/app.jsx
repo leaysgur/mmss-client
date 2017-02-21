@@ -13,9 +13,48 @@ class MmssApp extends React.Component {
   };
 
   render() {
+    const {
+      artists,
+      albums,
+      songs,
+    } = this.props.store;
+    const {
+      onClickArtist,
+      onClickAlbum,
+    } = this.props.event;
+
     return (
-      <div>
-        <p>App!</p>
+      <div style={{display:'flex'}}>
+        <ul>
+          { artists.map(name => (
+          <li key={name}>
+            <a href="#" onClick={(ev) => {
+              ev.preventDefault();
+              onClickArtist(name);
+            }}>{name}</a>
+          </li>
+          )) }
+        </ul>
+        <ul>
+          { albums.map(name => (
+          <li key={name}>
+            <a href="#" onClick={(ev) => {
+              ev.preventDefault();
+              onClickAlbum(name);
+            }}>{name}</a>
+          </li>
+          )) }
+        </ul>
+        <ul>
+          { songs.map(song => (
+          <li key={song.name}>
+            <a href="#" onClick={(ev) => {
+              ev.preventDefault();
+              console.log(song);
+            }}>{song.name}</a>
+          </li>
+          )) }
+        </ul>
       </div>
     );
   }

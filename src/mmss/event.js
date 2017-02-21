@@ -9,11 +9,20 @@ class MmssEvent {
     this.store = store;
 
     const forBindThis: any = this;
-    forBindThis.onLoad = this.onLoad.bind(this);
+    [
+      'onClickArtist',
+      'onClickAlbum',
+    ].forEach(name => {
+      forBindThis[name] = forBindThis[name].bind(this);
+    });
   }
 
-  onLoad(json: Object) {
-    this.store.load(json);
+  onClickArtist(name: string): void {
+    this.store.selectArtist(name);
+  }
+
+  onClickAlbum(name: string): void {
+    this.store.selectAlbum(name);
   }
 }
 

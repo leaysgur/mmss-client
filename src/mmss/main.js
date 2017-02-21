@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import MmssApp from './component/app.jsx';
 import MmssStore from './store';
 import MmssEvent from './event';
+
 import type { MmssStoreType } from './store';
 import type { MmssEventType } from './event';
 
