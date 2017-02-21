@@ -1,11 +1,15 @@
 // @flow
 import type { LoginStoreType } from './store';
 
+
 class LoginEvent {
   store: LoginStoreType;
 
   constructor(store: LoginStoreType) {
     this.store = store;
+
+    const forBindThis: any = this;
+    forBindThis.onLoginSubmit = this.onLoginSubmit.bind(this);
   }
 
   onLoginSubmit(item: LoginItem): void {
@@ -20,11 +24,12 @@ class LoginEvent {
       .then(res => res.json())
       .then(res => {
         if (res === null) {
-          this.store.hasLoginError = false;
+          this.store.showError(false);
           return location.reload(true);
         }
-        this.store.hasLoginError = true;
-      });
+        this.store.showError(true);
+      })
+      .catch(console.error);
   }
 }
 

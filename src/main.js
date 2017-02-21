@@ -1,18 +1,22 @@
 // @flow
+import { useStrict } from 'mobx';
+
 import LoginMain from './login/main';
 const MmssMain = () => { console.log('logined'); };
 
+
+useStrict(true);
 
 fetch('/api/check', {
     credentials: 'same-origin',
   })
   .then(res => res.json())
   .then(res => {
-    if (res === null) {
-      return MmssMain();
+    if (res !== null) {
+      return LoginMain();
     }
 
-    LoginMain();
+    MmssMain();
   })
   .catch(console.error);
 
