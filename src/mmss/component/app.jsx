@@ -28,8 +28,8 @@ class MmssApp extends React.Component {
     return (
       <div>
         <Header />
-        <div style={{display:'flex'}}>
-          <ul>
+        <div style={{ display: 'flex' }}>
+          <ul style={{ width: '100%' }}>
             { artists.map(name => (
             <li key={name}>
               <a href="#" onClick={(ev) => {
@@ -39,7 +39,7 @@ class MmssApp extends React.Component {
             </li>
             )) }
           </ul>
-          <ul>
+          <ul style={{ width: '100%' }}>
             { albums.map(name => (
             <li key={name}>
               <a href="#" onClick={(ev) => {
@@ -49,7 +49,7 @@ class MmssApp extends React.Component {
             </li>
             )) }
           </ul>
-          <ul>
+          <ul style={{ width: '100%' }}>
             { songs.map(song => (
             <li key={song.name}>
               <a href="#" onClick={(ev) => {
