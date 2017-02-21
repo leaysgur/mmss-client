@@ -3,6 +3,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import Header from '../../shared/component/header.jsx';
+import FinderItem from './finder-item.jsx';
 
 import type { MmssStoreType } from '../store';
 import type { MmssEventType } from '../event';
@@ -29,36 +30,49 @@ class MmssApp extends React.Component {
       <div>
         <Header />
         <div className="Finder">
-          <ul className="Finder_Column">
-            { artists.map(name => (
-            <li key={name}>
-              <a href="#" onClick={(ev) => {
-                ev.preventDefault();
-                onClickArtist(name);
-              }}>{name}</a>
-            </li>
-            )) }
-          </ul>
-          <ul className="Finder_Column">
-            { albums.map(name => (
-            <li key={name}>
-              <a href="#" onClick={(ev) => {
-                ev.preventDefault();
-                onClickAlbum(name);
-              }}>{name}</a>
-            </li>
-            )) }
-          </ul>
-          <ul className="Finder_Column">
-            { songs.map(song => (
-            <li key={song.name}>
-              <a href="#" onClick={(ev) => {
-                ev.preventDefault();
-                console.log(song);
-              }}>{song.name}</a>
-            </li>
-            )) }
-          </ul>
+          <div className="Finder_Column">
+            <p># Artists</p>
+            <ul>
+              { artists.map(name => (
+              <li key={name}>
+                <FinderItem
+                  item={{ name }}
+                  onClick={onClickArtist}
+                />
+              </li>
+              )) }
+            </ul>
+          </div>
+
+          <div className="Finder_Column">
+            <p># Albums</p>
+            <ul>
+              { albums.length === 0 && <li>Artist not selected</li> }
+              { albums.map(name => (
+              <li key={name}>
+                <FinderItem
+                  item={{ name }}
+                  onClick={onClickAlbum}
+                />
+              </li>
+              )) }
+            </ul>
+          </div>
+
+          <div className="Finder_Column">
+            <p># Songs</p>
+            <ul>
+              { songs.length === 0 && <li>Album not selected</li> }
+              { songs.map(song => (
+              <li key={song.name}>
+                <FinderItem
+                  item={song}
+                  onClick={(s) => { console.log(s); }}
+                />
+              </li>
+              )) }
+            </ul>
+          </div>
         </div>
       </div>
     );

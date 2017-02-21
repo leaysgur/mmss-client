@@ -17,12 +17,12 @@ class MmssEvent {
     });
   }
 
-  onClickArtist(name: string): void {
-    this.store.selectArtist(name);
+  onClickArtist(item: Object): void {
+    this.store.selectArtist(item.name);
   }
 
-  onClickAlbum(name: string): void {
-    this.store.selectAlbum(name);
+  onClickAlbum(item: Object): void {
+    this.store.selectAlbum(item.name);
   }
 }
 
