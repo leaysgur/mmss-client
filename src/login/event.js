@@ -12,7 +12,7 @@ class LoginEvent {
     forBindThis.onLoginSubmit = this.onLoginSubmit.bind(this);
   }
 
-  onLoginSubmit(item: LoginItem): void {
+  onLoginSubmit(item: LoginItemType): void {
     fetch('/api/login', {
       method: 'POST',
       credentials: 'same-origin',
@@ -33,10 +33,9 @@ class LoginEvent {
   }
 }
 
-type LoginItem = {
+export type LoginItemType = {
   id: string;
   pw: string;
 };
-
 export type LoginEventType = LoginEvent;
 export default LoginEvent;
