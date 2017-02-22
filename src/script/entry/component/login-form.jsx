@@ -33,7 +33,7 @@ const LoginForm = ({
       <input name="pw" type="password" placeholder="pass" />
     </div>
     <div>
-      <button type="submit">Login</button>
+      <button type="submit">Entry</button>
     </div>
     { hasError && 'error!!' }
   </form>

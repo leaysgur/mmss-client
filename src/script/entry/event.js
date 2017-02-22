@@ -1,15 +1,20 @@
 // @flow
-import type { LoginStoreType } from './store';
+import type { EntryStoreType } from './store';
 
 
-class LoginEvent {
-  store: LoginStoreType;
+class EntryEvent {
+  store: EntryStoreType;
 
-  constructor(store: LoginStoreType) {
+  constructor(store: EntryStoreType) {
     this.store = store;
 
     const forBindThis: any = this;
-    forBindThis.onLoginSubmit = this.onLoginSubmit.bind(this);
+    [
+      'onLoginSubmit',
+      'onInputKeyword',
+    ].forEach(name => {
+      forBindThis[name] = forBindThis[name].bind(this);
+    });
   }
 
   onLoginSubmit(item: LoginItemType): void {
@@ -24,12 +29,17 @@ class LoginEvent {
       .then(res => res.json())
       .then(res => {
         if (res === null) {
-          this.store.showError(false);
+          this.store.showLoginError(false);
           return location.reload(true);
         }
-        this.store.showError(true);
+        this.store.showLoginError(true);
       })
       .catch(console.error);
+  }
+
+  onInputKeyword(keyword: string): void {
+    keyword = keyword.trim();
+    this.store.setSearchKeyword(keyword);
   }
 }
 
@@ -37,5 +47,5 @@ export type LoginItemType = {
   id: string;
   pw: string;
 };
-export type LoginEventType = LoginEvent;
-export default LoginEvent;
+export type EntryEventType = EntryEvent;
+export default EntryEvent;
