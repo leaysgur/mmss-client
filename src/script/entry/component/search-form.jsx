@@ -27,7 +27,7 @@ const SearchForm = ({
       <input name="keyword" type="text" onInput={_onInput} placeholder="keyword" />
     </div>
     <div>
-      <pre>{JSON.stringify(results)}</pre>
+      <pre>{JSON.stringify(results, null, 2)}</pre>
     </div>
   </div>
   );

@@ -8,11 +8,22 @@ class MusicModel {
   }
 
   getSearchResult(keyword: string): SearchResultType {
-    console.log('search ->', keyword);
-    return {
-      artists: ['keyword'],
-      albums: [keyword],
-    };
+    const artists = [];
+    const albums = [];
+
+    if (keyword.length === 0) {
+      return { artists, albums };
+    }
+
+    const reg = new RegExp(keyword, 'i');
+    Object.keys(this.json).forEach(artist => {
+      reg.test(artist) && artists.push(artist);
+      // XXX: flow-disable-line
+      Object.keys(this.json[artist]).forEach(album => {
+        reg.test(album) && albums.push(album);
+      });
+    });
+    return { artists, albums };
   }
 }
 
