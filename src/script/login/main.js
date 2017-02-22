@@ -9,8 +9,8 @@ import type { LoginStoreType } from './store';
 import type { LoginEventType } from './event';
 
 
-export default function() {
-  const store: LoginStoreType = new LoginStore();
+export default function(json: JSON) {
+  const store: LoginStoreType = new LoginStore(json);
   const event: LoginEventType = new LoginEvent(store);
 
   ReactDOM.render(
