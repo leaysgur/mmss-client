@@ -8,14 +8,14 @@ import SearchForm from './search-form.jsx';
 import TabTrigger from './tab-trigger.jsx';
 import TabContent from './tab-content.jsx';
 
-import type { EntryStoreType } from '../store';
-import type { EntryEventType } from '../event';
+import type EntryStore from '../store';
+import type EntryEvent from '../event';
 
 
 class EntryApp extends React.Component {
   props: {
-    event: EntryEventType;
-    store: EntryStoreType;
+    event: EntryEvent;
+    store: EntryStore;
   };
 
   render() {

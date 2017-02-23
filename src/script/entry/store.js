@@ -6,11 +6,9 @@ import {
 
 import SearchObject from './object/search';
 
-import type { SearchObjectType, } from './object/search';
-
 
 class EntryStore {
-  searchObject: SearchObjectType;
+  searchObject: SearchObject;
   hasLoginError: boolean;
   visibleTab: string;
 
@@ -40,5 +38,4 @@ class EntryStore {
   }
 }
 
-export type EntryStoreType = EntryStore;
 export default EntryStore;

@@ -2,14 +2,14 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type { LoginItemType } from '../event';
+import type { LoginItem } from '../event';
 
 
 const LoginForm = ({
   onSubmit,
   hasError,
 }: {
-  onSubmit: (item: LoginItemType) => void;
+  onSubmit: (item: LoginItem) => void;
   hasError: boolean;
 }) => {
   const _onSubmit = (ev: Event): void => {

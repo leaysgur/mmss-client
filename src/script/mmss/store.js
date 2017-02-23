@@ -5,13 +5,34 @@ import {
   extendObservable,
 } from 'mobx';
 
+type Song = {
+  album: string;
+  albumArtist: string;
+  artist: string;
+  disc: string;
+  discs: string;
+  duration: string;
+  name: string;
+  path: string;
+  track: string;
+  tracks: string;
+}
+type Album = {
+  songs: Song[];
+  year: string;
+}
+type MusicJSON = {
+  [string]: {
+    [string]: Album;
+  };
+};
 
 class MmssStore {
-  _json: Object;
+  _json: MusicJSON;
 
   artists: string[];
-  albums: string[];
-  songs: Object[];
+  albums: Album[];
+  songs: Song[];
 
   isNameSort: boolean;
   selected: {
@@ -19,7 +40,7 @@ class MmssStore {
     album: ?string;
   };
 
-  constructor(json: Object) {
+  constructor(json: MusicJSON) {
     console.log(json);
     this._json = json;
 
@@ -37,20 +58,29 @@ class MmssStore {
         return artists;
       }),
       albums: computed(() => {
-        if (this.selected.artist === null) { return []; }
+        const selectedArtist = this.selected.artist;
 
-        const artist = this._json[this.selected.artist];
-        const albums = Object.keys(artist).map(album => {
-          return {
-            name: album,
-            year: artist[album].year,
-          };
-        });
-        return albums.sort((a, b) => (a.year|0) < (b.year|0) ? 1 : -1).map(album => album.name);
+        if (selectedArtist) {
+          const artist = this._json[selectedArtist];
+          const albums = Object.keys(artist).map(album => {
+            return {
+              name: album,
+              year: artist[album].year,
+            };
+          });
+          return albums.sort((a, b) => parseInt(a.year, 10) < parseInt(b.year, 10) ? 1 : -1);
+        }
+
+        return [];
       }),
       songs: computed(() => {
-        if (this.selected.album === null) { return []; }
-        return this._json[this.selected.artist][this.selected.album].songs;
+        const selectedArtist = this.selected.artist;
+        const selectedAlbum = this.selected.album;
+        if (selectedArtist && selectedAlbum) {
+          return this._json[selectedArtist][selectedAlbum].songs;
+        }
+
+        return [];
       }),
     });
 
@@ -77,5 +107,4 @@ class MmssStore {
   }
 }
 
-export type MmssStoreType = MmssStore;
 export default MmssStore;

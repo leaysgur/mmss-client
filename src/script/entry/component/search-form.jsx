@@ -2,15 +2,14 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type {
-  SearchResultType,
-} from '../object/search';
+import type { SearchResult } from '../object/search';
+
 
 const SearchForm = ({
   results,
   onInput,
 }: {
-  results: SearchResultType;
+  results: SearchResult;
   onInput: (keyword: string) => void;
 }) => {
   const _onInput = (ev: Event): void => {

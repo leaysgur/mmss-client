@@ -1,11 +1,11 @@
 // @flow
-import type { MmssStoreType } from './store';
+import type MmssStore from './store';
 
 
 class MmssEvent {
-  store: MmssStoreType;
+  store: MmssStore;
 
-  constructor(store: MmssStoreType) {
+  constructor(store: MmssStore) {
     this.store = store;
 
     const forBindThis: any = this;
@@ -50,5 +50,4 @@ class MmssEvent {
   }
 }
 
-export type MmssEventType = MmssEvent;
 export default MmssEvent;

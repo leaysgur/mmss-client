@@ -5,14 +5,14 @@ import { observer } from 'mobx-react';
 import Header from '../../shared/component/header.jsx';
 import FinderItem from './finder-item.jsx';
 
-import type { MmssStoreType } from '../store';
-import type { MmssEventType } from '../event';
+import type MmssStore from '../store';
+import type MmssEvent from '../event';
 
 
 class MmssApp extends React.Component {
   props: {
-    event: MmssEventType;
-    store: MmssStoreType;
+    event: MmssEvent;
+    store: MmssStore;
   };
 
   render() {

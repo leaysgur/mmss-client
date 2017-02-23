@@ -10,7 +10,7 @@ class SearchObject {
   _json: JSON;
 
   keyword: string;
-  results: SearchResultType;
+  results: SearchResult;
 
   constructor(json: JSON) {
     this._json = json;
@@ -19,7 +19,7 @@ class SearchObject {
       keyword: '',
       results: computed(() => {
         const keyword = this.keyword;
-        const ret: SearchResultType = {};
+        const ret: SearchResult = {};
 
         if (keyword.length === 0) {
           return ret;
@@ -56,6 +56,5 @@ class SearchObject {
   }
 }
 
-export type SearchResultType = { [string]: string[] };
-export type SearchObjectType = SearchObject;
+export type SearchResult = { [string]: string[] };
 export default SearchObject;

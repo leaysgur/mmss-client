@@ -1,13 +1,11 @@
 // @flow
-import type {
-  EntryStoreType,
-} from './store';
+import type EntryStore from './store';
 
 
 class EntryEvent {
-  store: EntryStoreType;
+  store: EntryStore;
 
-  constructor(store: EntryStoreType) {
+  constructor(store: EntryStore) {
     this.store = store;
 
     const forBindThis: any = this;
@@ -24,7 +22,7 @@ class EntryEvent {
     this.store.showTab(tabName);
   }
 
-  onLoginSubmit(item: LoginItemType): void {
+  onLoginSubmit(item: LoginItem): void {
     fetch('/api/login', {
       method: 'POST',
       credentials: 'same-origin',
@@ -50,9 +48,8 @@ class EntryEvent {
   }
 }
 
-export type LoginItemType = {
+export type LoginItem = {
   id: string;
   pw: string;
 };
-export type EntryEventType = EntryEvent;
 export default EntryEvent;
