@@ -38,7 +38,15 @@ class MmssStore {
       }),
       albums: computed(() => {
         if (this.selected.artist === null) { return []; }
-        return Object.keys(this._json[this.selected.artist]);
+
+        const artist = this._json[this.selected.artist];
+        const albums = Object.keys(artist).map(album => {
+          return {
+            name: album,
+            year: artist[album].year,
+          };
+        });
+        return albums.sort((a, b) => (a.year|0) < (b.year|0) ? 1 : -1).map(album => album.name);
       }),
       songs: computed(() => {
         if (this.selected.album === null) { return []; }
