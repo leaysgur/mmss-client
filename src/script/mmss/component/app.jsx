@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 
 import Header from '../../shared/component/header.jsx';
 import FinderItem from './finder-item.jsx';
+import Playlist from './playlist.jsx';
 
 import type MmssStore from '../store';
 import type MmssEvent from '../event';
@@ -20,6 +21,7 @@ class MmssApp extends React.Component {
       artists,
       albums,
       songs,
+      nowPlayingSrc,
     } = this.props.store;
     const {
       onClickSortArtist,
@@ -88,11 +90,9 @@ class MmssApp extends React.Component {
           </div>
         </div>
 
-        <div className="Playlist">
-          <div className="Playlist_Inner">
-          ここ
-          </div>
-        </div>
+        <Playlist
+          src={nowPlayingSrc}
+        />
       </div>
     );
   }

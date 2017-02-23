@@ -46,6 +46,9 @@ class MmssStore {
     album: ?string;
   };
 
+  nowPlayingSrc: string;
+
+
   constructor(json: MusicJSON) {
     console.log(json);
     this._json = json;
@@ -56,6 +59,7 @@ class MmssStore {
         artist: null,
         album: null,
       },
+      nowPlayingSrc: '',
       artists: computed(() => {
         const artists = Object.keys(this._json);
         if (this.isNameSort) {
@@ -102,6 +106,7 @@ class MmssStore {
     [
       'sortArtist',
       'selectArtist', 'selectAlbum',
+      'playSong',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
@@ -118,6 +123,10 @@ class MmssStore {
 
   selectAlbum(name: string): void {
     this.selected.album = name;
+  }
+
+  playSong(src: string): void {
+    this.nowPlayingSrc = src;
   }
 }
 

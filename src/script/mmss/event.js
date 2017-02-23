@@ -31,21 +31,14 @@ class MmssEvent {
   }
 
   onClickPlaySong(item: Object): void {
-    // TODO: ここでやらない
     fetch(`/api/track?path=${item.path}`, {
       credentials: 'same-origin',
     })
       .then(res => res.blob())
       .then(blob => {
+        // TODO: revoke
         const objectUrl = URL.createObjectURL(blob);
-
-        const audio: HTMLAudioElement = document.createElement('audio');
-        audio.autoplay = true;
-        audio.onload = () => {
-          URL.revokeObjectURL(objectUrl);
-        };
-
-        audio.src = objectUrl;
+        this.store.playSong(objectUrl);
       });
   }
 }
