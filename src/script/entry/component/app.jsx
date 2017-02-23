@@ -9,6 +9,24 @@ import SearchForm from './search-form.jsx';
 import type { EntryStoreType } from '../store';
 import type { EntryEventType } from '../event';
 
+const TabTrigger = ({
+  tabNames,
+  visibleTab,
+  onClick,
+}: {
+  tabNames: string[];
+  visibleTab: string;
+  onClick: (name: string) => void;
+}) => (
+  <div>
+    { tabNames.map(name => (
+      visibleTab !== name
+        ? <a key={name} href="#" onClick={(ev) => { ev.preventDefault(); onClick(name); }}>{name}</a>
+        : <span key={name}>{name}</span>
+    )) }
+  </div>
+);
+
 
 class EntryApp extends React.Component {
   props: {
@@ -19,9 +37,11 @@ class EntryApp extends React.Component {
   render() {
     const {
       hasLoginError,
+      visibleTab,
       searchObject,
     } = this.props.store;
     const {
+      onClickTab,
       onLoginSubmit,
       onInputKeyword,
     } = this.props.event;
@@ -30,15 +50,20 @@ class EntryApp extends React.Component {
       <div>
         <Header />
         <p>LOGOとか説明とか</p>
-        <p>Tabに</p>
-        <LoginForm
+
+        <TabTrigger
+          tabNames={['login', 'search']}
+          visibleTab={visibleTab}
+          onClick={onClickTab}
+        />
+        { visibleTab === 'login' && <LoginForm
           onSubmit={onLoginSubmit}
           hasError={hasLoginError}
-        />
-        <SearchForm
+        /> }
+        { visibleTab === 'search' && <SearchForm
           results={searchObject.results}
           onInput={onInputKeyword}
-        />
+        /> }
       </div>
     );
   }

@@ -1,5 +1,7 @@
 // @flow
-import type { EntryStoreType } from './store';
+import type {
+  EntryStoreType,
+} from './store';
 
 
 class EntryEvent {
@@ -10,11 +12,16 @@ class EntryEvent {
 
     const forBindThis: any = this;
     [
+      'onClickTab',
       'onLoginSubmit',
       'onInputKeyword',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
+  }
+
+  onClickTab(tabName: string): void {
+    this.store.showTab(tabName);
   }
 
   onLoginSubmit(item: LoginItemType): void {
