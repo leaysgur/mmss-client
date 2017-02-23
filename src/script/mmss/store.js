@@ -42,7 +42,7 @@ class MmssStore {
       }),
       songs: computed(() => {
         if (this.selected.album === null) { return []; }
-        return this._json[this.selected.artist][this.selected.album];
+        return this._json[this.selected.artist][this.selected.album].songs;
       }),
     });
 
