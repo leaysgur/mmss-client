@@ -19,12 +19,19 @@ class SearchObject {
       keyword: '',
       results: computed(() => {
         const keyword = this.keyword;
+        const ret: SearchResultType = {};
+
         if (keyword.length === 0) {
-          return {};
+          return ret;
         }
 
-        const reg = new RegExp(keyword, 'i');
-        const ret: SearchResultType = {};
+        let reg;
+        try {
+          reg = new RegExp(keyword, 'i');
+        } catch (err) {
+          return ret;
+        }
+
         Object.keys(this._json).forEach(artist => {
           if (reg.test(artist)) {
             // XXX: flow-disable-line
