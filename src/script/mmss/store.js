@@ -5,7 +5,7 @@ import {
   extendObservable,
 } from 'mobx';
 
-import { toOrderNumber } from '../shared/utils';
+import { toOrderNumber } from './utils';
 
 type Song = {
   album: string;
