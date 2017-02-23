@@ -17,13 +17,12 @@ type Song = {
   track: string;
   tracks: string;
 }
-type Album = {
-  songs: Song[];
-  year: string;
-}
 type MusicJSON = {
   [string]: {
-    [string]: Album;
+    [string]: {
+      songs: Song[];
+      year: string;
+    };
   };
 };
 
@@ -31,7 +30,10 @@ class MmssStore {
   _json: MusicJSON;
 
   artists: string[];
-  albums: Album[];
+  albums: {
+    name: string;
+    year: string;
+  }[];
   songs: Song[];
 
   isNameSort: boolean;

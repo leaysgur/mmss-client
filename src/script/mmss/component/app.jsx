@@ -54,10 +54,10 @@ class MmssApp extends React.Component {
             <p># Albums</p>
             <ul>
               { albums.length === 0 && <li>Artist not selected</li> }
-              { albums.map(name => (
-              <li key={name}>
+              { albums.map(album => (
+              <li key={album.name}>
                 <FinderItem
-                  item={{ name }}
+                  item={album}
                   onClick={onClickAlbum}
                   onClickPlay={(s) => { console.log(s); }}
                 />
