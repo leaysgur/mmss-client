@@ -7,10 +7,13 @@ import {
 
 
 class MmssStore {
-  json: Object;
+  _json: Object;
+
   artists: string[];
   albums: string[];
   songs: Object[];
+
+  isNameSort: boolean;
   selected: {
     artist: ?string;
     album: ?string;
@@ -18,32 +21,42 @@ class MmssStore {
 
   constructor(json: Object) {
     console.log(json);
-    this.json = json;
+    this._json = json;
 
     extendObservable(this, {
+      isNameSort: false,
       selected: {
         artist: null,
         album: null,
       },
       artists: computed(() => {
-        return Object.keys(this.json);
+        const artists = Object.keys(this._json);
+        if (this.isNameSort) {
+          return artists.sort();
+        }
+        return artists;
       }),
       albums: computed(() => {
         if (this.selected.artist === null) { return []; }
-        return Object.keys(this.json[this.selected.artist]);
+        return Object.keys(this._json[this.selected.artist]);
       }),
       songs: computed(() => {
         if (this.selected.album === null) { return []; }
-        return this.json[this.selected.artist][this.selected.album];
+        return this._json[this.selected.artist][this.selected.album];
       }),
     });
 
     const forBindThis: any = this;
     [
+      'sortArtist',
       'selectArtist', 'selectAlbum',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
+  }
+
+  sortArtist(): void {
+    this.isNameSort = !this.isNameSort;
   }
 
   selectArtist(name: string): void {

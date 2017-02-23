@@ -22,6 +22,7 @@ class MmssApp extends React.Component {
       songs,
     } = this.props.store;
     const {
+      onClickSortArtist,
       onClickArtist,
       onClickAlbum,
       onClickPlaySong,
@@ -32,7 +33,10 @@ class MmssApp extends React.Component {
         <Header />
         <div className="Finder">
           <div className="Finder_Column">
-            <p># Artists</p>
+            <p>
+              # Artists
+              <button type="button" onClick={onClickSortArtist}>sort</button>
+            </p>
             <ul>
               { artists.map(name => (
               <li key={name}>

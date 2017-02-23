@@ -10,11 +10,16 @@ class MmssEvent {
 
     const forBindThis: any = this;
     [
+      'onClickSortArtist',
       'onClickArtist', 'onClickAlbum',
       'onClickPlaySong',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
+  }
+
+  onClickSortArtist(): void {
+    this.store.sortArtist();
   }
 
   onClickArtist(item: Object): void {
