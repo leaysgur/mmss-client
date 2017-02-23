@@ -29,7 +29,7 @@ class MmssApp extends React.Component {
     } = this.props.event;
 
     return (
-      <div>
+      <div className="MmssApp">
         <Header />
         <div className="Finder">
           <div className="Finder_Column">
@@ -79,6 +79,11 @@ class MmssApp extends React.Component {
               </li>
               )) }
             </ul>
+          </div>
+        </div>
+        <div className="Playlist">
+          <div className="Playlist_Inner">
+          ここ
           </div>
         </div>
       </div>
