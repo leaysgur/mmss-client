@@ -8,6 +8,7 @@
     "dev:js": "webpack -w",
     "dev:css": "postcss ./src/style/main.css -w",
     "typecheck": "flow",
+    "cp": "cp ~/Music/music.json ./dist/music.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
