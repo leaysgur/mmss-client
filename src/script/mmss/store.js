@@ -5,6 +5,8 @@ import {
   extendObservable,
 } from 'mobx';
 
+import { toOrderNumber } from '../shared/utils';
+
 type Song = {
   album: string;
   albumArtist: string;
@@ -17,6 +19,7 @@ type Song = {
   track: string;
   tracks: string;
 }
+
 type MusicJSON = {
   [string]: {
     [string]: {
@@ -25,6 +28,7 @@ type MusicJSON = {
     };
   };
 };
+
 
 class MmssStore {
   _json: MusicJSON;
@@ -61,28 +65,36 @@ class MmssStore {
       }),
       albums: computed(() => {
         const selectedArtist = this.selected.artist;
+        if (!selectedArtist) { return []; }
 
-        if (selectedArtist) {
-          const artist = this._json[selectedArtist];
-          const albums = Object.keys(artist).map(album => {
-            return {
-              name: album,
-              year: artist[album].year,
-            };
-          });
-          return albums.sort((a, b) => parseInt(a.year, 10) < parseInt(b.year, 10) ? 1 : -1);
-        }
-
-        return [];
+        const artist = this._json[selectedArtist];
+        const albums = Object.keys(artist).map(album => {
+          return {
+            name: album,
+            year: artist[album].year,
+          };
+        });
+        return albums.sort((a, b) => {
+          const yearA = toOrderNumber(a.year);
+          const yearB = toOrderNumber(b.year);
+          return yearA > yearB ? -1 : 1;
+        });
       }),
       songs: computed(() => {
         const selectedArtist = this.selected.artist;
         const selectedAlbum = this.selected.album;
-        if (selectedArtist && selectedAlbum) {
-          return this._json[selectedArtist][selectedAlbum].songs;
-        }
+        if (!(selectedArtist && selectedAlbum)) { return []; }
 
-        return [];
+        const songs = this._json[selectedArtist][selectedAlbum].songs.slice();
+        return songs.sort((a, b) => {
+          const discA = toOrderNumber(a.disc);
+          const discB = toOrderNumber(b.disc);
+          const trackA = toOrderNumber(a.track);
+          const trackB = toOrderNumber(b.track);
+
+          // disc順のtrack順
+          return discA > discB || discA === discB && trackA > trackB ? 1 : -1;
+        });
       }),
     });
 
