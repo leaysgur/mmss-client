@@ -1,7 +1,17 @@
 .Finder {
   display: flex;
+  height: var(--finder-height);
 
   &_Column {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.Scroller {
+  overflow: scroll;
+
+  &_Inner {
   }
 }

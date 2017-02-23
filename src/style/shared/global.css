@@ -5,8 +5,9 @@ body {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-a {
-  color: inherit;
+:root {
+  --header-height: 4vh;
 }

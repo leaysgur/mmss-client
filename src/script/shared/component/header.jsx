@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const Header = () => (
-  <div>
+  <div className="Header">
     MMSS
   </div>
 );

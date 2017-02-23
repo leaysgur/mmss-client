@@ -37,50 +37,57 @@ class MmssApp extends React.Component {
               # Artists
               <button type="button" onClick={onClickSortArtist}>sort</button>
             </p>
-            <ul>
-              { artists.map(name => (
-              <li key={name}>
-                <FinderItem
-                  item={{ name }}
-                  onClick={onClickArtist}
-                  onClickPlay={(s) => { console.log(s); }}
-                />
-              </li>
-              )) }
-            </ul>
+            <div className="Scroller">
+              <ul className="Scroller_Inner">
+                { artists.map(name => (
+                <li key={name}>
+                  <FinderItem
+                    item={{ name }}
+                    onClick={onClickArtist}
+                    onClickPlay={(s) => { console.log(s); }}
+                  />
+                </li>
+                )) }
+              </ul>
+            </div>
           </div>
 
           <div className="Finder_Column">
             <p># Albums</p>
-            <ul>
-              { albums.length === 0 && <li>Artist not selected</li> }
-              { albums.map(album => (
-              <li key={album.name}>
-                <FinderItem
-                  item={album}
-                  onClick={onClickAlbum}
-                  onClickPlay={(s) => { console.log(s); }}
-                />
-              </li>
-              )) }
-            </ul>
+            <div className="Scroller">
+              <ul className="Scroller_Inner">
+                { albums.length === 0 && <li>Artist not selected</li> }
+                { albums.map(album => (
+                <li key={album.name}>
+                  <FinderItem
+                    item={album}
+                    onClick={onClickAlbum}
+                    onClickPlay={(s) => { console.log(s); }}
+                  />
+                </li>
+                )) }
+              </ul>
+            </div>
           </div>
 
           <div className="Finder_Column">
             <p># Songs</p>
-            <ul>
-              { songs.length === 0 && <li>Album not selected</li> }
-              { songs.map(song => (
-              <li key={song.name}>
-                <FinderItem
-                  item={song}
-                  onClickPlay={onClickPlaySong}
-                />
-              </li>
-              )) }
-            </ul>
+            <div className="Scroller">
+              <ul className="Scroller_Inner">
+                { songs.length === 0 && <li>Album not selected</li> }
+                { songs.map(song => (
+                <li key={song.name}>
+                  <FinderItem
+                    item={song}
+                    onClickPlay={onClickPlaySong}
+                  />
+                </li>
+                )) }
+              </ul>
+            </div>
           </div>
         </div>
+
         <div className="Playlist">
           <div className="Playlist_Inner">
           ここ

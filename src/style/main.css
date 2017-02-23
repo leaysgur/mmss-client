@@ -1,4 +1,5 @@
 @import "shared/global.css";
+@import "shared/header.css";
 
 @import "mmss/app.css";
 @import "mmss/playlist.css";

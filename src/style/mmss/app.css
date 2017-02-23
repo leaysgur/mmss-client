@@ -1,5 +1,9 @@
 .MmssApp {
   position: relative;
-  height: 100vh;
+  height: var(--mmss-height);
   overflow: hidden;
+
+  --mmss-height: 100vh;
+  --finder-height: calc(var(--mmss-height) - var(--header-height) - var(--playlist-height));
+  --playlist-height: 6vh;
 }
