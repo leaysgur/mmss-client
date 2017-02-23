@@ -6,6 +6,7 @@ import Header from '../../shared/component/header.jsx';
 import LoginForm from './login-form.jsx';
 import SearchForm from './search-form.jsx';
 import TabTrigger from './tab-trigger.jsx';
+import TabContent from './tab-content.jsx';
 
 import type { EntryStoreType } from '../store';
 import type { EntryEventType } from '../event';
@@ -39,14 +40,19 @@ class EntryApp extends React.Component {
           visibleTab={visibleTab}
           onClick={onClickTab}
         />
-        { visibleTab === 'login' && <LoginForm
-          onSubmit={onLoginSubmit}
-          hasError={hasLoginError}
-        /> }
-        { visibleTab === 'search' && <SearchForm
-          results={searchObject.results}
-          onInput={onInputKeyword}
-        /> }
+        <TabContent
+          tabContents={{
+            login: <LoginForm
+                     onSubmit={onLoginSubmit}
+                     hasError={hasLoginError}
+                   />,
+            search: <SearchForm
+                      results={searchObject.results}
+                      onInput={onInputKeyword}
+                    />
+          }}
+          visibleTab={visibleTab}
+        />
       </div>
     );
   }
