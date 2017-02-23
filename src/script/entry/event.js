@@ -39,7 +39,7 @@ class EntryEvent {
 
   onInputKeyword(keyword: string): void {
     keyword = keyword.trim();
-    this.store.setSearchKeyword(keyword);
+    this.store.searchObject.setKeyword(keyword);
   }
 }
 

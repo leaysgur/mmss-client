@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 import type {
   SearchResultType,
-} from '../store';
+} from '../object/search';
 
 const SearchForm = ({
   results,

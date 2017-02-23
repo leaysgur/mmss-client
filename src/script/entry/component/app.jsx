@@ -19,7 +19,7 @@ class EntryApp extends React.Component {
   render() {
     const {
       hasLoginError,
-      searchResults,
+      searchObject,
     } = this.props.store;
     const {
       onLoginSubmit,
@@ -36,7 +36,7 @@ class EntryApp extends React.Component {
           hasError={hasLoginError}
         />
         <SearchForm
-          results={searchResults}
+          results={searchObject.results}
           onInput={onInputKeyword}
         />
       </div>
