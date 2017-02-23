@@ -1,8 +1,6 @@
 // @flow
 import { useStrict } from 'mobx';
 
-import MusicModel from './shared/model/music';
-
 import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
@@ -22,8 +20,6 @@ Promise.all([
     musicRes: JSON,
   ]) => {
     const isLogin = isLoginRes === null;
-
-    const musicModel = new MusicModel(musicRes);
-    isLogin ? MmssMain(musicRes) : EntryMain(musicModel);
+    isLogin ? MmssMain(musicRes) : EntryMain(musicRes);
   })
   .catch(console.error);

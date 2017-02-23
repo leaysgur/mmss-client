@@ -8,11 +8,10 @@ import EntryEvent from './event';
 
 import type { EntryStoreType } from './store';
 import type { EntryEventType } from './event';
-import type { MusicModelType } from '../shared/model/music';
 
 
-export default function(musicModel: MusicModelType) {
-  const store: EntryStoreType = new EntryStore(musicModel);
+export default function(musicRes: JSON) {
+  const store: EntryStoreType = new EntryStore(musicRes);
   const event: EntryEventType = new EntryEvent(store);
 
   ReactDOM.render(

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 import type {
   SearchResultType,
-} from '../../shared/model/music';
+} from '../store';
 
 const SearchForm = ({
   results,
