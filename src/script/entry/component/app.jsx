@@ -5,27 +5,10 @@ import { observer } from 'mobx-react';
 import Header from '../../shared/component/header.jsx';
 import LoginForm from './login-form.jsx';
 import SearchForm from './search-form.jsx';
+import TabTrigger from './tab-trigger.jsx';
 
 import type { EntryStoreType } from '../store';
 import type { EntryEventType } from '../event';
-
-const TabTrigger = ({
-  tabNames,
-  visibleTab,
-  onClick,
-}: {
-  tabNames: string[];
-  visibleTab: string;
-  onClick: (name: string) => void;
-}) => (
-  <div>
-    { tabNames.map(name => (
-      visibleTab !== name
-        ? <a key={name} href="#" onClick={(ev) => { ev.preventDefault(); onClick(name); }}>{name}</a>
-        : <span key={name}>{name}</span>
-    )) }
-  </div>
-);
 
 
 class EntryApp extends React.Component {
