@@ -5,6 +5,7 @@ import {
   extendObservable,
   observable,
 } from 'mobx';
+import type { IObservableArray } from 'mobx';
 
 import { toOrderNumber } from '../utils';
 
@@ -15,10 +16,8 @@ class Finder {
   isNameSort: boolean;
 
   artists: Artist[];
-  // XXX: ObservableArray<Album>
-  albums: Object;
-  // XXX: ObservableArray<Song>
-  songs: Object;
+  albums: IObservableArray<Album>;
+  songs: IObservableArray<Song>;
 
 
   constructor(json: MusicJSON) {
@@ -48,8 +47,8 @@ class Finder {
         });
       }),
 
-      albums: observable.shallow([]),
-      songs: observable.shallow([]),
+      albums: observable.shallowArray([]),
+      songs: observable.shallowArray([]),
     });
 
     const forBindThis: any = this;
@@ -70,8 +69,7 @@ class Finder {
    * 実は必要なときに必要なものをなので効率的。
    *
    */
-  // TODO: この型
-  initAlbums(_albums: { [string]: Album }): void {
+  initAlbums(_albums: Albums): void {
     const albums = Object.keys(_albums).map(album => {
       return {
         name: album,
@@ -105,7 +103,11 @@ class Finder {
 
 export type Artist = {
   name: string;
-  albums: { [string]: Album; };
+  albums: Albums;
+}
+
+type Albums = {
+  [string]: Album;
 }
 
 export type Album = {
