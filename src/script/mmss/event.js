@@ -1,5 +1,5 @@
 // @flow
-import type MmssStore, { Song, Album } from './store';
+import type MmssStore, { Song, Album, Artist } from './store';
 
 
 class MmssEvent {
@@ -22,11 +22,11 @@ class MmssEvent {
     this.store.sortArtist();
   }
 
-  onClickArtist(item: Object): void {
+  onClickArtist(item: Artist): void {
     this.store.selectArtist(item.name);
   }
 
-  onClickAlbum(item: Object): void {
+  onClickAlbum(item: Album): void {
     this.store.selectAlbum(item.name);
   }
 
