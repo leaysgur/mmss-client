@@ -25,7 +25,6 @@ class Finder {
     this._json = json;
 
     extendObservable(this, {
-
       /**
        * JSONは何もしないと更新順になってる。
        * こっちでソートしようにもルールが取れないので、
@@ -105,11 +104,9 @@ export type Artist = {
   name: string;
   albums: Albums;
 }
-
 type Albums = {
   [string]: Album;
 }
-
 export type Album = {
   name: string;
   year: string;
@@ -127,7 +124,6 @@ export type Song = {
   track: string;
   tracks: string;
 }
-
 export type MusicJSON = {
   [string]: {
     [string]: {
@@ -135,5 +131,5 @@ export type MusicJSON = {
       year: string;
     };
   };
-};
+}
 export default Finder;
