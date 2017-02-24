@@ -83,6 +83,8 @@ class Finder {
     });
 
     this.albums.replace(albums);
+    // アーティストを変えたら曲も初期化しておく
+    this.songs.clear();
   }
 
   initSongs(songs: Song[]): void {
