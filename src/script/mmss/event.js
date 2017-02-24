@@ -1,5 +1,6 @@
 // @flow
-import type MmssStore, { Song, Album, Artist } from './store';
+import type MmssStore from './store';
+import type { Song, Album, Artist } from './object/finder';
 
 
 class MmssEvent {
@@ -19,15 +20,15 @@ class MmssEvent {
   }
 
   onClickSortArtist(): void {
-    this.store.sortArtist();
+    this.store.finder.sortArtist();
   }
 
   onClickArtist(item: Artist): void {
-    this.store.selectArtist(item.name);
+    this.store.finder.selectArtist(item.name);
   }
 
   onClickAlbum(item: Album): void {
-    this.store.selectAlbum(item.name);
+    this.store.finder.selectAlbum(item.name);
   }
 
   onClickPlayArtist(name: string): void {

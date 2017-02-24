@@ -2,7 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type { Album } from '../store';
+import type { Album } from '../object/finder';
 
 let yearLabel;
 

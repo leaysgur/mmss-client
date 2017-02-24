@@ -4,7 +4,7 @@ import {
   extendObservable,
 } from 'mobx';
 
-import type { Song } from '../store';
+import type { Song } from './finder';
 
 
 class Playlist {

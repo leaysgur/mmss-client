@@ -20,10 +20,8 @@ class MmssApp extends React.Component {
 
   render() {
     const {
-      artists,
-      albums,
-      songs,
       playlist,
+      finder,
     } = this.props.store;
     const {
       onClickSortArtist,
@@ -33,6 +31,11 @@ class MmssApp extends React.Component {
       onClickPlayAlbum,
       onClickPlaySong,
     } = this.props.event;
+    const {
+      artists,
+      albums,
+      songs,
+    } = finder;
 
     return (
       <div className="MmssApp">
