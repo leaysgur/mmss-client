@@ -31,9 +31,14 @@ class MmssEvent {
     this.store.finder.initSongs(item.songs);
   }
 
-  onClickPlayArtist(name: string): void {
-    name;
-    const items = [];
+  onClickPlayArtist(item: Artist): void {
+    let items = [];
+    Object.keys(item.albums).forEach(album => {
+      items = items.concat(item.albums[album].songs);
+    });
+    // TODO: とりあえずコレで古い順にいい感じにソートされてるけど
+    //       やっぱ前もってソートしておく
+    items.reverse();
     this.store.playlist.init(items);
   }
 

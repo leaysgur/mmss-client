@@ -15,8 +15,10 @@ const ArtistItem = ({
   onClickPlay: (item: Artist) => void;
 }) => (
   <div onClick={() => { onClick(item); }}>
-    {item.name}
-     / {Object.keys(item.albums).length} album(s)
+    <div>{item.name}</div>
+    <div>
+      {Object.keys(item.albums).length} album(s)
+    </div>
     <a href="#" onClick={(ev) => {
       ev.preventDefault();
       ev.stopPropagation();
