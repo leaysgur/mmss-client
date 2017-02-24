@@ -8,6 +8,11 @@ import {
 import PlaylistObject from './object/playlist';
 import { toOrderNumber } from './utils';
 
+export type Album = {
+  name: string;
+  year: string;
+  songs: Song[];
+}
 export type Song = {
   album: string;
   albumArtist: string;
@@ -35,10 +40,7 @@ class MmssStore {
   _json: MusicJSON;
 
   artists: string[];
-  albums: {
-    name: string;
-    year: string;
-  }[];
+  albums: Album[];
   songs: Song[];
 
   playlist: PlaylistObject;
@@ -78,6 +80,7 @@ class MmssStore {
           return {
             name: album,
             year: artist[album].year,
+            songs: artist[album].songs,
           };
         });
         return albums.sort((a, b) => {

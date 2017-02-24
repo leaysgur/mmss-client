@@ -18,14 +18,14 @@ class Playlist {
 
     const forBindThis: any = this;
     [
-      'initWithSong'
+      'init',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
   }
 
-  initWithSong(item: Song) {
-    this.items.replace([item]);
+  init(items: Song[]) {
+    this.items.replace(items);
   }
 }
 

@@ -27,6 +27,8 @@ class MmssApp extends React.Component {
       onClickSortArtist,
       onClickArtist,
       onClickAlbum,
+      onClickPlayArtist,
+      onClickPlayAlbum,
       onClickPlaySong,
     } = this.props.event;
 
@@ -46,7 +48,7 @@ class MmssApp extends React.Component {
                   <FinderItem
                     item={{ name }}
                     onClick={onClickArtist}
-                    onClickPlay={(s) => { console.log(s); }}
+                    onClickPlay={onClickPlayArtist}
                   />
                 </li>
                 )) }
@@ -64,7 +66,7 @@ class MmssApp extends React.Component {
                   <FinderItem
                     item={album}
                     onClick={onClickAlbum}
-                    onClickPlay={(s) => { console.log(s); }}
+                    onClickPlay={onClickPlayAlbum}
                   />
                 </li>
                 )) }

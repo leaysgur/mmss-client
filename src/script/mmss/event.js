@@ -1,5 +1,5 @@
 // @flow
-import type MmssStore, { Song } from './store';
+import type MmssStore, { Song, Album } from './store';
 
 
 class MmssEvent {
@@ -12,7 +12,7 @@ class MmssEvent {
     [
       'onClickSortArtist',
       'onClickArtist', 'onClickAlbum',
-      'onClickPlaySong',
+      'onClickPlayArtist', 'onClickPlayAlbum', 'onClickPlaySong',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
@@ -30,8 +30,18 @@ class MmssEvent {
     this.store.selectAlbum(item.name);
   }
 
+  onClickPlayArtist(name: string): void {
+    name;
+    const items = [];
+    this.store.playlist.init(items);
+  }
+
+  onClickPlayAlbum(item: Album): void {
+    this.store.playlist.init(item.songs);
+  }
+
   onClickPlaySong(item: Song): void {
-    this.store.playlist.initWithSong(item);
+    this.store.playlist.init([item]);
   }
 }
 
