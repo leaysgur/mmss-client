@@ -43,10 +43,10 @@ class MmssApp extends React.Component {
             </p>
             <div className="Scroller">
               <ul className="Scroller_Inner">
-                { artists.map(name => (
-                <li key={name}>
+                { artists.map(artist => (
+                <li key={artist.name}>
                   <FinderItem
-                    item={{ name }}
+                    item={artist}
                     onClick={onClickArtist}
                     onClickPlay={onClickPlayArtist}
                   />

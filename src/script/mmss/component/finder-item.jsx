@@ -15,7 +15,7 @@ const FinderItem = ({
   <div onClick={() => {
     onClick && onClick(item);
   }}>
-    {JSON.stringify(item, null, 2)}
+    {item.name}
     <a href="#" onClick={(ev) => {
       ev.preventDefault();
       ev.stopPropagation();
