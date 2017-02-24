@@ -2,7 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type { Song } from '../object/finder';
+import type { Song } from '../../object/finder';
 
 
 const SongItem = ({
