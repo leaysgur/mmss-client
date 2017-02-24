@@ -21,7 +21,7 @@ class MmssApp extends React.Component {
       artists,
       albums,
       songs,
-      nowPlayingSrc,
+      playlist,
     } = this.props.store;
     const {
       onClickSortArtist,
@@ -91,7 +91,7 @@ class MmssApp extends React.Component {
         </div>
 
         <Playlist
-          src={nowPlayingSrc}
+          playlist={playlist}
         />
       </div>
     );

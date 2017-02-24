@@ -5,9 +5,10 @@ import {
   extendObservable,
 } from 'mobx';
 
+import PlaylistObject from './object/playlist';
 import { toOrderNumber } from './utils';
 
-type Song = {
+export type Song = {
   album: string;
   albumArtist: string;
   artist: string;
@@ -40,18 +41,20 @@ class MmssStore {
   }[];
   songs: Song[];
 
+  playlist: PlaylistObject;
+
   isNameSort: boolean;
   selected: {
     artist: ?string;
     album: ?string;
   };
 
-  nowPlayingSrc: string;
-
 
   constructor(json: MusicJSON) {
     console.log(json);
     this._json = json;
+
+    this.playlist = new PlaylistObject();
 
     extendObservable(this, {
       isNameSort: false,
@@ -59,7 +62,6 @@ class MmssStore {
         artist: null,
         album: null,
       },
-      nowPlayingSrc: '',
       artists: computed(() => {
         const artists = Object.keys(this._json);
         if (this.isNameSort) {
@@ -106,7 +108,6 @@ class MmssStore {
     [
       'sortArtist',
       'selectArtist', 'selectAlbum',
-      'playSong',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
@@ -123,10 +124,6 @@ class MmssStore {
 
   selectAlbum(name: string): void {
     this.selected.album = name;
-  }
-
-  playSong(src: string): void {
-    this.nowPlayingSrc = src;
   }
 }
 

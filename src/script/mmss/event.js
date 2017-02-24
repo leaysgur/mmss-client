@@ -1,5 +1,5 @@
 // @flow
-import type MmssStore from './store';
+import type MmssStore, { Song } from './store';
 
 
 class MmssEvent {
@@ -30,16 +30,8 @@ class MmssEvent {
     this.store.selectAlbum(item.name);
   }
 
-  onClickPlaySong(item: Object): void {
-    fetch(`/api/track?path=${item.path}`, {
-      credentials: 'same-origin',
-    })
-      .then(res => res.blob())
-      .then(blob => {
-        // TODO: revoke
-        const objectUrl = URL.createObjectURL(blob);
-        this.store.playSong(objectUrl);
-      });
+  onClickPlaySong(item: Song): void {
+    this.store.playlist.initWithSong(item);
   }
 }
 
