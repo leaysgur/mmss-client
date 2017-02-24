@@ -10,7 +10,7 @@ import { toOrderNumber } from './utils';
 
 export type Artist = {
   name: string;
-  albums: Album[];
+  albums: { [string]: Album; };
 }
 
 export type Album = {

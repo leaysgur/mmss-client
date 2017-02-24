@@ -3,7 +3,9 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import Header from '../../shared/component/header.jsx';
-import FinderItem from './finder-item.jsx';
+import ArtistItem from './artist-item.jsx';
+import AlbumItem from './album-item.jsx';
+import SongItem from './song-item.jsx';
 import Playlist from './playlist.jsx';
 
 import type MmssStore from '../store';
@@ -45,7 +47,7 @@ class MmssApp extends React.Component {
               <ul className="Scroller_Inner">
                 { artists.map(artist => (
                 <li key={artist.name}>
-                  <FinderItem
+                  <ArtistItem
                     item={artist}
                     onClick={onClickArtist}
                     onClickPlay={onClickPlayArtist}
@@ -63,7 +65,7 @@ class MmssApp extends React.Component {
                 { albums.length === 0 && <li>Artist not selected</li> }
                 { albums.map(album => (
                 <li key={album.name}>
-                  <FinderItem
+                  <AlbumItem
                     item={album}
                     onClick={onClickAlbum}
                     onClickPlay={onClickPlayAlbum}
@@ -81,7 +83,7 @@ class MmssApp extends React.Component {
                 { songs.length === 0 && <li>Album not selected</li> }
                 { songs.map(song => (
                 <li key={song.name}>
-                  <FinderItem
+                  <SongItem
                     item={song}
                     onClickPlay={onClickPlaySong}
                   />
