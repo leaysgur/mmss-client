@@ -3,6 +3,7 @@ import {
   action,
   computed,
   extendObservable,
+  observable,
 } from 'mobx';
 
 import { toOrderNumber } from '../utils';
@@ -11,23 +12,28 @@ import { toOrderNumber } from '../utils';
 class Finder {
   _json: MusicJSON;
 
-  artists: Artist[];
-  albums: Album[];
-  songs: Song[];
-
   isNameSort: boolean;
 
-  selected: { artist: ?string; album: ?string; };
+  artists: Artist[];
+  // XXX: ObservableArray<Album>
+  albums: Object;
+  // XXX: ObservableArray<Song>
+  songs: Object;
+
 
   constructor(json: MusicJSON) {
     console.log(json);
     this._json = json;
 
     extendObservable(this, {
+
+      /**
+       * JSONは何もしないと更新順になってる。
+       * こっちでソートしようにもルールが取れないので、
+       * 毎回JSONから作ってる。
+       *
+       */
       isNameSort: false,
-
-      selected: { artist: null, album: null },
-
       artists: computed(() => {
         const artists = Object.keys(this._json);
         if (this.isNameSort) {
@@ -42,47 +48,14 @@ class Finder {
         });
       }),
 
-      albums: computed(() => {
-        const selectedArtist = this.selected.artist;
-        if (!selectedArtist) { return []; }
-
-        const artist = this._json[selectedArtist];
-        const albums = Object.keys(artist).map(album => {
-          return {
-            name: album,
-            year: artist[album].year,
-            songs: artist[album].songs,
-          };
-        });
-        return albums.sort((a, b) => {
-          const yearA = toOrderNumber(a.year);
-          const yearB = toOrderNumber(b.year);
-          return yearA > yearB ? -1 : 1;
-        });
-      }),
-
-      songs: computed(() => {
-        const selectedArtist = this.selected.artist;
-        const selectedAlbum = this.selected.album;
-        if (!(selectedArtist && selectedAlbum)) { return []; }
-
-        const songs = this._json[selectedArtist][selectedAlbum].songs.slice();
-        return songs.sort((a, b) => {
-          const discA = toOrderNumber(a.disc);
-          const discB = toOrderNumber(b.disc);
-          const trackA = toOrderNumber(a.track);
-          const trackB = toOrderNumber(b.track);
-
-          // disc順のtrack順
-          return discA > discB || discA === discB && trackA > trackB ? 1 : -1;
-        });
-      }),
+      albums: observable.shallow([]),
+      songs: observable.shallow([]),
     });
 
     const forBindThis: any = this;
     [
       'sortArtist',
-      'selectArtist', 'selectAlbum',
+      'initAlbums', 'initSongs',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
@@ -92,13 +65,41 @@ class Finder {
     this.isNameSort = !this.isNameSort;
   }
 
-  selectArtist(name: string): void {
-    this.selected.artist = name;
-    this.selected.album = null;
+  /**
+   * 毎回ソートするのは無駄に見えて、
+   * 実は必要なときに必要なものをなので効率的。
+   *
+   */
+  // TODO: この型
+  initAlbums(_albums: { [string]: Album }): void {
+    const albums = Object.keys(_albums).map(album => {
+      return {
+        name: album,
+        year: _albums[album].year,
+        songs: _albums[album].songs,
+      };
+    });
+    albums.sort((a, b) => {
+      const yearA = toOrderNumber(a.year);
+      const yearB = toOrderNumber(b.year);
+      return yearA > yearB ? -1 : 1;
+    });
+
+    this.albums.replace(albums);
   }
 
-  selectAlbum(name: string): void {
-    this.selected.album = name;
+  initSongs(songs: Song[]): void {
+    songs.sort((a, b) => {
+      const discA = toOrderNumber(a.disc);
+      const discB = toOrderNumber(b.disc);
+      const trackA = toOrderNumber(a.track);
+      const trackB = toOrderNumber(b.track);
+
+      // disc順のtrack順
+      return discA > discB || discA === discB && trackA > trackB ? 1 : -1;
+    });
+
+    this.songs.replace(songs);
   }
 }
 

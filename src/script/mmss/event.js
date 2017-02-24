@@ -24,11 +24,11 @@ class MmssEvent {
   }
 
   onClickArtist(item: Artist): void {
-    this.store.finder.selectArtist(item.name);
+    this.store.finder.initAlbums(item.albums);
   }
 
   onClickAlbum(item: Album): void {
-    this.store.finder.selectAlbum(item.name);
+    this.store.finder.initSongs(item.songs);
   }
 
   onClickPlayArtist(name: string): void {
