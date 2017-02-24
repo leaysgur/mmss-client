@@ -2,20 +2,21 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type Playlist from '../object/playlist';
+import type PlaylistObject from '../object/playlist';
 
 
-// TODO: 名前
-const _Playlist = ({
+const Playlist = ({
   playlist,
 }: {
-  playlist: Playlist;
+  playlist: PlaylistObject;
 }) => (
   <div className="Playlist">
     <div className="Playlist_Inner">
       <ul>
-        { playlist.items.map(song => (
-        <li key={`${song.path}`}>{song.name}</li>
+        { playlist.items.map((song, idx) => (
+        <li key={`${song.path}`}>
+        {idx + 1} {song.name}
+        </li>
         )) }
       </ul>
       <audio
@@ -27,4 +28,4 @@ const _Playlist = ({
   </div>
 );
 
-export default observer(_Playlist);
+export default observer(Playlist);
