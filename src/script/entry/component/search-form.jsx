@@ -2,7 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type { SearchResult } from '../object/search';
+import type { SearchResult } from '../store/object/search';
 
 
 const SearchForm = ({

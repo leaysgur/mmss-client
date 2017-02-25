@@ -11,8 +11,8 @@ import SearchForm from './component/search-form.jsx';
 import TabTrigger from './component/tab-trigger.jsx';
 import TabContent from './component/tab-content.jsx';
 
-import type EntryStore from '../store';
-import type EntryEvent from '../event';
+import type EntryStore from './store';
+import type EntryEvent from './event';
 
 
 class EntryApp extends React.Component {

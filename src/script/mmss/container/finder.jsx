@@ -10,6 +10,7 @@ import AlbumItem from '../component/finder/album-item.jsx';
 import SongItem from '../component/finder/song-item.jsx';
 
 import type MmssEvent from '../event';
+import type FinderObject from '../store/object/finder';
 
 
 class Finder extends React.Component {
