@@ -1,6 +1,6 @@
 // @flow
 import type MmssStore from './store';
-import type { Song, Album, Artist } from './object/finder';
+import type { Song, Album, Artist } from './store/object/finder';
 
 
 class MmssEvent {

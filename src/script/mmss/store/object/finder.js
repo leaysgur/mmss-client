@@ -7,7 +7,7 @@ import {
 } from 'mobx';
 import type { IObservableArray } from 'mobx';
 
-import { toOrderNumber } from '../utils';
+import { toOrderNumber } from '../../utils';
 
 
 class Finder {

@@ -2,8 +2,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type PlaylistObject from '../object/playlist';
-import type UiObject from '../object/ui';
+import type PlaylistObject from '../store/object/playlist';
+import type UiObject from '../store/object/ui';
 
 
 class Playlist extends React.Component {
