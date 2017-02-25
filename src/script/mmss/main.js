@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
 
 import MmssApp from './component/app.jsx';
 import MmssStore from './store';
@@ -12,7 +13,9 @@ export default function(json: JSON) {
   const event: MmssEvent = new MmssEvent(store);
 
   ReactDOM.render(
-    <MmssApp event={event} store={store} />,
+    <Provider event={event}>
+      <MmssApp store={store} />
+    </Provider>,
     document.getElementById('root')
   );
 }

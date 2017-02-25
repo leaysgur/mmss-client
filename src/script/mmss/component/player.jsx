@@ -1,15 +1,20 @@
 // @flow
 import React from 'react';
-import { observer } from 'mobx-react';
+import {
+  inject,
+  observer,
+} from 'mobx-react';
+
+import type MmssEvent from '../event';
 
 
 class Player extends React.Component {
   props: {
-    onClickTogglePlaylist: () => void;
+    event: MmssEvent;
   };
 
   render() {
-    const { onClickTogglePlaylist } = this.props;
+    const { onClickTogglePlaylist } = this.props.event;
     return (
       <div className="Player">
         <audio
@@ -25,4 +30,4 @@ class Player extends React.Component {
   }
 }
 
-export default observer(Player);
+export default inject('event')(observer(Player));

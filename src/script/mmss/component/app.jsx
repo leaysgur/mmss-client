@@ -8,12 +8,10 @@ import Playlist from './playlist.jsx';
 import Player from './player.jsx';
 
 import type MmssStore from '../store';
-import type MmssEvent from '../event';
 
 
 class MmssApp extends React.Component {
   props: {
-    event: MmssEvent;
     store: MmssStore;
   };
 
@@ -23,15 +21,6 @@ class MmssApp extends React.Component {
       finder,
       ui,
     } = this.props.store;
-    const {
-      onClickSortArtist,
-      onClickArtist,
-      onClickAlbum,
-      onClickPlayArtist,
-      onClickPlayAlbum,
-      onClickPlaySong,
-      onClickTogglePlaylist,
-    } = this.props.event;
 
     return (
       <div className="MmssApp">
@@ -40,12 +29,6 @@ class MmssApp extends React.Component {
         <Finder
           {...{
             finder,
-            onClickSortArtist,
-            onClickArtist,
-            onClickAlbum,
-            onClickPlayArtist,
-            onClickPlayAlbum,
-            onClickPlaySong,
           }}
         />
 
@@ -56,11 +39,7 @@ class MmssApp extends React.Component {
               ui,
             }}
           />
-          <Player
-            {...{
-              onClickTogglePlaylist,
-            }}
-          />
+          <Player />
         </div>
       </div>
     );
