@@ -37,7 +37,10 @@ class Player extends React.Component {
   }
 
   render() {
-    const { onClickTogglePlaylist } = this.props.event;
+    const {
+      onClickTogglePlaylist,
+      onClickPrev, onClickNext,
+    } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
     const { isMediaLoading } = this.props.ui;
@@ -46,6 +49,14 @@ class Player extends React.Component {
 
     return (
       <div className="Player">
+        <button
+          type="button"
+          {...currentSrc ? { onClick: onClickPrev } : { disabled: true }}
+        >prev</button>
+        <button
+          type="button"
+          {...currentSrc ? { onClick: onClickNext } : { disabled: true }}
+        >next</button>
         <audio
           ref={(ref) => { this.el = ref; }}
           className="Player_Audio"

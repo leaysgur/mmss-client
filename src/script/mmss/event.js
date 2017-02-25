@@ -34,6 +34,7 @@ class MmssEvent {
       'onClickPlayArtist', 'onClickPlayAlbum', 'onClickPlaySong',
       'onClickTogglePlaylist',
       'onEndedMedia',
+      'onClickPrev', 'onClickNext',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
@@ -75,6 +76,14 @@ class MmssEvent {
   }
 
   onEndedMedia(): void {
+    this.store.playlist.next();
+  }
+
+  onClickPrev(): void {
+    this.store.playlist.prev();
+  }
+
+  onClickNext(): void {
     this.store.playlist.next();
   }
 }

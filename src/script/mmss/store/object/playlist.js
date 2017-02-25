@@ -11,17 +11,17 @@ import type { Song } from './finder';
 
 class Playlist {
   items: IObservableArray<Song>;
-  nowPlayingIdx: ?number;
+  nowPlayingIdx: number;
   nowPlaying: ?Song;
 
   constructor() {
     extendObservable(this, {
       items: [],
 
-      nowPlayingIdx: null,
+      nowPlayingIdx: -1,
       nowPlaying: computed(() => {
         const idx = this.nowPlayingIdx;
-        if (typeof idx !== 'number') { return null; }
+        if (idx === -1) { return null; }
 
         return this.items[idx];
       }),
@@ -42,12 +42,20 @@ class Playlist {
     this.nowPlayingIdx = 0;
   }
 
-  prev() {}
+  prev(): void {
+    const idx = this.nowPlayingIdx;
+
+    if (idx === 0) {
+      this.nowPlayingIdx = this.items.length - 1;
+    } else {
+      this.nowPlayingIdx = idx - 1;
+    }
+  }
 
   next(): void {
     const idx = this.nowPlayingIdx;
 
-    if (idx === this.items.length) {
+    if (idx === this.items.length - 1) {
       this.nowPlayingIdx = 0;
     } else {
       this.nowPlayingIdx = idx + 1;
