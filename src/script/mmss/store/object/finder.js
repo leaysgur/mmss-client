@@ -7,8 +7,6 @@ import {
 } from 'mobx';
 import type { IObservableArray } from 'mobx';
 
-import { toOrderNumber } from '../../utils';
-
 
 class Finder {
   _json: MusicJSON;
@@ -77,8 +75,8 @@ class Finder {
       };
     });
     albums.sort((a, b) => {
-      const yearA = toOrderNumber(a.year);
-      const yearB = toOrderNumber(b.year);
+      const yearA = _toOrderNumber(a.year);
+      const yearB = _toOrderNumber(b.year);
       return yearA > yearB ? -1 : 1;
     });
 
@@ -89,10 +87,10 @@ class Finder {
 
   initSongs(songs: Song[]): void {
     songs.sort((a, b) => {
-      const discA = toOrderNumber(a.disc);
-      const discB = toOrderNumber(b.disc);
-      const trackA = toOrderNumber(a.track);
-      const trackB = toOrderNumber(b.track);
+      const discA = _toOrderNumber(a.disc);
+      const discB = _toOrderNumber(b.disc);
+      const trackA = _toOrderNumber(a.track);
+      const trackB = _toOrderNumber(b.track);
 
       // disc順のtrack順
       return discA > discB || discA === discB && trackA > trackB ? 1 : -1;
@@ -135,3 +133,9 @@ export type MusicJSON = {
   };
 }
 export default Finder;
+
+
+function _toOrderNumber(str: string): number {
+  const num = parseInt(str, 10);
+  return isNaN(num) ? 0 : num;
+}
