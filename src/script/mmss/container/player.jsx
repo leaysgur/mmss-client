@@ -12,12 +12,29 @@ import type UiObject from '../store/object/ui';
 
 
 class Player extends React.Component {
+  el: HTMLAudioElement;
   props: {
     event: MmssEvent;
     playlist: PlaylistObject;
     media: MediaObject;
     ui: UiObject;
   };
+
+  handleEvent(ev: Event) {
+    if (ev.type === 'ended') {
+      this.props.event.onEndedMedia();
+    }
+  }
+
+  componentDidMount() {
+    // flow-disable-line
+    this.el.addEventListener('ended', this, false);
+  }
+
+  componentWillUnmount() {
+    // flow-disable-line
+    this.el.removeEventListener('ended', this, false);
+  }
 
   render() {
     const { onClickTogglePlaylist } = this.props.event;
@@ -30,6 +47,7 @@ class Player extends React.Component {
     return (
       <div className="Player">
         <audio
+          ref={(ref) => { this.el = ref; }}
           className="Player_Audio"
           autoPlay
           controls

@@ -30,6 +30,7 @@ class Playlist {
     const forBindThis: any = this;
     [
       'init',
+      'prev', 'next',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
@@ -39,6 +40,18 @@ class Playlist {
     this.items.replace(items);
     // 先頭から再生
     this.nowPlayingIdx = 0;
+  }
+
+  prev() {}
+
+  next(): void {
+    const idx = this.nowPlayingIdx;
+
+    if (idx === this.items.length) {
+      this.nowPlayingIdx = 0;
+    } else {
+      this.nowPlayingIdx = idx + 1;
+    }
   }
 }
 

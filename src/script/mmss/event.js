@@ -33,6 +33,7 @@ class MmssEvent {
       'onClickArtist', 'onClickAlbum',
       'onClickPlayArtist', 'onClickPlayAlbum', 'onClickPlaySong',
       'onClickTogglePlaylist',
+      'onEndedMedia',
     ].forEach(name => {
       forBindThis[name] = forBindThis[name].bind(this);
     });
@@ -71,6 +72,10 @@ class MmssEvent {
 
   onClickTogglePlaylist(): void {
     this.store.ui.togglePlaylist();
+  }
+
+  onEndedMedia(): void {
+    this.store.playlist.next();
   }
 }
 
