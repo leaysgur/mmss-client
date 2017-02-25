@@ -15,13 +15,13 @@ class Media {
 
     const forBindThis: any = this;
     [
-      'fetchAndPlay',
+      'setSrc',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
   }
 
-  fetchAndPlay(blob: Blob): void {
+  setSrc(blob: Blob): void {
     const objectUrl = URL.createObjectURL(blob);
     if (this.currentSrc.length !== 0) {
       URL.revokeObjectURL(this.currentSrc);

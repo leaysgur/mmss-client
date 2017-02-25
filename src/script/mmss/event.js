@@ -33,7 +33,7 @@ class MmssEvent {
         this._mediaXhr.responseType = 'blob';
 
         this._mediaXhr.onload = () => {
-          this.store.media.fetchAndPlay(this._mediaXhr.response);
+          this.store.media.setSrc(this._mediaXhr.response);
         };
 
         this._mediaXhr.send();
