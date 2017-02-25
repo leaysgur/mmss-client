@@ -13,12 +13,21 @@ import type UiObject from '../store/object/ui';
 
 class Player extends React.Component {
   el: HTMLAudioElement;
+  _handleEnded: () => void;
   props: {
     event: MmssEvent;
     playlist: PlaylistObject;
     media: MediaObject;
     ui: UiObject;
   };
+
+  constructor() {
+    super();
+
+    this._handleEnded = () => {
+      this.props.event.onEndedMedia();
+    };
+  }
 
   render() {
     const {
@@ -64,10 +73,6 @@ class Player extends React.Component {
 
   componentWillUnmount() {
     this.el.removeEventListener('ended', this._handleEnded, false);
-  }
-
-  _handleEnded() {
-    this.props.event.onEndedMedia();
   }
 }
 
