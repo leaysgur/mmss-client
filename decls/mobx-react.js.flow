@@ -1,4 +1,6 @@
 declare module 'mobx-react' {
-  declare function observer(c: any): any;
-  declare function inject(c: any): any;
+  declare function observer(): any;
+  declare function inject(): any;
+
+  declare class Provider extends React$Component { }
 }
