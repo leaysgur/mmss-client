@@ -1,19 +1,30 @@
 // @flow
 import {
   action,
+  computed,
   extendObservable,
 } from 'mobx';
 
+import type { IObservableArray } from 'mobx';
 import type { Song } from './finder';
 
 
 class Playlist {
-  // XXX: 本当は Song[] なObservableArray
-  items: Object;
+  items: IObservableArray<Song>;
+  nowPlayingIdx: ?number;
+  nowPlaying: ?Song;
 
   constructor() {
     extendObservable(this, {
       items: [],
+
+      nowPlayingIdx: null,
+      nowPlaying: computed(() => {
+        const idx = this.nowPlayingIdx;
+        if (!idx) { return null; }
+
+        return this.items[idx];
+      }),
     });
 
     const forBindThis: any = this;
@@ -26,6 +37,8 @@ class Playlist {
 
   init(items: Song[]) {
     this.items.replace(items);
+    // 先頭から再生
+    this.nowPlayingIdx = 0;
   }
 }
 

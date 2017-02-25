@@ -13,7 +13,10 @@ class Playlist extends React.Component {
   };
 
   render() {
-    const { items } = this.props.playlist;
+    const {
+      items,
+      nowPlayingIdx,
+    } = this.props.playlist;
     const { isPlaylistShown } = this.props.ui;
 
     if (items.length === 0 || isPlaylistShown === false) { return null; }
@@ -24,7 +27,11 @@ class Playlist extends React.Component {
         <ul>
           { items.map((song, idx) => (
           <li key={`${song.path}`}>
-          {idx + 1} {song.name}
+          {idx === nowPlayingIdx ? '✓' : '　'}
+          &nbsp;
+          {idx + 1}
+          &nbsp;
+          {song.name} | {song.artist} | {song.album}
           </li>
           )) }
         </ul>
