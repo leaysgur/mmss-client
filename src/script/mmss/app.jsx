@@ -2,12 +2,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import Header from '../../shared/component/header.jsx';
-import Finder from './finder.jsx';
-import Playlist from './playlist.jsx';
-import Player from './player.jsx';
+import Header from '../shared/component/header.jsx';
+import Finder from './container/finder.jsx';
+import Playlist from './container/playlist.jsx';
+import Player from './container/player.jsx';
 
-import type MmssStore from '../store';
+import type MmssStore from './store';
 
 
 class MmssApp extends React.Component {

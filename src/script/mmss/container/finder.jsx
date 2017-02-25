@@ -5,9 +5,9 @@ import {
   observer,
 } from 'mobx-react';
 
-import ArtistItem from './finder/artist-item.jsx';
-import AlbumItem from './finder/album-item.jsx';
-import SongItem from './finder/song-item.jsx';
+import ArtistItem from '../component/finder/artist-item.jsx';
+import AlbumItem from '../component/finder/album-item.jsx';
+import SongItem from '../component/finder/song-item.jsx';
 
 import type MmssEvent from '../event';
 
