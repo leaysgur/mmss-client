@@ -4,16 +4,16 @@ import { useStrict } from 'mobx';
 import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
+import { getJSON } from './shared/utils';
+
 
 useStrict(true);
 
 const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
 
 Promise.all([
-  fetch('/api/check', { credentials: 'same-origin' })
-    .then(res => res.json()),
-  fetch(`./dist/music.json?_=${YYYYMMDD}`)
-    .then(res => res.json()),
+  getJSON('/api/check'),
+  getJSON('./dist/music.json', { _: YYYYMMDD }),
 ])
   .then(([
     isLoginRes: JSON,

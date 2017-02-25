@@ -1,4 +1,6 @@
 // @flow
+import { postJSON } from '../shared/utils';
+
 import type EntryStore from './store';
 
 
@@ -23,15 +25,7 @@ class EntryEvent {
   }
 
   onLoginSubmit(item: LoginItem): void {
-    fetch('/api/login', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(item)
-    })
-      .then(res => res.json())
+    postJSON('/api/login', item)
       .then(res => {
         if (res === null) {
           this.store.showLoginError(false);
