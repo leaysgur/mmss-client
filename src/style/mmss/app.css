@@ -4,6 +4,6 @@
   overflow: hidden;
 
   --mmss-height: 100vh;
-  --finder-height: calc(var(--mmss-height) - var(--header-height) - var(--playlist-height));
-  --playlist-height: 6vh;
+  --finder-height: calc(var(--mmss-height) - var(--header-height) - var(--footer-height));
+  --footer-height: 6vh;
 }
