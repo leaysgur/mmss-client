@@ -20,22 +20,6 @@ class Player extends React.Component {
     ui: UiObject;
   };
 
-  handleEvent(ev: Event) {
-    if (ev.type === 'ended') {
-      this.props.event.onEndedMedia();
-    }
-  }
-
-  componentDidMount() {
-    // flow-disable-line
-    this.el.addEventListener('ended', this, false);
-  }
-
-  componentWillUnmount() {
-    // flow-disable-line
-    this.el.removeEventListener('ended', this, false);
-  }
-
   render() {
     const {
       onClickTogglePlaylist,
@@ -72,6 +56,18 @@ class Player extends React.Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.el.addEventListener('ended', this._handleEnded, false);
+  }
+
+  componentWillUnmount() {
+    this.el.removeEventListener('ended', this._handleEnded, false);
+  }
+
+  _handleEnded() {
+    this.props.event.onEndedMedia();
   }
 }
 
