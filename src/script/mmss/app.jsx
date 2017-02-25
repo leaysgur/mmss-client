@@ -44,6 +44,7 @@ class MmssApp extends React.Component {
             {...{
               playlist,
               media,
+              ui,
             }}
           />
         </div>

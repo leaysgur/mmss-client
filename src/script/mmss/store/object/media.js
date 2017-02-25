@@ -6,11 +6,11 @@ import {
 
 
 class Media {
-  currentSrc: string;
+  currentSrc: ?string;
 
   constructor() {
     extendObservable(this, {
-      currentSrc: '',
+      currentSrc: null,
     });
 
     const forBindThis: any = this;
@@ -23,7 +23,7 @@ class Media {
 
   setSrc(blob: Blob): void {
     const objectUrl = URL.createObjectURL(blob);
-    if (this.currentSrc.length !== 0) {
+    if (this.currentSrc) {
       URL.revokeObjectURL(this.currentSrc);
     }
     this.currentSrc = objectUrl;

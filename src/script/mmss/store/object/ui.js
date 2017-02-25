@@ -7,15 +7,18 @@ import {
 
 class Ui {
   isPlaylistShown: boolean;
+  isMediaLoading: boolean;
 
   constructor() {
     extendObservable(this, {
       isPlaylistShown: false,
+      isMediaLoading: false,
     });
 
     const forBindThis: any = this;
     [
       'togglePlaylist',
+      'setMediaLoading',
     ].forEach(name => {
       forBindThis[name] = action(forBindThis[name]);
     });
@@ -23,6 +26,10 @@ class Ui {
 
   togglePlaylist(): void {
     this.isPlaylistShown = !this.isPlaylistShown;
+  }
+
+  setMediaLoading(bool: boolean): void {
+    this.isMediaLoading = bool;
   }
 }
 

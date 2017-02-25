@@ -18,8 +18,12 @@ class MmssEvent {
       (nowPlaying) => {
         if (!nowPlaying) { return; }
 
+        this.store.ui.setMediaLoading(true);
         getMediaSerial('/api/track', { path: nowPlaying.path })
-          .then(blob => this.store.media.setSrc(blob));
+          .then(blob => {
+            this.store.media.setSrc(blob);
+            this.store.ui.setMediaLoading(false);
+          });
       }
     );
 

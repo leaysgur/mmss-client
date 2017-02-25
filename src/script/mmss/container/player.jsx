@@ -8,6 +8,7 @@ import {
 import type MmssEvent from '../event';
 import type PlaylistObject from '../store/object/playlist';
 import type MediaObject from '../store/object/media';
+import type UiObject from '../store/object/ui';
 
 
 class Player extends React.Component {
@@ -15,12 +16,16 @@ class Player extends React.Component {
     event: MmssEvent;
     playlist: PlaylistObject;
     media: MediaObject;
+    ui: UiObject;
   };
 
   render() {
     const { onClickTogglePlaylist } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
+    const { isMediaLoading } = this.props.ui;
+
+    console.log(isMediaLoading ? 'loading..' : 'loaded');
 
     return (
       <div className="Player">
