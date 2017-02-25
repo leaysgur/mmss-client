@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 
-import MmssApp from './component/app.jsx';
+import MmssApp from './component/root.jsx';
 import MmssStore from './store';
 import MmssEvent from './event';
 
