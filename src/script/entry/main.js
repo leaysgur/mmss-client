@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
 
-import EntryApp from './component/app.jsx';
+import EntryApp from './app.jsx';
 import EntryStore from './store';
 import EntryEvent from './event';
 
@@ -12,7 +13,9 @@ export default function(musicRes: JSON) {
   const event: EntryEvent = new EntryEvent(store);
 
   ReactDOM.render(
-    <EntryApp event={event} store={store} />,
+    <Provider event={event}>
+      <EntryApp store={store} />
+    </Provider>,
     document.getElementById('root')
   );
 }
