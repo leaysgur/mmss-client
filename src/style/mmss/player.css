@@ -1,7 +1,11 @@
 .Player {
+  display: flex;
 
   &_Audio {
-    width: 100%;
+    flex: 1 1 auto;
   }
 
+  &_Info {
+    width: 30%;
+  }
 }

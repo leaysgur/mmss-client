@@ -3,29 +3,25 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import type PlaylistObject from '../object/playlist';
+import type UiObject from '../object/ui';
 
 
 class Playlist extends React.Component {
   props: {
     playlist: PlaylistObject;
+    ui: UiObject;
   };
-  state: {
-    isPlaylistShown: boolean;
-  };
-
-  constructor() {
-    super();
-
-    this.state = { isPlaylistShown: false };
-  }
 
   render() {
     const { items } = this.props.playlist;
+    const { isPlaylistShown } = this.props.ui;
+
+    if (items.length === 0 || isPlaylistShown === false) { return null; }
 
     return (
     <div className="Playlist">
       <div className="Playlist_Inner">
-        <ul style={{display: this.state.isPlaylistShown ? 'block' : 'none'}}>
+        <ul>
           { items.map((song, idx) => (
           <li key={`${song.path}`}>
           {idx + 1} {song.name}

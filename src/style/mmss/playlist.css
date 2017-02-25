@@ -1,6 +1,13 @@
 .Playlist {
-  max-height: 30vh;
+  position: fixed;
+  bottom: var(--footer-height);
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  max-height: 40vh;
   overflow: scroll;
+  padding: 1rem;
+  background-color: inherit;
 
   &_Inner {
   }

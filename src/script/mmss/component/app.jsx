@@ -21,6 +21,7 @@ class MmssApp extends React.Component {
     const {
       playlist,
       finder,
+      ui,
     } = this.props.store;
     const {
       onClickSortArtist,
@@ -29,6 +30,7 @@ class MmssApp extends React.Component {
       onClickPlayArtist,
       onClickPlayAlbum,
       onClickPlaySong,
+      onClickTogglePlaylist,
     } = this.props.event;
 
     return (
@@ -51,9 +53,14 @@ class MmssApp extends React.Component {
           <Playlist
             {...{
               playlist,
+              ui,
             }}
           />
-          <Player />
+          <Player
+            {...{
+              onClickTogglePlaylist,
+            }}
+          />
         </div>
       </div>
     );
