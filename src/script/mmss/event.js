@@ -1,4 +1,6 @@
 // @flow
+import { reaction } from 'mobx';
+
 import type MmssStore from './store';
 import type { Song, Album, Artist } from './store/object/finder';
 
@@ -6,8 +8,37 @@ import type { Song, Album, Artist } from './store/object/finder';
 class MmssEvent {
   store: MmssStore;
 
+  _mediaXhr: XMLHttpRequest;
+
   constructor(store: MmssStore) {
     this.store = store;
+
+    this._mediaXhr;
+
+    reaction(
+      () => this.store.playlist.nowPlaying,
+      (nowPlaying) => {
+        if (!nowPlaying) { return; }
+
+        console.log(nowPlaying);
+        if (this._mediaXhr) {
+          if (this._mediaXhr.readyState !== 4) {
+            this._mediaXhr.abort();
+          }
+        } else {
+          this._mediaXhr = new XMLHttpRequest();
+        }
+
+        this._mediaXhr.open('GET', `/api/track?path=${nowPlaying.path}`);
+        this._mediaXhr.responseType = 'blob';
+
+        this._mediaXhr.onload = () => {
+          this.store.media.fetchAndPlay(this._mediaXhr.response);
+        };
+
+        this._mediaXhr.send();
+      }
+    );
 
     const forBindThis: any = this;
     [

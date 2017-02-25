@@ -21,7 +21,7 @@ class Playlist {
       nowPlayingIdx: null,
       nowPlaying: computed(() => {
         const idx = this.nowPlayingIdx;
-        if (!idx) { return null; }
+        if (typeof idx !== 'number') { return null; }
 
         return this.items[idx];
       }),

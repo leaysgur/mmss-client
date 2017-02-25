@@ -20,6 +20,7 @@ class MmssApp extends React.Component {
       playlist,
       finder,
       ui,
+      media,
     } = this.props.store;
 
     return (
@@ -39,7 +40,12 @@ class MmssApp extends React.Component {
               ui,
             }}
           />
-          <Player />
+          <Player
+            {...{
+              playlist,
+              media,
+            }}
+          />
         </div>
       </div>
     );
