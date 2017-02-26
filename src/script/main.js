@@ -12,7 +12,7 @@ useStrict(true);
 const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
 
 Promise.all([
-  getJSON('/api/check'),
+  getJSON('/api/session'),
   getJSON('./dist/music.json', { _: YYYYMMDD }),
 ])
   .then(([
