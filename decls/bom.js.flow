@@ -1,0 +1,8 @@
+declare class Notification {
+  constructor(title: string, options?: Object): Notification;
+  close(): void;
+  onclick: (ev: Event) => any;
+  onerror: (ev: Event) => any;
+  static requestPermission(): Promise<'granted' | 'denied' | 'default'>;
+}
+

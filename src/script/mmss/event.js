@@ -1,6 +1,11 @@
 // @flow
 import { reaction } from 'mobx';
 
+import {
+  initNotification,
+  showNotification,
+} from './notifier';
+
 import { getMediaSerial } from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
@@ -15,6 +20,8 @@ class MmssEvent {
 
     this.store = store;
 
+    initNotification();
+
     reaction(
       () => this.store.playlist.nowPlaying,
       (nowPlaying) => {
@@ -25,6 +32,7 @@ class MmssEvent {
           .then(blob => {
             this.store.media.setSrc(blob);
             this.store.ui.setMediaLoading(false);
+            nowPlaying && showNotification(nowPlaying);
           });
       }
     );
