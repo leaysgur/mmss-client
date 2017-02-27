@@ -36,7 +36,8 @@ class MmssEvent {
             this.store.media.setSrc(blob);
             this.store.ui.setMediaLoading(false);
             nowPlaying && showNotification(nowPlaying);
-          });
+          })
+          .catch(err => { console.error(err); location.reload(true); });
       }
     );
   }
