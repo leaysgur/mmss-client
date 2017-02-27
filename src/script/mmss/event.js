@@ -88,6 +88,10 @@ class MmssEvent {
   onClickNext(): void {
     this.store.playlist.next();
   }
+
+  onClickPlaylistItem(item: Song): void {
+    this.store.playlist.jump(item);
+  }
 }
 
 export default MmssEvent;

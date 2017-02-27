@@ -1,13 +1,20 @@
 // @flow
 import React from 'react';
-import { observer } from 'mobx-react';
+import {
+  inject,
+  observer,
+} from 'mobx-react';
 
+import PlaylistItem from '../component/playlist/item.jsx';
+
+import type MmssEvent from '../event';
 import type PlaylistObject from '../store/object/playlist';
 import type UiObject from '../store/object/ui';
 
 
 class Playlist extends React.Component {
   props: {
+    event: MmssEvent;
     playlist: PlaylistObject;
     ui: UiObject;
   };
@@ -18,6 +25,7 @@ class Playlist extends React.Component {
       nowPlayingIdx,
     } = this.props.playlist;
     const { isPlaylistShown } = this.props.ui;
+    const { onClickPlaylistItem } = this.props.event;
 
     if (items.length === 0 || isPlaylistShown === false) { return null; }
 
@@ -26,12 +34,15 @@ class Playlist extends React.Component {
       <div className="Playlist_Inner">
         <ul>
           { items.map((song, idx) => (
-          <li key={`${song.path}`}>
-          {idx === nowPlayingIdx ? '✓' : '　'}
-          &nbsp;
-          {idx + 1}
-          &nbsp;
-          {song.name} | {song.artist} | {song.album}
+          <li
+            key={`${song.path}`}
+          >
+            <PlaylistItem
+              item={song}
+              no={idx + 1}
+              isPlaying={nowPlayingIdx === idx}
+              onClick={onClickPlaylistItem}
+            />
           </li>
           )) }
         </ul>
@@ -41,4 +52,4 @@ class Playlist extends React.Component {
   }
 }
 
-export default observer(Playlist);
+export default inject('event')(observer(Playlist));

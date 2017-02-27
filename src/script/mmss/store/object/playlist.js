@@ -55,6 +55,13 @@ class Playlist {
       this.nowPlayingIdx = idx + 1;
     }
   }
+
+  jump(item: Song): void {
+    const idx = this.items.indexOf(item);
+    if (idx !== -1) {
+      this.nowPlayingIdx = idx;
+    }
+  }
 }
 
 export default Playlist;
