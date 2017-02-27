@@ -89,7 +89,7 @@ class MmssEvent {
 
     this.store.ui.setMediaLoading(true);
     getMediaSerial('/api/track', { path: nowPlaying.path })
-      .then(blob => {
+      .then((blob: Blob) => {
         if (blob.type !== 'audio/mpeg') {
           return location.reload(true);
         }
