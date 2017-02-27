@@ -1,5 +1,5 @@
 // @flow
-export function getJSON(url: string, param?: Object): Promise<JSON> {
+export function getJSON(url: string, param?: Object): Promise<any> {
   if (param) {
     url += `?${_paramToQs(param)}`;
   }
@@ -7,7 +7,7 @@ export function getJSON(url: string, param?: Object): Promise<JSON> {
     .then(res => res.json());
 }
 
-export function postJSON(url: string, param?: Object): Promise<JSON> {
+export function postJSON(url: string, param?: Object): Promise<any> {
   const options: RequestOptions = {
     method: 'POST',
     credentials: 'same-origin',

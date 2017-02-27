@@ -6,6 +6,8 @@ import MmssMain from './mmss/main';
 
 import { getJSON } from './shared/utils';
 
+import type { MusicJSON } from './mmss/store/object/finder';
+
 
 useStrict(true);
 
@@ -17,7 +19,7 @@ Promise.all([
 ])
   .then(([
     isLoginRes: JSON,
-    musicRes: JSON,
+    musicRes: MusicJSON,
   ]) => {
     const isLogin = isLoginRes === null;
     isLogin ? MmssMain(musicRes) : EntryMain(musicRes);

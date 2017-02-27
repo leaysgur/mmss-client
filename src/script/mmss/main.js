@@ -7,8 +7,10 @@ import MmssApp from './app.jsx';
 import MmssStore from './store';
 import MmssEvent from './event';
 
+import type { MusicJSON } from './store/object/finder';
 
-export default function(json: JSON) {
+
+export default function(json: MusicJSON) {
   const store: MmssStore = new MmssStore(json);
   const event: MmssEvent = new MmssEvent(store);
 

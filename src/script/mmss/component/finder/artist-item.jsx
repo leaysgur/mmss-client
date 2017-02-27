@@ -17,7 +17,7 @@ const ArtistItem = ({
   <div onClick={() => { onClick(item); }}>
     <div>{item.name}</div>
     <div>
-      {Object.keys(item.albums).length} album(s)
+      {item.albums.length} album(s)
     </div>
     <a href="#" onClick={(ev) => {
       ev.preventDefault();
