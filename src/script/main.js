@@ -4,7 +4,7 @@ import { useStrict } from 'mobx';
 import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
-import { getJSON } from './shared/utils';
+import { getJSON } from './shared/util/fetch';
 
 
 useStrict(true);

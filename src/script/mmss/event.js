@@ -1,7 +1,7 @@
 // @flow
 import { reaction } from 'mobx';
 
-import { getMediaSerial } from '../shared/utils';
+import { getMediaSerial } from '../shared/util/fetch';
 
 import type MmssStore from './store';
 

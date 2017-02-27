@@ -1,5 +1,5 @@
 // @flow
-import { postJSON } from '../shared/utils';
+import { postJSON } from '../shared/util/fetch';
 
 import type EntryStore from './store';
 
