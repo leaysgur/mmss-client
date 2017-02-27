@@ -1,7 +1,0 @@
-type APIErrorRes = { error: number; };
-
-declare type APILoginRes = null | APIErrorRes;
-declare type APILogoutRes = null | APIErrorRes;
-
-declare type APISessionRes = null | APIErrorRes;
-declare type APITrackRes = Blob | APIErrorRes;
