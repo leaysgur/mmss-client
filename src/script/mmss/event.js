@@ -27,22 +27,7 @@ class MmssEvent {
 
     reaction(
       () => this.store.playlist.nowPlaying,
-      (nowPlaying) => {
-        if (!nowPlaying) { return; }
-
-        this.store.ui.setMediaLoading(true);
-        getMediaSerial('/api/track', { path: nowPlaying.path })
-          .then(blob => {
-            if (blob.type !== 'audio/mpeg') {
-              return location.reload(true);
-            }
-
-            this.store.media.setSrc(blob);
-            this.store.ui.setMediaLoading(false);
-            nowPlaying && showNotification(nowPlaying);
-          })
-          .catch(console.error);
-      }
+      this._onChangeNowPlaying,
     );
   }
 
@@ -96,6 +81,23 @@ class MmssEvent {
 
   onClickPlaylistItem(item: Song): void {
     this.store.playlist.jump(item);
+  }
+
+  _onChangeNowPlaying(nowPlaying) {
+    if (!nowPlaying) { return; }
+
+    this.store.ui.setMediaLoading(true);
+    getMediaSerial('/api/track', { path: nowPlaying.path })
+      .then(blob => {
+        if (blob.type !== 'audio/mpeg') {
+          return location.reload(true);
+        }
+
+        this.store.media.setSrc(blob);
+        this.store.ui.setMediaLoading(false);
+        nowPlaying && showNotification(nowPlaying);
+      })
+      .catch(console.error);
   }
 }
 
