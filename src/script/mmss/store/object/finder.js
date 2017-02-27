@@ -19,7 +19,6 @@ class Finder {
 
 
   constructor(json: MusicJSON) {
-    console.log(json);
     this._json = json;
 
     extendObservable(this, {
@@ -32,14 +31,14 @@ class Finder {
       artists: computed(() => {
         const artists = this._json.slice();
         if (this.isNameSort) {
-          artists.reverse();
+          artists.sort((a, b) => { return a.name < b.name ? -1 : 1; });
         }
 
         return artists;
       }),
 
-      albums: observable.shallowArray([]),
-      songs: observable.shallowArray([]),
+      albums: observable.shallow([]),
+      songs: observable.shallow([]),
     });
 
     const forBindThis: any = this;
@@ -66,6 +65,7 @@ class Finder {
   }
 }
 
+export type MusicJSON = Artist[];
 export type Artist = {
   name: string;
   albums: Album[];
@@ -76,16 +76,12 @@ export type Album = {
   songs: Song[];
 };
 export type Song = {
-  album: string;
-  albumArtist: string;
-  artist: string;
-  disc: string;
-  discs: string;
-  duration: string;
   name: string;
-  path: string;
+  artist: string;
+  album: string;
+  disc: string;
   track: string;
-  tracks: string;
+  duration: string;
+  path: string;
 };
-export type MusicJSON = Artist[];
 export default Finder;
