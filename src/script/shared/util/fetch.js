@@ -43,9 +43,6 @@ export function getMediaSerial(url: string, param?: Object): Promise<Blob> {
     _mediaXhr.responseType = 'blob';
 
     _mediaXhr.onload = () => {
-      if (_mediaXhr.status !== 200) {
-        return reject({ error: 0 });
-      }
       resolve(_mediaXhr.response);
     };
     _mediaXhr.onerror = err => {

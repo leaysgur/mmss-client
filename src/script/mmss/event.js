@@ -33,11 +33,15 @@ class MmssEvent {
         this.store.ui.setMediaLoading(true);
         getMediaSerial('/api/track', { path: nowPlaying.path })
           .then(blob => {
+            if (blob.type !== 'audio/mpeg') {
+              return location.reload(true);
+            }
+
             this.store.media.setSrc(blob);
             this.store.ui.setMediaLoading(false);
             nowPlaying && showNotification(nowPlaying);
           })
-          .catch(err => { console.error(err); location.reload(true); });
+          .catch(console.error);
       }
     );
   }
