@@ -8,7 +8,7 @@ import EntryStore from './store';
 import EntryEvent from './event';
 
 
-export default function(musicRes: JSON) {
+export default function(musicRes: MusicJSON) {
   const store: EntryStore = new EntryStore(musicRes);
   const event: EntryEvent = new EntryEvent(store);
 

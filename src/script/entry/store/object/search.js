@@ -7,12 +7,12 @@ import {
 
 
 class SearchObject {
-  _json: JSON;
+  _json: MusicJSON;
 
   keyword: string;
   results: SearchResult;
 
-  constructor(json: JSON) {
+  constructor(json: MusicJSON) {
     this._json = json;
 
     extendObservable(this, {
@@ -32,10 +32,9 @@ class SearchObject {
           return ret;
         }
 
-        Object.keys(this._json).forEach(artist => {
-          if (reg.test(artist)) {
-            // XXX: flow-disable-line
-            ret[artist] = Object.keys(this._json[artist]).slice();
+        this._json.forEach(artist => {
+          if (reg.test(artist.name)) {
+            ret[artist.name] = artist.albums.map(album => album.name);
           }
         });
 

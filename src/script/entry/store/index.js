@@ -12,7 +12,7 @@ class EntryStore {
   hasLoginError: boolean;
   visibleTab: string;
 
-  constructor(json: JSON) {
+  constructor(json: MusicJSON) {
     this.searchObject = new SearchObject(json);
 
     extendObservable(this, {
