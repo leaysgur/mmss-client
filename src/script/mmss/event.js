@@ -6,7 +6,10 @@ import {
   showNotification,
 } from './notifier';
 
-import { getMediaSerial } from '../shared/util/fetch';
+import {
+  getMediaSerial,
+  postJSON,
+} from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
 import type MmssStore from './store';
@@ -36,6 +39,10 @@ class MmssEvent {
           });
       }
     );
+  }
+
+  onClickLogout(): void {
+    postJSON('/api/logout');
   }
 
   onClickSortArtist(): void {

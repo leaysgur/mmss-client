@@ -1,6 +1,9 @@
 // @flow
 import React from 'react';
-import { observer } from 'mobx-react';
+import {
+  inject,
+  observer,
+} from 'mobx-react';
 
 import Header from '../shared/component/header.jsx';
 import Finder from './container/finder.jsx';
@@ -8,11 +11,13 @@ import Playlist from './container/playlist.jsx';
 import Player from './container/player.jsx';
 
 import type MmssStore from './store';
+import type MmssEvent from './event';
 
 
 class MmssApp extends React.Component {
   props: {
     store: MmssStore;
+    event: MmssEvent;
   };
 
   render() {
@@ -25,7 +30,7 @@ class MmssApp extends React.Component {
 
     return (
       <div className="MmssApp">
-        <Header />
+        <Header onClick={this.props.event.onClickLogout} />
 
         <Finder
           {...{
@@ -53,4 +58,4 @@ class MmssApp extends React.Component {
   }
 }
 
-export default observer(MmssApp);
+export default inject('event')(observer(MmssApp));
