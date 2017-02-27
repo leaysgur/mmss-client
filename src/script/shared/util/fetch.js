@@ -53,9 +53,14 @@ export function getMediaSerial(url: string, param?: Object): Promise<Blob> {
   });
 }
 
-function _paramToQs(param: Object): string {
-  return Object.entries(param).reduce((cur, acc) => {
-    cur.push(acc.join('='));
-    return cur;
-  }, []).join('&');
+function _paramToQs(param: { [string]: string; }): string {
+  let ret = [];
+  Object.entries(param).forEach(kv => {
+    const key = kv[0];
+    const val = kv[1];
+    if (typeof val === 'string') {
+      ret.push(`${key}=${encodeURIComponent(val)}`);
+    }
+  });
+  return ret.join('&');
 }
