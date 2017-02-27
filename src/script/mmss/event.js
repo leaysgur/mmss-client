@@ -32,7 +32,8 @@ class MmssEvent {
   }
 
   onClickLogout(): void {
-    postJSON('/api/logout');
+    postJSON('/api/logout')
+      .then(() => { location.reload(true); });
   }
 
   onClickSortArtist(): void {
