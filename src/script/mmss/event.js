@@ -4,7 +4,6 @@ import { reaction } from 'mobx';
 import { getMediaSerial } from '../shared/utils';
 
 import type MmssStore from './store';
-import type { Song, Album, Artist } from './store/object/finder';
 
 
 class MmssEvent {

@@ -6,7 +6,6 @@ import {
 } from 'mobx';
 
 import type { IObservableArray } from 'mobx';
-import type { Song } from './finder';
 
 
 class Playlist {

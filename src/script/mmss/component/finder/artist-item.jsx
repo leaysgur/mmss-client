@@ -2,8 +2,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import type { Artist } from '../../store/object/finder';
-
 
 const ArtistItem = ({
   item,

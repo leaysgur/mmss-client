@@ -4,8 +4,6 @@ import FinderObject from './object/finder';
 import UiObject from './object/ui';
 import MediaObject from './object/media';
 
-import type { MusicJSON } from './object/finder';
-
 
 class MmssStore {
   playlist: PlaylistObject;

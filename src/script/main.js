@@ -6,8 +6,6 @@ import MmssMain from './mmss/main';
 
 import { getJSON } from './shared/utils';
 
-import type { MusicJSON } from './mmss/store/object/finder';
-
 
 useStrict(true);
 

@@ -65,23 +65,4 @@ class Finder {
   }
 }
 
-export type MusicJSON = Artist[];
-export type Artist = {
-  name: string;
-  albums: Album[];
-};
-export type Album = {
-  name: string;
-  year: string;
-  songs: Song[];
-};
-export type Song = {
-  name: string;
-  artist: string;
-  album: string;
-  disc: string;
-  track: string;
-  duration: string;
-  path: string;
-};
 export default Finder;
