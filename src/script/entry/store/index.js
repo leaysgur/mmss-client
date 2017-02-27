@@ -1,9 +1,9 @@
 // @flow
 import {
-  action,
   extendObservable,
 } from 'mobx';
 
+import { actionAll } from '../../shared/util/class';
 import SearchObject from './object/search';
 
 
@@ -13,19 +13,13 @@ class EntryStore {
   visibleTab: string;
 
   constructor(json: MusicJSON) {
+    actionAll(this);
+
     this.searchObject = new SearchObject(json);
 
     extendObservable(this, {
       hasLoginError: false,
       visibleTab: 'login',
-    });
-
-    const forBindThis: any = this;
-    [
-      'showLoginError',
-      'showTab',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 

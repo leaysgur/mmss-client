@@ -1,9 +1,10 @@
 // @flow
 import {
-  action,
   computed,
   extendObservable,
 } from 'mobx';
+
+import { actionAll } from '../../../shared/util/class';
 
 import type { IObservableArray } from 'mobx';
 
@@ -14,6 +15,8 @@ class Playlist {
   nowPlaying: ?Song;
 
   constructor() {
+    actionAll(this);
+
     extendObservable(this, {
       items: [],
 
@@ -24,14 +27,6 @@ class Playlist {
 
         return this.items[idx];
       }),
-    });
-
-    const forBindThis: any = this;
-    [
-      'init',
-      'prev', 'next',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 

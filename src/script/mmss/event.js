@@ -2,6 +2,7 @@
 import { reaction } from 'mobx';
 
 import { getMediaSerial } from '../shared/util/fetch';
+import { bindAll } from '../shared/util/class';
 
 import type MmssStore from './store';
 
@@ -10,6 +11,8 @@ class MmssEvent {
   store: MmssStore;
 
   constructor(store: MmssStore) {
+    bindAll(this);
+
     this.store = store;
 
     reaction(
@@ -25,18 +28,6 @@ class MmssEvent {
           });
       }
     );
-
-    const forBindThis: any = this;
-    [
-      'onClickSortArtist',
-      'onClickArtist', 'onClickAlbum',
-      'onClickPlayArtist', 'onClickPlayAlbum', 'onClickPlaySong',
-      'onClickTogglePlaylist',
-      'onEndedMedia',
-      'onClickPrev', 'onClickNext',
-    ].forEach(name => {
-      forBindThis[name] = forBindThis[name].bind(this);
-    });
   }
 
   onClickSortArtist(): void {

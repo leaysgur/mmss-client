@@ -1,9 +1,10 @@
 // @flow
 import {
-  action,
   computed,
   extendObservable,
 } from 'mobx';
+
+import { actionAll } from '../../../shared/util/class';
 
 
 class SearchObject {
@@ -13,6 +14,8 @@ class SearchObject {
   results: SearchResult;
 
   constructor(json: MusicJSON) {
+    actionAll(this);
+
     this._json = json;
 
     extendObservable(this, {
@@ -40,13 +43,6 @@ class SearchObject {
 
         return ret;
       }),
-    });
-
-    const forBindThis: any = this;
-    [
-      'setKeyword',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 

@@ -1,10 +1,12 @@
 // @flow
 import {
-  action,
   computed,
   extendObservable,
   observable,
 } from 'mobx';
+
+import { actionAll } from '../../../shared/util/class';
+
 import type { IObservableArray } from 'mobx';
 
 
@@ -19,6 +21,8 @@ class Finder {
 
 
   constructor(json: MusicJSON) {
+    actionAll(this);
+
     this._json = json;
 
     extendObservable(this, {
@@ -39,14 +43,6 @@ class Finder {
 
       albums: observable.shallow([]),
       songs: observable.shallow([]),
-    });
-
-    const forBindThis: any = this;
-    [
-      'sortArtist',
-      'initAlbums', 'initSongs',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 

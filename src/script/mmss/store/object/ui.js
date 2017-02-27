@@ -1,8 +1,9 @@
 // @flow
 import {
-  action,
   extendObservable,
 } from 'mobx';
+
+import { actionAll } from '../../../shared/util/class';
 
 
 class Ui {
@@ -10,17 +11,11 @@ class Ui {
   isMediaLoading: boolean;
 
   constructor() {
+    actionAll(this);
+
     extendObservable(this, {
       isPlaylistShown: false,
       isMediaLoading: false,
-    });
-
-    const forBindThis: any = this;
-    [
-      'togglePlaylist',
-      'setMediaLoading',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 

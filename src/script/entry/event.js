@@ -1,5 +1,6 @@
 // @flow
 import { postJSON } from '../shared/util/fetch';
+import { bindAll } from '../shared/util/class';
 
 import type EntryStore from './store';
 
@@ -8,16 +9,9 @@ class EntryEvent {
   store: EntryStore;
 
   constructor(store: EntryStore) {
-    this.store = store;
+    bindAll(this);
 
-    const forBindThis: any = this;
-    [
-      'onClickTab',
-      'onLoginSubmit',
-      'onInputKeyword',
-    ].forEach(name => {
-      forBindThis[name] = forBindThis[name].bind(this);
-    });
+    this.store = store;
   }
 
   onClickTab(tabName: string): void {

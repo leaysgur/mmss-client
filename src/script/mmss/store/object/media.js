@@ -1,23 +1,19 @@
 // @flow
 import {
-  action,
   extendObservable,
 } from 'mobx';
+
+import { actionAll } from '../../../shared/util/class';
 
 
 class Media {
   currentSrc: ?string;
 
   constructor() {
+    actionAll(this);
+
     extendObservable(this, {
       currentSrc: null,
-    });
-
-    const forBindThis: any = this;
-    [
-      'setSrc',
-    ].forEach(name => {
-      forBindThis[name] = action(forBindThis[name]);
     });
   }
 
