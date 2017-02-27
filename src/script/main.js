@@ -16,7 +16,7 @@ Promise.all([
   getJSON('./dist/music.json', { _: YYYYMMDD }),
 ])
   .then(([
-    isLoginRes: JSON,
+    isLoginRes: APISessionRes,
     musicRes: MusicJSON,
   ]) => {
     const isLogin = isLoginRes === null;

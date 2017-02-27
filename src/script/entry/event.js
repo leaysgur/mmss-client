@@ -20,7 +20,7 @@ class EntryEvent {
 
   onLoginSubmit(item: LoginItem): void {
     postJSON('/api/login', item)
-      .then(res => {
+      .then((res: APILoginRes) => {
         if (res === null) {
           this.store.showLoginError(false);
           return location.reload(true);
