@@ -9,8 +9,10 @@ import { getJSON } from './shared/util/fetch';
 
 useStrict(true);
 
+// キャッシュ飛ばしたい時もあると思うのでとりあえず
 const YYYYMMDD = new Date().toJSON().split('T')[0].split('-').join('');
 
+// セッションがあればアプリを、なければログイン画面を
 Promise.all([
   getJSON('/api/session'),
   getJSON('./dist/music.json', { _: YYYYMMDD }),

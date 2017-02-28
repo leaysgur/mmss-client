@@ -15,17 +15,17 @@ class EntryEvent {
   }
 
   onClickTab(tabName: string): void {
-    this.store.showTab(tabName);
+    this.store.uiObject.showTab(tabName);
   }
 
   onLoginSubmit(item: LoginItem): void {
     postJSON('/api/login', item)
       .then((res: APIJSONRes) => {
         if (res === null) {
-          this.store.showLoginError(false);
+          this.store.uiObject.showLoginError(false);
           return location.reload(true);
         }
-        this.store.showLoginError(true);
+        this.store.uiObject.showLoginError(true);
       })
       .catch(console.error);
   }

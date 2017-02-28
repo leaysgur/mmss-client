@@ -1,34 +1,19 @@
 // @flow
-import {
-  extendObservable,
-} from 'mobx';
-
 import { actionAll } from '../../shared/util/class';
+
 import SearchObject from './object/search';
+import UiObject from './object/ui';
 
 
 class EntryStore {
   searchObject: SearchObject;
-  hasLoginError: boolean;
-  visibleTab: string;
+  uiObject: UiObject;
 
   constructor(json: MusicJSON) {
     actionAll(this);
 
     this.searchObject = new SearchObject(json);
-
-    extendObservable(this, {
-      hasLoginError: false,
-      visibleTab: 'login',
-    });
-  }
-
-  showLoginError(bool: boolean): void {
-    this.hasLoginError = bool;
-  }
-
-  showTab(tabName: string): void {
-    this.visibleTab = tabName;
+    this.uiObject = new UiObject();
   }
 }
 

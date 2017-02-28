@@ -23,9 +23,8 @@ class EntryApp extends React.Component {
 
   render() {
     const {
-      hasLoginError,
-      visibleTab,
       searchObject,
+      uiObject,
     } = this.props.store;
     const {
       onClickTab,
@@ -40,21 +39,21 @@ class EntryApp extends React.Component {
 
         <TabTrigger
           tabNames={['login', 'search']}
-          visibleTab={visibleTab}
+          visibleTab={uiObject.visibleTab}
           onClick={onClickTab}
         />
         <TabContent
           tabContents={{
             login: <LoginForm
                      onSubmit={onLoginSubmit}
-                     hasError={hasLoginError}
+                     hasError={uiObject.hasLoginError}
                    />,
             search: <SearchForm
                       results={searchObject.results}
                       onInput={onInputKeyword}
                     />
           }}
-          visibleTab={visibleTab}
+          visibleTab={uiObject.visibleTab}
         />
       </div>
     );
