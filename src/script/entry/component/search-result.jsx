@@ -12,7 +12,7 @@ const Result = ({
 }) => {
   if (results === null) {
     return (
-      <div>Not found</div>
+      <div className="SearchResult">Not found</div>
     );
   }
 
