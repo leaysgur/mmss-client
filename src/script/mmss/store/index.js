@@ -6,15 +6,15 @@ import MediaObject from './object/media';
 
 
 class MmssStore {
-  playlist: PlaylistObject;
-  finder: FinderObject;
   ui: UiObject;
+  finder: FinderObject;
+  playlist: PlaylistObject;
   media: MediaObject;
 
   constructor(json: MusicJSON) {
-    this.playlist = new PlaylistObject();
-    this.finder = new FinderObject(json);
     this.ui = new UiObject();
+    this.finder = new FinderObject(json);
+    this.playlist = new PlaylistObject();
     this.media = new MediaObject();
   }
 }

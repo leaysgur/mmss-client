@@ -4,12 +4,12 @@ import UiObject from './object/ui';
 
 
 class EntryStore {
-  search: SearchObject;
   ui: UiObject;
+  search: SearchObject;
 
   constructor(json: MusicJSON) {
-    this.search = new SearchObject(json);
     this.ui = new UiObject();
+    this.search = new SearchObject(json);
   }
 }
 

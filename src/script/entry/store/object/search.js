@@ -35,7 +35,7 @@ class SearchObject {
           return ret;
         }
 
-        this._json.forEach(artist => {
+        this._json.forEach((artist: Artist) => {
           if (reg.test(artist.name)) {
             ret[artist.name] = artist.albums.map(album => album.name);
           }
