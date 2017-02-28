@@ -1,3 +1,24 @@
 .LoginForm {
   text-align: center;
+  --_width: 200px;
+
+  input {
+    box-sizing: border-box;
+    width: var(--_width);
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+
+    &:focus {
+      border: 2px solid var(--linkColor);
+      outline: none;
+    }
+  }
+
+  button {
+    box-sizing: border-box;
+    width: var(--_width);
+    height: 35px;
+    font-size: 1rem;
+  }
 }

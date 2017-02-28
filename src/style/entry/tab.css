@@ -1,8 +1,6 @@
 .TabTrigger {
   display: flex;
   justify-content: center;
-  width: var(--tabWidth);
-  margin: 0 auto;
 
   &_Item {
     padding: 0 10px;
@@ -17,6 +15,4 @@
 }
 
 .TabContent {
-  width: var(--tabWidth);
-  margin: 0 auto;
 }
