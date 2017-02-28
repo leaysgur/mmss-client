@@ -15,24 +15,24 @@ class EntryEvent {
   }
 
   onClickTab(tabName: string): void {
-    this.store.uiObject.showTab(tabName);
+    this.store.ui.showTab(tabName);
   }
 
   onLoginSubmit(item: LoginItem): void {
     postJSON('/api/login', item)
       .then((res: APIJSONRes) => {
         if (res === null) {
-          this.store.uiObject.showLoginError(false);
+          this.store.ui.showLoginError(false);
           return location.reload(true);
         }
-        this.store.uiObject.showLoginError(true);
+        this.store.ui.showLoginError(true);
       })
       .catch(console.error);
   }
 
   onInputKeyword(keyword: string): void {
     keyword = keyword.trim();
-    this.store.searchObject.setKeyword(keyword);
+    this.store.search.setKeyword(keyword);
   }
 }
 
