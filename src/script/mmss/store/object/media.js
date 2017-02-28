@@ -1,13 +1,11 @@
 // @flow
-import {
-  extendObservable,
-} from 'mobx';
+import { extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
 
 class Media {
-  currentSrc: ?string;
+  currentSrc: string | null;
 
   constructor() {
     actionAll(this);

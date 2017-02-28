@@ -1,7 +1,5 @@
 // @flow
-import {
-  extendObservable,
-} from 'mobx';
+import { extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 

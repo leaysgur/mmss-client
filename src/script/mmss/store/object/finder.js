@@ -35,7 +35,7 @@ class Finder {
       artists: computed(() => {
         const artists = this._json.slice();
         if (this.isNameSort) {
-          artists.sort((a, b) => { return a.name < b.name ? -1 : 1; });
+          artists.sort((a: Artist, b: Artist) => { return a.name < b.name ? -1 : 1; });
         }
 
         return artists;

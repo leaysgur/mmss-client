@@ -27,7 +27,10 @@ class MmssEvent {
 
     reaction(
       () => this.store.playlist.nowPlaying,
-      this._onChangeNowPlaying,
+      (nowPlaying) => {
+        if (nowPlaying === null) { return; }
+        this._onChangeNowPlaying(nowPlaying);
+      },
     );
   }
 
@@ -84,9 +87,7 @@ class MmssEvent {
     this.store.playlist.jump(item);
   }
 
-  _onChangeNowPlaying(nowPlaying) {
-    if (!nowPlaying) { return; }
-
+  _onChangeNowPlaying(nowPlaying: Song): void {
     this.store.ui.setMediaLoading(true);
     getMediaSerial('/api/track', { path: nowPlaying.path })
       .then((blob: Blob) => {
@@ -96,7 +97,7 @@ class MmssEvent {
 
         this.store.media.setSrc(blob);
         this.store.ui.setMediaLoading(false);
-        nowPlaying && showNotification(nowPlaying);
+        showNotification(nowPlaying);
       })
       .catch(console.error);
   }

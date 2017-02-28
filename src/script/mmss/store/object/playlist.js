@@ -12,7 +12,7 @@ import type { IObservableArray } from 'mobx';
 class Playlist {
   items: IObservableArray<Song>;
   nowPlayingIdx: number;
-  nowPlaying: ?Song;
+  nowPlaying: Song | null;
 
   constructor() {
     actionAll(this);

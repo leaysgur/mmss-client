@@ -51,7 +51,7 @@ class EntryApp extends React.Component {
             search: <SearchForm
                       results={search.results}
                       onInput={onInputKeyword}
-                    />
+                    />,
           }}
           visibleTab={ui.visibleTab}
         />
