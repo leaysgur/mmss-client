@@ -3,9 +3,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fafafa;
-  color: #434343;
+  background-color: var(--lightBgColor);
   box-sizing: border-box;
-  padding: 1rem;
-  height: var(--footer-height);
+  padding: 10px;
+  height: var(--footerHeight);
 }

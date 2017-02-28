@@ -1,7 +1,7 @@
 .Header {
-  height: var(--header-height);
-  line-height: var(--header-height);
+  height: var(--headerHeight);
+  line-height: var(--headerHeight);
   text-align: center;
-  background-color: #434343;
+  background-color: var(--darkBgColor);
   color: #fff;
 }

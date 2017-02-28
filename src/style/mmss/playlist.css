@@ -1,6 +1,6 @@
 .Playlist {
   position: fixed;
-  bottom: var(--footer-height);
+  bottom: var(--footerHeight);
   left: 0;
   right: 0;
   box-sizing: border-box;

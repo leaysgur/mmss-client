@@ -8,6 +8,14 @@ ul {
   margin: 0;
 }
 
+a {
+  color: var(--linkColor);
+  text-decoration: none;
+}
+
 :root {
-  --header-height: 4vh;
+  --headerHeight: 4vh;
+  --linkColor: #4285F4;
+  --darkBgColor: #434343;
+  --lightBgColor: #fafafa;
 }

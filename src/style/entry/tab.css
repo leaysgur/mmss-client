@@ -1,5 +1,22 @@
 .TabTrigger {
+  display: flex;
+  justify-content: center;
+  width: var(--tabWidth);
+  margin: 0 auto;
+
+  &_Item {
+    padding: 0 10px;
+    margin: 10px 0;
+    color: inherit;
+
+    &:hover,
+    &.isSelected {
+      border-bottom: 3px solid var(--linkColor);
+    }
+  }
 }
 
 .TabContent {
+  width: var(--tabWidth);
+  margin: 0 auto;
 }

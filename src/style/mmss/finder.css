@@ -1,6 +1,6 @@
 .Finder {
   display: flex;
-  height: var(--finder-height);
+  height: var(--finderHeight);
 
   &_Column {
     width: 100%;

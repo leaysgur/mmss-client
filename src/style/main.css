@@ -1,5 +1,6 @@
 @import "shared/global.css";
 @import "shared/header.css";
+@import "shared/logo.css";
 
 @import "entry/app.css";
 @import "entry/tab.css";

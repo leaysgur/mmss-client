@@ -14,9 +14,18 @@ const TabTrigger = ({
 }) => (
   <div className="TabTrigger">
     { tabNames.map(name => (
-      visibleTab !== name
-        ? <a key={name} href="#" onClick={(ev) => { ev.preventDefault(); onClick(name); }}>{name}</a>
-        : <span key={name}>{name}</span>
+      <a
+        key={name}
+        {...visibleTab === name ? {
+          className: 'TabTrigger_Item isSelected',
+        } : {
+          className: 'TabTrigger_Item',
+          href: '#',
+          onClick: ev => { ev.preventDefault(); onClick(name); },
+        }}
+      >
+        {name}
+      </a>
     )) }
   </div>
 );
