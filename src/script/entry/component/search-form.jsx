@@ -2,6 +2,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import Result from './search-result.jsx';
+
 import type { SearchResult } from '../store/object/search';
 
 
@@ -21,14 +23,14 @@ const SearchForm = ({
   };
 
   return (
-  <div>
-    <div>
-      <input name="keyword" type="text" onInput={_onInput} placeholder="keyword" />
+    <div className="SearchForm">
+      <div>
+        <input name="keyword" type="text" onInput={_onInput} placeholder="Artist name here..." />
+      </div>
+      <div className="SearchForm_Result">
+        <Result results={results} />
+      </div>
     </div>
-    <div>
-      <pre>{JSON.stringify(results, null, 2)}</pre>
-    </div>
-  </div>
   );
 };
 

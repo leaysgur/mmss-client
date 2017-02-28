@@ -21,20 +21,18 @@ class SearchObject {
     extendObservable(this, {
       keyword: '',
       results: computed(() => {
-        const keyword = this.keyword;
-        const ret: SearchResult = {};
-
-        if (keyword.length === 0) {
-          return ret;
+        if (this.keyword.length === 0) {
+          return null;
         }
 
         let reg;
         try {
-          reg = new RegExp(keyword, 'i');
+          reg = new RegExp(this.keyword, 'i');
         } catch (err) {
-          return ret;
+          return null;
         }
 
+        const ret = {};
         this._json.forEach((artist: Artist) => {
           if (reg.test(artist.name)) {
             ret[artist.name] = artist.albums.map(album => album.name);
@@ -51,5 +49,5 @@ class SearchObject {
   }
 }
 
-export type SearchResult = { [string]: string[] };
+export type SearchResult = { [string]: string[] } | null;
 export default SearchObject;
