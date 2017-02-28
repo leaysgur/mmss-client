@@ -12,7 +12,7 @@ const TabTrigger = ({
   visibleTab: string;
   onClick: (name: string) => void;
 }) => (
-  <div>
+  <div className="TabTrigger">
     { tabNames.map(name => (
       visibleTab !== name
         ? <a key={name} href="#" onClick={(ev) => { ev.preventDefault(); onClick(name); }}>{name}</a>

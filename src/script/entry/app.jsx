@@ -33,9 +33,8 @@ class EntryApp extends React.Component {
     } = this.props.event;
 
     return (
-      <div>
+      <div className="EntryApp">
         <Header />
-        <p>LOGOとか説明とか</p>
 
         <TabTrigger
           tabNames={['login', 'search']}
