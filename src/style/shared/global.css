@@ -15,7 +15,8 @@ a {
 
 :root {
   --headerHeight: 4vh;
-  --linkColor: #4285F4;
+  --linkColor: #4285f4;
+  --errorColor: #f44242;
   --darkBgColor: #434343;
   --lightBgColor: #fafafa;
 }

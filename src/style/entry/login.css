@@ -9,6 +9,7 @@
     margin-bottom: 10px;
     font-size: 1rem;
 
+    &:hover,
     &:focus {
       border: 2px solid var(--linkColor);
       outline: none;
@@ -20,5 +21,10 @@
     width: var(--_width);
     height: 35px;
     font-size: 1rem;
+  }
+
+  &_Error {
+    margin: 10px auto;
+    color: var(--errorColor);
   }
 }

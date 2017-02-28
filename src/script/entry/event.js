@@ -19,10 +19,19 @@ class EntryEvent {
   }
 
   onLoginSubmit(item: LoginItem): void {
-    postJSON('/api/login', item)
+    const id = item.id.trim();
+    const pw = item.pw.trim();
+
+    if (id.length === 0 || pw.length === 0) {
+      this.store.ui.showLoginError(true);
+      return;
+    }
+
+    postJSON('/api/login', { id, pw })
       .then((res: APIJSONRes) => {
         if (res === null) {
           this.store.ui.showLoginError(false);
+          // セッション確立してるならMmssアプリへ
           return location.reload(true);
         }
         this.store.ui.showLoginError(true);

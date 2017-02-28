@@ -18,7 +18,7 @@ const LoginForm = ({
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLFormElement) {
       // XXX: ほんとはフォーム要素ごとに型をつける
-      const form: any = ev.currentTarget.elements;
+      const form: Object = ev.currentTarget.elements;
       onSubmit({
         id: form.id.value,
         pw: form.pw.value,
@@ -31,15 +31,15 @@ const LoginForm = ({
       <Logo />
       <form action="/" onSubmit={_onSubmit}>
         <div>
-          <input name="id" type="text" placeholder="user" />
+          <input name="id" type="text" placeholder="Username" />
         </div>
         <div>
-          <input name="pw" type="password" placeholder="pass" />
+          <input name="pw" type="password" placeholder="Password" />
         </div>
         <div>
           <button type="submit">Login</button>
         </div>
-        { hasError && 'error!!' }
+        { hasError && <div className="LoginForm_Error">Error!</div> }
       </form>
     </div>
   );

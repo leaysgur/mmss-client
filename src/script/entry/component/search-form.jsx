@@ -17,15 +17,18 @@ const SearchForm = ({
   const _onInput = (ev: Event): void => {
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLInputElement) {
-      const keyword = ev.currentTarget.value;
-      onInput(keyword);
+      onInput(ev.currentTarget.value);
     }
   };
 
   return (
     <div className="SearchForm">
       <div>
-        <input name="keyword" type="text" onInput={_onInput} placeholder="Artist name here..." />
+        <input
+          type="text"
+          placeholder="Artist name"
+          onInput={_onInput}
+        />
       </div>
       <div className="SearchForm_Result">
         <Result results={results} />
