@@ -15,6 +15,7 @@
     flex-direction: column;
     height: var(--finderHeight);
     width: 100%;
+    padding: 0 10px;
   }
 }
 
@@ -22,7 +23,6 @@
   overflow: scroll;
 
   &_Inner {
-    padding: 0 10px;
   }
 }
 
