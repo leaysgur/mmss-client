@@ -1,11 +1,20 @@
 .Player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  height: var(--footerHeight);
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: var(--lightBgColor);
 
   &_Audio {
     flex: 1 1 auto;
   }
 
   &_Info {
-    width: 30%;
+    font-size: .6rem;
+    width: 40%;
   }
 }

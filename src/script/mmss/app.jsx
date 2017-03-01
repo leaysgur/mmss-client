@@ -38,21 +38,19 @@ class MmssApp extends React.Component {
           }}
         />
 
-        <div className="Footer">
-          <Playlist
-            {...{
-              playlist,
-              ui,
-            }}
-          />
-          <Player
-            {...{
-              playlist,
-              media,
-              ui,
-            }}
-          />
-        </div>
+        <Playlist
+          {...{
+            playlist,
+            ui,
+          }}
+        />
+        <Player
+          {...{
+            playlist,
+            media,
+            ui,
+          }}
+        />
       </div>
     );
   }

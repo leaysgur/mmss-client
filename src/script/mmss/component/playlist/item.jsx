@@ -5,23 +5,54 @@ import { observer } from 'mobx-react';
 
 const PlaylistItem = ({
   item,
-  no,
   isPlaying,
   onClick,
 }: {
   item: Song;
-  no: number;
   isPlaying: boolean;
   onClick: (item: Song) => void;
 }) => (
-  <div>
-  {isPlaying ? '✓' : '　'}
-  &nbsp;
-  {no}
-  &nbsp;
-  <a href="#" onClick={ev => { ev.preventDefault(); onClick(item); }}>
-    {item.name} | {item.artist} | {item.album}
-  </a>
+  <div className="PlaylistItem">
+    <div className="PlaylistItem_Mark">
+      {isPlaying ? '✓' : '　'}
+    </div>
+    <div className="PlaylistItem_Name" title={item.name}>
+      { isPlaying ? (
+      <span>{item.name}</span>
+      ) : (
+      <a href="#" onClick={ev => { ev.preventDefault(); onClick(item); }}>
+        {item.name}
+      </a>
+      ) }
+    </div>
+    <div className="PlaylistItem_Artist" title={item.artist}>
+      {item.artist}
+    </div>
+    <div className="PlaylistItem_Album" title={item.album}>
+      {item.album}
+    </div>
+    <div className="PlaylistItem_Duration" title={item.duration}>
+      {item.duration}
+    </div>
+  </div>
+);
+
+export const PlaylistHeader = () => (
+  <div className="PlaylistItem">
+    <div className="PlaylistItem_Mark">
+    </div>
+    <div className="PlaylistItem_Name">
+      Song
+    </div>
+    <div className="PlaylistItem_Artist">
+      Artist
+    </div>
+    <div className="PlaylistItem_Album">
+      Album
+    </div>
+    <div className="PlaylistItem_Duration">
+      Time
+    </div>
   </div>
 );
 

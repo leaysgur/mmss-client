@@ -5,7 +5,7 @@ import {
   observer,
 } from 'mobx-react';
 
-import PlaylistItem from '../component/playlist/item.jsx';
+import PlaylistItem, { PlaylistHeader } from '../component/playlist/item.jsx';
 
 import type MmssEvent from '../event';
 import type PlaylistObject from '../store/object/playlist';
@@ -31,22 +31,23 @@ class Playlist extends React.Component {
 
     return (
     <div className="Playlist">
-      <div className="Playlist_Inner">
-        <ul>
-          { items.map((song, idx) => (
-          <li
-            key={`${song.path}`}
-          >
-            <PlaylistItem
-              item={song}
-              no={idx + 1}
-              isPlaying={nowPlayingIdx === idx}
-              onClick={onClickPlaylistItem}
-            />
-          </li>
-          )) }
-        </ul>
+      <div className="Playlist_Header">
+        <PlaylistHeader />
       </div>
+      <ul className="Playlist_Inner">
+        { items.map((song, idx) => (
+        <li
+          key={`${song.path}`}
+          className="Playlist_Row"
+        >
+          <PlaylistItem
+            item={song}
+            isPlaying={nowPlayingIdx === idx}
+            onClick={onClickPlaylistItem}
+          />
+        </li>
+        )) }
+      </ul>
     </div>
     );
   }

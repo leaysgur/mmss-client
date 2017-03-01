@@ -1,14 +1,68 @@
 .Playlist {
+  --_playlistHeight: 40vh;
+  --_playlistRowHeight: 2vh;
   position: fixed;
   bottom: var(--footerHeight);
   left: 0;
   right: 0;
-  box-sizing: border-box;
-  max-height: 40vh;
-  overflow: scroll;
-  padding: 1rem;
-  background-color: inherit;
+  height: var(--_playlistHeight);
+  padding: 10px;
+  background-color: var(--lightBgColor);
+  font-size: .8rem;
+
+  &_Header {
+    position: relative;
+    height: var(--_playlistRowHeight);
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+    margin-bottom: 5px;
+  }
 
   &_Inner {
+    height: calc(var(--_playlistHeight) - var(--_playlistRowHeight));
+    overflow: scroll;
+  }
+
+  &_Row {
+    list-style: inside decimal-leading-zero;
+    position: relative;
+    height: var(--_playlistRowHeight);
+  }
+}
+
+.PlaylistItem {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* for list-style-image */
+  text-indent: 10px;
+
+  &_Mark {
+    width: 4%;
+    text-align: right;
+  }
+  &_Name {
+    width: 40%;
+  }
+  &_Artist {
+    width: 25%;
+  }
+  &_Album {
+    width: 25%;
+  }
+  &_Duration {
+    width: 5%;
+    text-align: right;
+  }
+
+  &_Name,
+  &_Artist,
+  &_Album,
+  &_Duration {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
