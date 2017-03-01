@@ -12,8 +12,7 @@ export function showNotification(nowPlaying: Song): void {
   const notif = new Notification(name, {
     tag: 'nowPlaying',
     body: `${artist} - ${album}`,
-    // TODO: LOGO
-    icon: '',
+    icon: './image/icon.png',
     silent: true,
   });
 
