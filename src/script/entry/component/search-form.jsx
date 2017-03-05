@@ -8,16 +8,18 @@ import type { SearchResult } from '../store/object/search';
 
 
 const SearchForm = ({
+  keyword,
   results,
-  onInput,
+  onChange,
 }: {
+  keyword: string;
   results: SearchResult;
-  onInput: (keyword: string) => void;
+  onChange: (keyword: string) => void;
 }) => {
-  const _onInput = (ev: Event): void => {
+  const _onChange = (ev: Event): void => {
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLInputElement) {
-      onInput(ev.currentTarget.value);
+      onChange(ev.currentTarget.value);
     }
   };
 
@@ -27,7 +29,8 @@ const SearchForm = ({
         <input
           type="text"
           placeholder="Artist name"
-          onInput={_onInput}
+          onChange={_onChange}
+          value={keyword}
         />
       </div>
       <div className="SearchForm_Result">

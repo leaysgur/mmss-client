@@ -29,7 +29,7 @@ class EntryApp extends React.Component {
     const {
       onClickTab,
       onLoginSubmit,
-      onInputKeyword,
+      onChangeKeyword,
     } = this.props.event;
 
     return (
@@ -48,8 +48,9 @@ class EntryApp extends React.Component {
                      hasError={ui.hasLoginError}
                    />,
             search: <SearchForm
+                      keyword={search.keyword}
                       results={search.results}
-                      onInput={onInputKeyword}
+                      onChange={onChangeKeyword}
                     />,
           }}
           visibleTab={ui.visibleTab}

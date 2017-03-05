@@ -39,7 +39,7 @@ class EntryEvent {
       .catch(console.error);
   }
 
-  onInputKeyword(keyword: string): void {
+  onChangeKeyword(keyword: string): void {
     keyword = keyword.trim();
     this.store.search.setKeyword(keyword);
   }
