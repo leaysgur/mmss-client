@@ -2,7 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import Time, { format } from './time.jsx';
+import Time, { format } from '../shared/time.jsx';
 
 
 const PlaylistItem = ({

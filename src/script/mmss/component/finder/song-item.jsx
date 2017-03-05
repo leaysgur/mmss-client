@@ -2,8 +2,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-// TODO: shared
-import Time from '../playlist/time.jsx';
+import Time from '../shared/time.jsx';
+
 
 const SongItem = ({
   item,
