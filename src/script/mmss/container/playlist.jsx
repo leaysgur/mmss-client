@@ -50,6 +50,9 @@ class Playlist extends React.Component {
       <div className="Playlist_Header">
         <PlaylistHeader />
       </div>
+      { items.length === 0 &&
+      <div className="Playlist_NoItem">No item</div>
+      }
       <ul className="Playlist_Inner">
         { items.map((song, idx) => (
         <li

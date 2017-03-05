@@ -34,6 +34,11 @@
     position: relative;
     height: var(--_playlistRowHeight);
   }
+
+  &_NoItem {
+    text-align: center;
+    padding-top: 10vh;
+  }
 }
 
 .PlaylistItem {
