@@ -41,6 +41,7 @@
 
   &_Action {
     width: 50px;
+    margin-right: 5px;
   }
 
   &_Body {
@@ -54,6 +55,22 @@
 }
 
 .AlbumItem {
+  display: flex;
+  cursor: pointer;
+
+  &_Action {
+    width: 50px;
+    margin-right: 5px;
+  }
+
+  &_Body {
+    flex: 1 1 auto;
+
+    &_Sub {
+      text-align: right;
+      font-size: .7rem;
+    }
+  }
 }
 
 .SongItem {

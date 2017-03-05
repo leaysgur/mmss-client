@@ -3,8 +3,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 
-let yearLabel;
-
 const AlbumItem = ({
   item,
   onClick,
@@ -13,20 +11,22 @@ const AlbumItem = ({
   item: Album;
   onClick: (item: Album) => void;
   onClickPlay: (item: Album) => void;
-}) => {
-  const year = item.year || '-';
-
-  return (
-  <div onClick={() => { onClick(item); }}>
-    { year !== yearLabel ? <div>{(yearLabel = year)}</div> : null }
-    {item.name}
-    <a href="#" onClick={(ev) => {
+}) => (
+  <div className="AlbumItem" onClick={() => { onClick(item); }}>
+    <a className="AlbumItem_Action" href="#" onClick={(ev) => {
       ev.preventDefault();
       ev.stopPropagation();
       onClickPlay(item);
-    }}>[playAll]</a>
+    }}>[play]</a>
+    <div className="AlbumItem_Body">
+      <div>
+        {item.name}
+      </div>
+      <div className="AlbumItem_Body_Sub">
+        {item.year || '-'} / {item.songs.length} song(s)
+      </div>
+    </div>
   </div>
-  );
-};
+);
 
 export default observer(AlbumItem);
