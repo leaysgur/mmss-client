@@ -16,8 +16,11 @@ if (isProd) {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
-    }),
+    })
+  );
+  plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      souceMap: false,
       compress: {
         warnings: false,
         screw_ie8: true,
