@@ -44,9 +44,9 @@ class Finder extends React.Component {
               <button type="button" onClick={onClickSortArtist}>sort</button>
             </p>
             <div className="Scroller">
-              <ul className="Scroller_Inner">
+              <ul>
                 { artists.map(artist => (
-                <li key={artist.name}>
+                <li className="Finder_Row" key={artist.name}>
                   <ArtistItem
                     item={artist}
                     onClick={onClickArtist}
@@ -61,10 +61,10 @@ class Finder extends React.Component {
           <div className="Finder_Column">
             <p># Albums</p>
             <div className="Scroller">
-              <ul className="Scroller_Inner">
+              <ul>
                 { albums.length === 0 && <li>Artist not selected</li> }
                 { albums.map(album => (
-                <li key={album.name}>
+                <li className="Finder_Row" key={album.name}>
                   <AlbumItem
                     item={album}
                     onClick={onClickAlbum}
@@ -81,10 +81,10 @@ class Finder extends React.Component {
           <div className="Finder_Column">
             <p># Songs</p>
             <div className="Scroller">
-              <ul className="Scroller_Inner">
+              <ul>
                 { songs.length === 0 && <li>Album not selected</li> }
                 { songs.map(song => (
-                <li key={song.name}>
+                <li className="Finder_Row" key={song.name}>
                   <SongItem
                     item={song}
                     onClickPlay={onClickPlaySong}

@@ -7,7 +7,7 @@
   }
 
   &_Detail {
-    flex: 1 1 auto;
+    width: 50%;
   }
 
   &_Column {
@@ -15,18 +15,42 @@
     flex-direction: column;
     height: var(--finderHeight);
     width: 100%;
-    padding: 0 10px;
+  }
+
+  &_Row {
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+    &:hover {
+      font-weight: bold;
+    }
+
+    &:nth-child(even) {
+      background-color: var(--lightBgColor);
+    }
   }
 }
 
 .Scroller {
   overflow: scroll;
-
-  &_Inner {
-  }
 }
 
 .ArtistItem {
+  display: flex;
+  cursor: pointer;
+
+  &_Action {
+    width: 50px;
+  }
+
+  &_Body {
+    flex: 1 1 auto;
+
+    &_Sub {
+      text-align: right;
+      font-size: .7rem;
+    }
+  }
 }
 
 .AlbumItem {

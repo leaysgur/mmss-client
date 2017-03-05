@@ -12,16 +12,20 @@ const ArtistItem = ({
   onClick: (item: Artist) => void;
   onClickPlay: (item: Artist) => void;
 }) => (
-  <div onClick={() => { onClick(item); }}>
-    <div>{item.name}</div>
-    <div>
-      {item.albums.length} album(s)
-    </div>
-    <a href="#" onClick={(ev) => {
+  <div className="ArtistItem" onClick={() => { onClick(item); }}>
+    <a className="ArtistItem_Action" href="#" onClick={(ev) => {
       ev.preventDefault();
       ev.stopPropagation();
       onClickPlay(item);
-    }}>[playAll]</a>
+    }}>[play]</a>
+    <div className="ArtistItem_Body">
+      <div>
+      {item.name}
+      </div>
+      <div className="ArtistItem_Body_Sub">
+        {item.albums.length} album(s)
+      </div>
+    </div>
   </div>
 );
 
