@@ -45,10 +45,14 @@ class MmssEvent {
 
   onClickArtist(item: Artist): void {
     this.store.finder.initAlbums(item.albums);
+
+    this.store.ui.setSelected('artist', item.name);
   }
 
   onClickAlbum(item: Album): void {
     this.store.finder.initSongs(item.songs);
+
+    this.store.ui.setSelected('album', item.name);
   }
 
   onClickPlayArtist(item: Artist): void {

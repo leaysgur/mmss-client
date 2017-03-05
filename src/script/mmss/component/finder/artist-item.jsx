@@ -5,14 +5,16 @@ import { observer } from 'mobx-react';
 
 const ArtistItem = ({
   item,
+  isSelected,
   onClick,
   onClickPlay,
 }: {
   item: Artist;
+  isSelected: boolean;
   onClick: (item: Artist) => void;
   onClickPlay: (item: Artist) => void;
 }) => (
-  <div className="ArtistItem" onClick={() => { onClick(item); }}>
+  <div className={`ArtistItem ${isSelected ? '-selected' : ''}`} onClick={() => { onClick(item); }}>
     <a className="ArtistItem_Action" href="#" onClick={(ev) => {
       ev.preventDefault();
       ev.stopPropagation();

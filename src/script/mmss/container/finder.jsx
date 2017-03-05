@@ -11,17 +11,20 @@ import SongItem from '../component/finder/song-item.jsx';
 
 import type MmssEvent from '../event';
 import type FinderObject from '../store/object/finder';
+import type UiObject from '../store/object/ui';
 
 
 class Finder extends React.Component {
   props: {
     finder: FinderObject;
+    ui: UiObject;
     event: MmssEvent;
   };
 
   render() {
     const {
       finder,
+      ui,
       event,
     } = this.props;
     const {
@@ -51,6 +54,7 @@ class Finder extends React.Component {
                 <li className="Finder_Row" key={artist.name}>
                   <ArtistItem
                     item={artist}
+                    isSelected={artist.name === ui.selected.artist}
                     onClick={onClickArtist}
                     onClickPlay={onClickPlayArtist}
                   />
@@ -75,6 +79,7 @@ class Finder extends React.Component {
                 <li className="Finder_Row" key={album.name}>
                   <AlbumItem
                     item={album}
+                    isSelected={album.name === ui.selected.album}
                     onClick={onClickAlbum}
                     onClickPlay={onClickPlayAlbum}
                   />

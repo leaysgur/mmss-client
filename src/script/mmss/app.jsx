@@ -35,6 +35,7 @@ class MmssApp extends React.Component {
         <Finder
           {...{
             finder,
+            ui,
           }}
         />
 
