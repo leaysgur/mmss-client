@@ -1,5 +1,8 @@
 // @flow
-import { extendObservable } from 'mobx';
+import {
+  computed,
+  extendObservable,
+} from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
@@ -7,6 +10,8 @@ import { actionAll } from '../../../shared/util/class';
 class Ui {
   isPlaylistShown: boolean;
   isMediaLoading: boolean;
+  _isHoverPlayer: boolean;
+  _isHoverPlaylist: boolean;
 
   selected: {
     artist: string | null;
@@ -20,8 +25,12 @@ class Ui {
     actionAll(this);
 
     extendObservable(this, {
-      isPlaylistShown: false,
+      isPlaylistShown: computed(() => {
+        return this._isHoverPlayer || this._isHoverPlaylist;
+      }),
       isMediaLoading: false,
+      _isHoverPlayer: false,
+      _isHoverPlaylist: false,
 
       selected: {
         artist: null,
@@ -32,8 +41,12 @@ class Ui {
     });
   }
 
-  togglePlaylist(): void {
-    this.isPlaylistShown = !this.isPlaylistShown;
+  setHoverPlayer(bool: boolean): void {
+    this._isHoverPlayer = bool;
+  }
+
+  setHoverPlaylist(bool: boolean): void {
+    this._isHoverPlaylist = bool;
   }
 
   setMediaLoading(bool: boolean): void {

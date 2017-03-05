@@ -72,8 +72,17 @@ class MmssEvent {
     this.store.playlist.init([item]);
   }
 
-  onClickTogglePlaylist(): void {
-    this.store.ui.togglePlaylist();
+  onMouseEnterPlayer(): void {
+    this.store.ui.setHoverPlayer(true);
+  }
+  onMouseLeavePlayer(): void {
+    this.store.ui.setHoverPlayer(false);
+  }
+  onMouseEnterPlaylist(): void {
+    this.store.ui.setHoverPlaylist(true);
+  }
+  onMouseLeavePlaylist(): void {
+    this.store.ui.setHoverPlaylist(false);
   }
 
   onEndedMedia(): void {

@@ -13,11 +13,26 @@ import type UiObject from '../store/object/ui';
 
 
 class Playlist extends React.Component {
+  el: HTMLDivElement;
+  _handleMouseEnter: () => void;
+  _handleMouseLeave: () => void;
   props: {
     event: MmssEvent;
     playlist: PlaylistObject;
     ui: UiObject;
   };
+
+  constructor() {
+    super();
+
+    this._handleMouseEnter = () => {
+      this.props.event.onMouseEnterPlaylist();
+    };
+    this._handleMouseLeave = () => {
+      this.props.event.onMouseLeavePlaylist();
+    };
+  }
+
 
   render() {
     const {
@@ -27,10 +42,11 @@ class Playlist extends React.Component {
     const { isPlaylistShown } = this.props.ui;
     const { onClickPlaylistItem } = this.props.event;
 
-    if (items.length === 0 || isPlaylistShown === false) { return null; }
-
     return (
-    <div className="Playlist">
+    <div
+      ref={(ref) => { this.el = ref; }}
+      className={`Playlist ${isPlaylistShown ? '-shown' : ''}`}
+    >
       <div className="Playlist_Header">
         <PlaylistHeader />
       </div>
@@ -50,6 +66,16 @@ class Playlist extends React.Component {
       </ul>
     </div>
     );
+  }
+
+  componentDidMount() {
+    this.el.addEventListener('mouseenter', this._handleMouseEnter, false);
+    this.el.addEventListener('mouseleave', this._handleMouseLeave, false);
+  }
+
+  componentWillUnmount() {
+    this.el.removeEventListener('mouseenter', this._handleMouseEnter, false);
+    this.el.removeEventListener('mouseleave', this._handleMouseLeave, false);
   }
 }
 

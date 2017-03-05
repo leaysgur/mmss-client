@@ -9,6 +9,12 @@
   padding: 10px;
   background-color: var(--lightBgColor);
   font-size: .8rem;
+  transform: translateY(100vh);
+  transition: transform .25s ease;
+
+  &.-shown {
+    transform: translateY(0);
+  }
 
   &_Header {
     position: relative;

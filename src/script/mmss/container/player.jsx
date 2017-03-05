@@ -12,8 +12,11 @@ import type UiObject from '../store/object/ui';
 
 
 class Player extends React.Component {
-  el: HTMLAudioElement;
+  el: HTMLDivElement;
+  audioEl: HTMLAudioElement;
   _handleEnded: () => void;
+  _handleMouseEnter: () => void;
+  _handleMouseLeave: () => void;
   props: {
     event: MmssEvent;
     playlist: PlaylistObject;
@@ -27,11 +30,16 @@ class Player extends React.Component {
     this._handleEnded = () => {
       this.props.event.onEndedMedia();
     };
+    this._handleMouseEnter = () => {
+      this.props.event.onMouseEnterPlayer();
+    };
+    this._handleMouseLeave = () => {
+      this.props.event.onMouseLeavePlayer();
+    };
   }
 
   render() {
     const {
-      onClickTogglePlaylist,
       onClickPrev, onClickNext,
     } = this.props.event;
     const { nowPlaying } = this.props.playlist;
@@ -39,7 +47,10 @@ class Player extends React.Component {
     const { isMediaLoading } = this.props.ui;
 
     return (
-      <div className="Player">
+      <div
+        ref={(ref) => { this.el = ref; }}
+        className="Player"
+      >
         <div className={`Player_Action ${isMediaLoading ? '-loading' : ''}`}>
           <a {...currentSrc && !isMediaLoading ? { onClick: (ev) => { ev.preventDefault(); onClickPrev(); }, href: '#' } : {}}>
             [prev]
@@ -48,17 +59,14 @@ class Player extends React.Component {
             [next]
           </a>
           <audio
-            ref={(ref) => { this.el = ref; }}
+            ref={(ref) => { this.audioEl = ref; }}
             className="Player_Audio"
             autoPlay
             controls
             src={currentSrc}
           ></audio>
         </div>
-        <div
-          className="Player_Info"
-          onClick={onClickTogglePlaylist}
-        >
+        <div className="Player_Info">
           {nowPlaying ? nowPlaying.name : '-'}
         </div>
       </div>
@@ -66,11 +74,15 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.el.addEventListener('ended', this._handleEnded, false);
+    this.el.addEventListener('mouseenter', this._handleMouseEnter, false);
+    this.el.addEventListener('mouseleave', this._handleMouseLeave, false);
+    this.audioEl.addEventListener('ended', this._handleEnded, false);
   }
 
   componentWillUnmount() {
-    this.el.removeEventListener('ended', this._handleEnded, false);
+    this.el.removeEventListener('mouseenter', this._handleMouseEnter, false);
+    this.el.removeEventListener('mouseleave', this._handleMouseLeave, false);
+    this.audioEl.removeEventListener('ended', this._handleEnded, false);
   }
 }
 
