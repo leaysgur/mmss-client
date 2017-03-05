@@ -38,25 +38,23 @@ class Player extends React.Component {
     const { currentSrc } = this.props.media;
     const { isMediaLoading } = this.props.ui;
 
-    console.log(isMediaLoading ? 'loading..' : 'loaded');
-
     return (
       <div className="Player">
-        <button
-          type="button"
-          {...currentSrc ? { onClick: onClickPrev } : { disabled: true }}
-        >prev</button>
-        <button
-          type="button"
-          {...currentSrc ? { onClick: onClickNext } : { disabled: true }}
-        >next</button>
-        <audio
-          ref={(ref) => { this.el = ref; }}
-          className="Player_Audio"
-          autoPlay
-          controls
-          src={currentSrc}
-        ></audio>
+        <div className={`Player_Action ${isMediaLoading ? '-loading' : ''}`}>
+          <a {...currentSrc && !isMediaLoading ? { onClick: (ev) => { ev.preventDefault(); onClickPrev(); }, href: '#' } : {}}>
+            [prev]
+          </a>
+          <a {...currentSrc && !isMediaLoading ? { onClick: (ev) => { ev.preventDefault(); onClickNext(); }, href: '#' } : {}}>
+            [next]
+          </a>
+          <audio
+            ref={(ref) => { this.el = ref; }}
+            className="Player_Audio"
+            autoPlay
+            controls
+            src={currentSrc}
+          ></audio>
+        </div>
         <div
           className="Player_Info"
           onClick={onClickTogglePlaylist}
