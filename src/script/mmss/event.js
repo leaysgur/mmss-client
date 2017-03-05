@@ -102,18 +102,35 @@ class MmssEvent {
   }
 
   _onChangeNowPlaying(nowPlaying: Song): void {
-    this.store.ui.setMediaLoading(true);
-    getMediaSerial('/api/track', { path: nowPlaying.path })
+    const path = nowPlaying.path;
+    const cached = this.store.mediaCache.get(path);
+
+    let getMedia;
+    if (cached) {
+      getMedia = Promise.resolve(cached);
+    } else {
+      getMedia = getMediaSerial('/api/track', { path })
       .then((blob: Blob) => {
         if (blob.type !== 'audio/mpeg') {
-          return location.reload(true);
+          return Promise.reject();
         }
 
+        this.store.mediaCache.set(path, blob);
+        return Promise.resolve(blob);
+      })
+      .catch(console.error);
+    }
+
+    this.store.ui.setMediaLoading(true);
+    getMedia
+      .then((blob: Blob) => {
         this.store.media.setSrc(blob);
         this.store.ui.setMediaLoading(false);
         showNotification(nowPlaying);
       })
-      .catch(console.error);
+      .catch(() => {
+        location.reload(true);
+      });
   }
 }
 
