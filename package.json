@@ -10,8 +10,8 @@
     "build:js": "NODE_ENV=production webpack -p",
     "build:css": "postcss ./src/style/main.css",
     "typecheck": "flow",
-    "cp": "cp ~/Music/music.json ./dist/music.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run typecheck && npm run cp && npm run build:js && npm run build:css",
+    "cp": "cp ~/Music/music.json ./dist/music.json"
   },
   "keywords": [],
   "author": "leader22",
