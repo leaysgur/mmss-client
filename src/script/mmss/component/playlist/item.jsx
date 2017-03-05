@@ -2,6 +2,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import Time, { format } from './time.jsx';
+
 
 const PlaylistItem = ({
   item,
@@ -31,8 +33,8 @@ const PlaylistItem = ({
     <div className="PlaylistItem_Album" title={item.album}>
       {item.album}
     </div>
-    <div className="PlaylistItem_Duration" title={item.duration}>
-      {item.duration}
+    <div className="PlaylistItem_Duration" title={format(item.duration)}>
+      <Time seconds={item.duration} />
     </div>
   </div>
 );
