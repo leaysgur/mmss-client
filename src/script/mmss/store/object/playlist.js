@@ -13,6 +13,7 @@ class Playlist {
   items: IObservableArray<Song>;
   nowPlayingIdx: number;
   nowPlaying: Song | null;
+  nextPlaying: Song | null;
 
   constructor() {
     actionAll(this);
@@ -26,6 +27,13 @@ class Playlist {
         if (idx === -1) { return null; }
 
         return this.items[idx];
+      }),
+      nextPlaying: computed(() => {
+        const idx = this.nowPlayingIdx;
+        if (idx === -1) { return null; }
+
+        const nextIdx = idx === this.items.length - 1 ? 0 : idx + 1;
+        return this.items[nextIdx];
       }),
     });
   }

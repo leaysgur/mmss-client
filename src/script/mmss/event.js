@@ -109,16 +109,7 @@ class MmssEvent {
     if (cached) {
       getMedia = Promise.resolve(cached);
     } else {
-      getMedia = getMediaSerial('/api/track', { path })
-      .then((blob: Blob) => {
-        if (blob.type !== 'audio/mpeg') {
-          return Promise.reject();
-        }
-
-        this.store.mediaCache.set(path, blob);
-        return Promise.resolve(blob);
-      })
-      .catch(console.error);
+      getMedia = _getAndCacheMedia(path, this.store.mediaCache);
     }
 
     this.store.ui.setMediaLoading(true);
@@ -128,9 +119,26 @@ class MmssEvent {
         this.store.ui.setMediaLoading(false);
         showNotification(nowPlaying);
       })
+      .then(() => {
+        const nextPlaying = this.store.playlist.nextPlaying;
+        nextPlaying && _getAndCacheMedia(nextPlaying.path, this.store.mediaCache);
+      })
       .catch(() => {
         location.reload(true);
       });
+
+    function _getAndCacheMedia(path: string, cache: Map<string, Blob>): Promise<Blob> {
+      return getMediaSerial('/api/track', { path })
+      .then((blob: Blob) => {
+        if (blob.type !== 'audio/mpeg') {
+          return Promise.reject();
+        }
+
+        cache.set(path, blob);
+        return Promise.resolve(blob);
+      })
+      .catch(console.error);
+    }
   }
 }
 
