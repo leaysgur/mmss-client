@@ -39,10 +39,12 @@ class Finder extends React.Component {
       <div className="Finder">
         <div className="Finder_Index">
           <div className="Finder_Column">
-            <p>
-              # Artists
-              <button type="button" onClick={onClickSortArtist}>sort</button>
-            </p>
+            <div>
+              <div className="Finder_Head">
+                <p># Artists</p>
+                <a href="#" onClick={(ev) => { ev.preventDefault(); onClickSortArtist(); }}>[sort]</a>
+              </div>
+            </div>
             <div className="Scroller">
               <ul>
                 { artists.map(artist => (
@@ -59,10 +61,16 @@ class Finder extends React.Component {
           </div>
 
           <div className="Finder_Column">
-            <p># Albums</p>
+            <div>
+              <div className="Finder_Head">
+                <p># Albums</p>
+              </div>
+            </div>
             <div className="Scroller">
               <ul>
-                { albums.length === 0 && <li>Artist not selected</li> }
+                { albums.length === 0 &&
+                  <li className="Finder_Row">Artist not selected</li>
+                }
                 { albums.map(album => (
                 <li className="Finder_Row" key={album.name}>
                   <AlbumItem
@@ -79,10 +87,16 @@ class Finder extends React.Component {
 
         <div className="Finder_Detail">
           <div className="Finder_Column">
-            <p># Songs</p>
+            <div>
+              <div className="Finder_Head">
+                <p># Songs</p>
+              </div>
+            </div>
             <div className="Scroller">
               <ul>
-                { songs.length === 0 && <li>Album not selected</li> }
+                { songs.length === 0 &&
+                  <li className="Finder_Row">Album not selected</li>
+                }
                 { songs.map(song => (
                 <li className="Finder_Row" key={song.name}>
                   <SongItem
