@@ -21,10 +21,6 @@
     box-sizing: border-box;
     padding: 5px 10px;
 
-    &:hover {
-      font-weight: bold;
-    }
-
     &:nth-child(even) {
       background-color: var(--lightBgColor);
     }
@@ -38,6 +34,10 @@
 .ArtistItem {
   display: flex;
   cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
 
   &_Action {
     width: 50px;
@@ -58,6 +58,11 @@
   display: flex;
   cursor: pointer;
 
+  &:hover {
+    font-weight: bold;
+  }
+
+
   &_Action {
     width: 50px;
     margin-right: 5px;
@@ -74,4 +79,23 @@
 }
 
 .SongItem {
+  display: flex;
+
+  &_Action {
+    width: 50px;
+    margin-right: 5px;
+  }
+
+  &_Body {
+    flex: 1 1 auto;
+
+    &_Artist {
+      font-size: .8rem;
+    }
+
+    &_Sub {
+      text-align: right;
+      font-size: .7rem;
+    }
+  }
 }
