@@ -13,6 +13,9 @@ class Ui {
     album: string | null;
   };
 
+  sortBy: 'latest' | 'name';
+
+
   constructor() {
     actionAll(this);
 
@@ -23,7 +26,9 @@ class Ui {
       selected: {
         artist: null,
         album: null,
-      }
+      },
+
+      sortBy: 'latest',
     });
   }
 
@@ -40,6 +45,17 @@ class Ui {
       this.selected.album = null;
     }
     this.selected[target] = name;
+  }
+
+  lotateSortBy(): void {
+    if (this.sortBy === 'latest') {
+      this.sortBy = 'name';
+      return;
+    }
+    if (this.sortBy === 'name') {
+      this.sortBy = 'latest';
+      return;
+    }
   }
 }
 

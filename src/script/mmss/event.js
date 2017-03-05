@@ -40,7 +40,8 @@ class MmssEvent {
   }
 
   onClickSortArtist(): void {
-    this.store.finder.sortArtist();
+    this.store.ui.lotateSortBy();
+    this.store.finder.sortArtist(this.store.ui.sortBy);
   }
 
   onClickArtist(item: Artist): void {

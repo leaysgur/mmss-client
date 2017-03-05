@@ -46,8 +46,8 @@ class Finder {
     });
   }
 
-  sortArtist(): void {
-    this.isNameSort = !this.isNameSort;
+  sortArtist(sort: 'latest' | 'name'): void {
+    this.isNameSort = sort === 'name';
   }
 
   initAlbums(albums: Album[]): void {

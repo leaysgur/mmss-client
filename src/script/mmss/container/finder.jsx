@@ -45,7 +45,7 @@ class Finder extends React.Component {
             <div>
               <div className="Finder_Head">
                 <p># Artists</p>
-                <a href="#" onClick={(ev) => { ev.preventDefault(); onClickSortArtist(); }}>[sort]</a>
+                <a href="#" onClick={(ev) => { ev.preventDefault(); onClickSortArtist(); }}>[sort by {ui.sortBy}]</a>
               </div>
             </div>
             <div className="Scroller">
