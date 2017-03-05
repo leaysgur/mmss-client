@@ -20,18 +20,18 @@ const PlaylistItem = ({
     </div>
     <div className="PlaylistItem_Name" title={item.name}>
       { isPlaying ? (
-      <span>{item.name}</span>
+      <span>{item.name || '-'}</span>
       ) : (
       <a href="#" onClick={ev => { ev.preventDefault(); onClick(item); }}>
-        {item.name}
+        {item.name || '-'}
       </a>
       ) }
     </div>
     <div className="PlaylistItem_Artist" title={item.artist}>
-      {item.artist}
+      {item.artist || '-'}
     </div>
     <div className="PlaylistItem_Album" title={item.album}>
-      {item.album}
+      {item.album || '-'}
     </div>
     <div className="PlaylistItem_Duration" title={format(item.duration)}>
       <Time seconds={item.duration} />
