@@ -1,4 +1,7 @@
 // @flow
+import 'whatwg-fetch';
+import 'core-js/fn/object/entries';
+
 import { useStrict } from 'mobx';
 
 import EntryMain from './entry/main';
