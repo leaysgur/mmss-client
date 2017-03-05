@@ -4,7 +4,7 @@ import { reaction } from 'mobx';
 import {
   initNotification,
   showNotification,
-} from './notifier';
+} from './util/notifier';
 
 import {
   getMediaSerial,
