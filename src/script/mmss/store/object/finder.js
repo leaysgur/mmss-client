@@ -46,7 +46,7 @@ class Finder {
     });
   }
 
-  sortArtist(sort: 'latest' | 'name'): void {
+  sortArtist(sort: ArtistSort): void {
     this.isNameSort = sort === 'name';
   }
 

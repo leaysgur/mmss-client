@@ -13,7 +13,7 @@ class Ui {
     album: string | null;
   };
 
-  sortBy: 'latest' | 'name';
+  sortBy: ArtistSort;
 
 
   constructor() {
