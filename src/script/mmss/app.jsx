@@ -30,20 +30,17 @@ class MmssApp extends React.Component {
 
     return (
       <div className="MmssApp">
-
         <Header
           {...{
             ui,
           }}
         />
-
         <Finder
           {...{
             finder,
             ui,
           }}
         />
-
         <Playlist
           {...{
             playlist,

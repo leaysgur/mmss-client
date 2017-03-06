@@ -27,7 +27,7 @@ class Header extends React.Component {
     return (
       <div className="Header">
         <Top onClick={event.onClickLogout} />
-        <ProgressBar {...{ ui }} />
+        <ProgressBar loadProgress={ui.loadProgress} />
       </div>
     );
   }
