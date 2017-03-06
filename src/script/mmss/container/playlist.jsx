@@ -33,7 +33,6 @@ class Playlist extends React.Component {
     };
   }
 
-
   render() {
     const {
       items,
