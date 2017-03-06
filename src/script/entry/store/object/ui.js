@@ -8,12 +8,12 @@ class UiObject {
   hasLoginError: boolean;
   visibleTab: string;
 
-  constructor() {
+  constructor(initTab: string) {
     actionAll(this);
 
     extendObservable(this, {
       hasLoginError: false,
-      visibleTab: 'login',
+      visibleTab: initTab,
     });
   }
 

@@ -9,7 +9,7 @@ import EntryEvent from './event';
 
 
 export default function(musicRes: MusicJSON) {
-  const store: EntryStore = new EntryStore(musicRes);
+  const store: EntryStore = new EntryStore(musicRes, location.hash);
   const event: EntryEvent = new EntryEvent(store);
 
   ReactDOM.render(

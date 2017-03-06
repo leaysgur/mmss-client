@@ -25,6 +25,7 @@ class EntryApp extends React.Component {
     const {
       search,
       ui,
+      tabNames,
     } = this.props.store;
     const {
       onClickTab,
@@ -37,7 +38,7 @@ class EntryApp extends React.Component {
         <Top />
 
         <TabTrigger
-          tabNames={['login', 'search']}
+          tabNames={tabNames}
           visibleTab={ui.visibleTab}
           onClick={onClickTab}
         />

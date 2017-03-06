@@ -1,4 +1,5 @@
 // @flow
+import { autorun } from 'mobx';
 import { postJSON } from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
@@ -12,6 +13,11 @@ class EntryEvent {
     bindAll(this);
 
     this.store = store;
+
+    autorun(() => {
+      const tabName = this.store.ui.visibleTab;
+      location.hash = `!/${tabName}`;
+    });
   }
 
   onClickTab(tabName: string): void {
