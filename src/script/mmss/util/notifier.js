@@ -1,10 +1,12 @@
 // @flow
 
 export function initNotification(): void {
+  if ('Notification' in window === false) { return; }
   Notification.requestPermission();
 }
 
 export function showNotification(nowPlaying: Song): void {
+  if ('Notification' in window === false) { return; }
   const {
     name, artist, album,
   } = nowPlaying;
