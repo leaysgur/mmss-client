@@ -40,7 +40,7 @@ class AlbumItem extends React.Component {
         }}>[play]</a>
         <div className="AlbumItem_Body">
           <div>
-            {item.name}
+            {item.name || '-'}
           </div>
           <div className="AlbumItem_Body_Sub">
             {item.year || '-'} / {item.songs.length} song(s)

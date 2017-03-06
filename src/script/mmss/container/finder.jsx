@@ -102,8 +102,8 @@ class Finder extends React.Component {
                 { songs.length === 0 &&
                   <li className="Finder_Row">Album not selected</li>
                 }
-                { songs.map(song => (
-                <li className="Finder_Row" key={song.name}>
+                { songs.map((song, idx) => (
+                <li className="Finder_Row" key={song.name + idx}>
                   <SongItem
                     item={song}
                     onClickPlay={onClickPlaySong}
