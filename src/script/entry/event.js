@@ -31,7 +31,7 @@ class EntryEvent {
       .then((res: APIJSONRes) => {
         if (res === null) {
           this.store.ui.showLoginError(false);
-          // セッション確立してるならMmssアプリへ
+          // セッション確立してるのでMmssアプリへ
           return location.reload(true);
         }
         this.store.ui.showLoginError(true);

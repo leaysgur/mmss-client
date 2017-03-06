@@ -10,6 +10,7 @@ import MmssMain from './mmss/main';
 import { getJSON } from './shared/util/fetch';
 
 
+// use mobx strict
 useStrict(true);
 
 // キャッシュ飛ばしたい時もあると思うのでとりあえず

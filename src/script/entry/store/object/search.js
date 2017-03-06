@@ -33,15 +33,16 @@ class SearchObject {
         }
 
         const ret = {};
-        let notFound = true;
         this._json.forEach((artist: Artist) => {
           if (reg.test(artist.name)) {
-            notFound = false;
             ret[artist.name] = artist.albums.map(album => album.name);
           }
         });
 
-        return notFound ? null : ret;
+        if (Object.keys(ret).length === 0) {
+          return null;
+        }
+        return ret;
       }),
     });
   }
