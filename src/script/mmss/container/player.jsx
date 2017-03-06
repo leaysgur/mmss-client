@@ -67,7 +67,7 @@ class Player extends React.Component {
           ></audio>
         </div>
         <div className="Player_Info">
-          {nowPlaying ? nowPlaying.name : '-'}
+          {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}
         </div>
       </div>
     );
