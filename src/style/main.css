@@ -1,6 +1,6 @@
 @import "shared/global.css";
 @import "shared/loading.css";
-@import "shared/header.css";
+@import "shared/top.css";
 @import "shared/logo.css";
 
 @import "entry/app.css";
@@ -9,6 +9,7 @@
 @import "entry/search.css";
 
 @import "mmss/app.css";
+@import "mmss/header.css";
 @import "mmss/finder.css";
 @import "mmss/playlist.css";
 @import "mmss/player.css";

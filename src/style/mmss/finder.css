@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    height: var(--headerHeight);
+    height: var(--topHeight);
   }
 
   &_Index {

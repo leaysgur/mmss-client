@@ -2,14 +2,14 @@
 import React from 'react';
 
 
-const Header = ({
+const Top = ({
   onClick,
 }: {
   onClick?: () => void;
 }) => (
-  <div className="Header">
+  <div className="Top">
     <span onClick={() => onClick && onClick() }>MMSS</span>
   </div>
 );
 
-export default Header;
+export default Top;

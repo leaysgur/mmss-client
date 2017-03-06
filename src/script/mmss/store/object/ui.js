@@ -20,9 +20,14 @@ class Ui {
 
   sortBy: ArtistSort;
 
+  _timer: number | null;
+  loadProgress: number;
+
 
   constructor() {
     actionAll(this);
+
+    this._timer = null;
 
     extendObservable(this, {
       isPlaylistShown: computed(() => {
@@ -38,6 +43,8 @@ class Ui {
       },
 
       sortBy: 'latest',
+
+      loadProgress: 0,
     });
   }
 
@@ -51,6 +58,16 @@ class Ui {
 
   setMediaLoading(bool: boolean): void {
     this.isMediaLoading = bool;
+
+    if (bool) {
+      this.loadProgress = 0;
+      if (this._timer) { return; }
+      this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
+    } else {
+      this._timer && cancelAnimationFrame(this._timer);
+      this.loadProgress = 100;
+      this._timer = setTimeout(() => this._clearLoadProgress(), 500);
+    }
   }
 
   setSelected(target: 'artist' | 'album', name: string | null): void {
@@ -69,6 +86,17 @@ class Ui {
       this.sortBy = 'latest';
       return;
     }
+  }
+
+  _clearLoadProgress(): void {
+    this.loadProgress = 0;
+    clearTimeout(this._timer);
+    this._timer = null;
+  }
+  _incrementLoadProgress(): void {
+    this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
+    // カカシなので99で止めて間をもたせる
+    this.loadProgress = Math.min(this.loadProgress + 1, 99);
   }
 }
 

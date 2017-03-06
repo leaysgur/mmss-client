@@ -4,6 +4,6 @@
   overflow: hidden;
 
   --mmssHeight: 100vh;
-  --finderHeight: calc(var(--mmssHeight) - var(--headerHeight) - var(--footerHeight));
+  --finderHeight: calc(var(--mmssHeight) - var(--topHeight) - var(--footerHeight));
   --footerHeight: 6vh;
 }

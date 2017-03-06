@@ -1,6 +1,6 @@
-.Header {
-  height: var(--headerHeight);
-  line-height: var(--headerHeight);
+.Top {
+  height: var(--topHeight);
+  line-height: var(--topHeight);
   text-align: center;
   background-color: var(--darkBgColor);
   color: #fff;

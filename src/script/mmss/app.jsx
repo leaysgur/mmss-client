@@ -5,7 +5,7 @@ import {
   observer,
 } from 'mobx-react';
 
-import Header from '../shared/component/header.jsx';
+import Header from './container/header.jsx';
 import Finder from './container/finder.jsx';
 import Playlist from './container/playlist.jsx';
 import Player from './container/player.jsx';
@@ -30,7 +30,12 @@ class MmssApp extends React.Component {
 
     return (
       <div className="MmssApp">
-        <Header onClick={this.props.event.onClickLogout} />
+
+        <Header
+          {...{
+            ui,
+          }}
+        />
 
         <Finder
           {...{

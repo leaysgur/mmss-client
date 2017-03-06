@@ -5,7 +5,7 @@ import {
   observer,
 } from 'mobx-react';
 
-import Header from '../shared/component/header.jsx';
+import Top from '../shared/component/top.jsx';
 import LoginForm from './component/login-form.jsx';
 import SearchForm from './component/search-form.jsx';
 import TabTrigger from './component/tab-trigger.jsx';
@@ -34,7 +34,7 @@ class EntryApp extends React.Component {
 
     return (
       <div className="EntryApp">
-        <Header />
+        <Top />
 
         <TabTrigger
           tabNames={['login', 'search']}
