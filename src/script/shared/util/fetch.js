@@ -54,7 +54,7 @@ export function getMediaSerial(url: string, param?: Object): Promise<Blob> {
 }
 
 function _paramToQs(param: { [string]: string; }): string {
-  let ret = [];
+  let ret: string[] = [];
   Object.entries(param).forEach(kv => {
     const key = kv[0];
     const val = kv[1];
