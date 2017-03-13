@@ -32,7 +32,10 @@ const ArtistColumn = ({
     </div>
     <div className="Scroller">
       <ul>
-        { artists.map(artist => (
+        { artists
+          // 絞込されてるならそれ、されてないなら全部
+          .filter(artist => ui.filterBy ? artist.name === ui.filterBy : true)
+          .map(artist => (
         <li className="Finder_Row" key={artist.name}>
           <ArtistItem
             item={artist}

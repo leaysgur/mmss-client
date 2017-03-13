@@ -19,6 +19,7 @@ class Ui {
   };
 
   sortBy: ArtistSort;
+  filterBy: string | null;
 
   _timer: number | null;
   loadProgress: number;
@@ -43,6 +44,7 @@ class Ui {
       },
 
       sortBy: 'latest',
+      filterBy: null,
 
       loadProgress: 0,
     });
@@ -86,6 +88,10 @@ class Ui {
       this.sortBy = 'latest';
       return;
     }
+  }
+
+  setFilterBy(artistName: string | null): void {
+    this.filterBy = this.filterBy ? null : artistName;
   }
 
   _clearLoadProgress(): void {

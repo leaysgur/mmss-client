@@ -41,6 +41,7 @@ class Player extends React.Component {
   render() {
     const {
       onClickPrev, onClickNext,
+      onClickNowPlaying,
     } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
@@ -66,7 +67,7 @@ class Player extends React.Component {
             src={currentSrc}
           ></audio>
         </div>
-        <div className="Player_Info">
+        <div className="Player_Info" onClick={onClickNowPlaying}>
           {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}
         </div>
       </div>

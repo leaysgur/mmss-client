@@ -97,6 +97,15 @@ class MmssEvent {
     this.store.playlist.next();
   }
 
+  onClickNowPlaying(): void {
+    const nowPlaying = this.store.playlist.nowPlaying;
+    if (!nowPlaying) { return; }
+
+    // albumArtistはパスからしか取れない
+    const [artist] = nowPlaying.path.split('/');
+    this.store.ui.setFilterBy(artist);
+  }
+
   onClickPlaylistItem(item: Song): void {
     this.store.playlist.jump(item);
   }
