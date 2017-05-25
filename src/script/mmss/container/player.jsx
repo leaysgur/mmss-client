@@ -17,6 +17,7 @@ class Player extends React.Component {
   _handleEnded: () => void;
   _handleMouseEnter: () => void;
   _handleMouseLeave: () => void;
+  _handleKeyDown: (KeyboardEvent) => void;
   props: {
     event: MmssEvent;
     playlist: PlaylistObject;
@@ -35,6 +36,12 @@ class Player extends React.Component {
     };
     this._handleMouseLeave = () => {
       this.props.event.onMouseLeavePlayer();
+    };
+    this._handleKeyDown = (ev: KeyboardEvent) => {
+      if (ev.keyCode !== 32) { return; }
+      if (this.audioEl.src.length === 0) { return; }
+      ev.preventDefault();
+      this.audioEl.paused ? this.audioEl.play() : this.audioEl.pause();
     };
   }
 
@@ -78,12 +85,14 @@ class Player extends React.Component {
     this.el.addEventListener('mouseenter', this._handleMouseEnter, false);
     this.el.addEventListener('mouseleave', this._handleMouseLeave, false);
     this.audioEl.addEventListener('ended', this._handleEnded, false);
+    window.addEventListener('keydown', this._handleKeyDown, false);
   }
 
   componentWillUnmount() {
     this.el.removeEventListener('mouseenter', this._handleMouseEnter, false);
     this.el.removeEventListener('mouseleave', this._handleMouseLeave, false);
     this.audioEl.removeEventListener('ended', this._handleEnded, false);
+    window.removeEventListener('keydown', this._handleKeyDown, false);
   }
 }
 
