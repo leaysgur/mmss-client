@@ -6,12 +6,12 @@
   "main": "index.js",
   "scripts": {
     "dev:js": "webpack -w",
-    "dev:css": "postcss ./src/style/main.css -w",
+    "dev:css": "postcss ./src/style/main.css -o ./dist/main.css -w",
     "build:js": "NODE_ENV=production webpack -p",
-    "build:css": "postcss ./src/style/main.css",
+    "build:css": "postcss ./src/style/main.css -o ./dist/main.css",
     "typecheck": "flow",
     "build": "npm run typecheck && npm run cp && npm run build:js && npm run build:css",
-    "cp": "cp ~/Music/music.json ./dist/music.json"
+    "cp": "cp ~/backup/music/music.json ./dist/music.json"
   },
   "keywords": [],
   "author": "leader22",
