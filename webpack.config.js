@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV;
 const isProd = nodeEnv === 'production';
@@ -19,24 +20,25 @@ if (isProd) {
     })
   );
   plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      souceMap: false,
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-      },
-      output: {
-        comments: false,
-      },
-    })
+    new MinifyPlugin()
+    // new webpack.optimize.UglifyJsPlugin({
+    //   souceMap: false,
+    //   compress: {
+    //     warnings: false,
+    //     screw_ie8: true,
+    //     conditionals: true,
+    //     unused: true,
+    //     comparisons: true,
+    //     sequences: true,
+    //     dead_code: true,
+    //     evaluate: true,
+    //     if_return: true,
+    //     join_vars: true,
+    //   },
+    //   output: {
+    //     comments: false,
+    //   },
+    // })
   );
 }
 
