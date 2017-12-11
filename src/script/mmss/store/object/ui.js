@@ -1,30 +1,8 @@
-// @flow
-import {
-  computed,
-  extendObservable,
-} from 'mobx';
+import { computed, extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
-
 class Ui {
-  isPlaylistShown: boolean;
-  isMediaLoading: boolean;
-  _isHoverPlayer: boolean;
-  _isHoverPlaylist: boolean;
-
-  selected: {
-    artist: string | null;
-    album: string | null;
-  };
-
-  sortBy: ArtistSort;
-  filterBy: string | null;
-
-  _timer: number | null;
-  loadProgress: number;
-
-
   constructor() {
     actionAll(this);
 
@@ -50,20 +28,22 @@ class Ui {
     });
   }
 
-  setHoverPlayer(bool: boolean): void {
+  setHoverPlayer(bool) {
     this._isHoverPlayer = bool;
   }
 
-  setHoverPlaylist(bool: boolean): void {
+  setHoverPlaylist(bool) {
     this._isHoverPlaylist = bool;
   }
 
-  setMediaLoading(bool: boolean): void {
+  setMediaLoading(bool) {
     this.isMediaLoading = bool;
 
     if (bool) {
       this.loadProgress = 0;
-      if (this._timer) { return; }
+      if (this._timer) {
+        return;
+      }
       this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
     } else {
       this._timer && cancelAnimationFrame(this._timer);
@@ -72,14 +52,14 @@ class Ui {
     }
   }
 
-  setSelected(target: 'artist' | 'album', name: string | null): void {
+  setSelected(target, name) {
     if (target === 'artist') {
       this.selected.album = null;
     }
     this.selected[target] = name;
   }
 
-  lotateSortBy(): void {
+  lotateSortBy() {
     if (this.sortBy === 'latest') {
       this.sortBy = 'name';
       return;
@@ -90,16 +70,16 @@ class Ui {
     }
   }
 
-  setFilterBy(artistName: string | null): void {
+  setFilterBy(artistName) {
     this.filterBy = this.filterBy ? null : artistName;
   }
 
-  _clearLoadProgress(): void {
+  _clearLoadProgress() {
     this.loadProgress = 0;
     clearTimeout(this._timer);
     this._timer = null;
   }
-  _incrementLoadProgress(): void {
+  _incrementLoadProgress() {
     this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
     // カカシなので99で止めて間をもたせる
     this.loadProgress = Math.min(this.loadProgress + 1, 99);

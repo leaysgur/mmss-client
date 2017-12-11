@@ -1,11 +1,7 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
 import ArtistItem from './artist-item.jsx';
-
-import type UiObject from '../../store/object/ui';
-
 
 const ArtistColumn = ({
   ui,
@@ -13,12 +9,6 @@ const ArtistColumn = ({
   onClickSortArtist,
   onClickArtist,
   onClickPlayArtist,
-}: {
-  ui: UiObject;
-  artists: Artist[];
-  onClickSortArtist: () => void;
-  onClickArtist: (artist: Artist) => void;
-  onClickPlayArtist: (artist: Artist) => void;
 }) => (
   <div className="Finder_Column">
     <div>
@@ -26,25 +16,30 @@ const ArtistColumn = ({
         <p># Artists</p>
         <a
           href="#"
-          onClick={ev => { ev.preventDefault(); onClickSortArtist(); }}
-        >[sort by {ui.sortBy}]</a>
+          onClick={ev => {
+            ev.preventDefault();
+            onClickSortArtist();
+          }}
+        >
+          [sort by {ui.sortBy}]
+        </a>
       </div>
     </div>
     <div className="Scroller">
       <ul>
-        { artists
+        {artists
           // 絞込されてるならそれ、されてないなら全部
-          .filter(artist => ui.filterBy ? artist.name === ui.filterBy : true)
+          .filter(artist => (ui.filterBy ? artist.name === ui.filterBy : true))
           .map(artist => (
-        <li className="Finder_Row" key={artist.name}>
-          <ArtistItem
-            item={artist}
-            isSelected={artist.name === ui.selected.artist}
-            onClick={onClickArtist}
-            onClickPlay={onClickPlayArtist}
-          />
-        </li>
-        )) }
+            <li className="Finder_Row" key={artist.name}>
+              <ArtistItem
+                item={artist}
+                isSelected={artist.name === ui.selected.artist}
+                onClick={onClickArtist}
+                onClickPlay={onClickPlayArtist}
+              />
+            </li>
+          ))}
       </ul>
     </div>
   </div>

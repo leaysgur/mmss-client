@@ -1,12 +1,8 @@
-// @flow
 import { extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
-
 class Media {
-  currentSrc: string | null;
-
   constructor() {
     actionAll(this);
 
@@ -15,7 +11,7 @@ class Media {
     });
   }
 
-  setSrc(blob: Blob): void {
+  setSrc(blob) {
     const objectUrl = URL.createObjectURL(blob);
     if (this.currentSrc) {
       URL.revokeObjectURL(this.currentSrc);

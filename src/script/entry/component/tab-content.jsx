@@ -1,15 +1,7 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
-
-const TabContent = ({
-  tabContents,
-  visibleTab,
-}: {
-  tabContents: { [string]: React$Element<any>; };
-  visibleTab: string;
-}) => (
+const TabContent = ({ tabContents, visibleTab }) => (
   <div className="TabContent">{tabContents[visibleTab]}</div>
 );
 

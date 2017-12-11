@@ -1,24 +1,12 @@
-// @flow
 import { reaction } from 'mobx';
 
-import {
-  initNotification,
-  showNotification,
-} from './util/notifier';
+import { initNotification, showNotification } from './util/notifier';
 
-import {
-  getMediaSerial,
-  postJSON,
-} from '../shared/util/fetch';
+import { getMediaSerial, postJSON } from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
-import type MmssStore from './store';
-
-
 class MmssEvent {
-  store: MmssStore;
-
-  constructor(store: MmssStore) {
+  constructor(store) {
     bindAll(this);
 
     this.store = store;
@@ -27,36 +15,39 @@ class MmssEvent {
 
     reaction(
       () => this.store.playlist.nowPlaying,
-      (nowPlaying) => {
-        if (nowPlaying === null) { return; }
+      nowPlaying => {
+        if (nowPlaying === null) {
+          return;
+        }
         this._onChangeNowPlaying(nowPlaying);
-      },
+      }
     );
   }
 
-  onClickLogout(): void {
-    postJSON('/api/logout')
-      .then(() => { location.reload(true); });
+  onClickLogout() {
+    postJSON('/api/logout').then(() => {
+      location.reload(true);
+    });
   }
 
-  onClickSortArtist(): void {
+  onClickSortArtist() {
     this.store.ui.lotateSortBy();
     this.store.finder.sortArtist(this.store.ui.sortBy);
   }
 
-  onClickArtist(item: Artist): void {
+  onClickArtist(item) {
     this.store.finder.initAlbums(item.albums);
 
     this.store.ui.setSelected('artist', item.name);
   }
 
-  onClickAlbum(item: Album): void {
+  onClickAlbum(item) {
     this.store.finder.initSongs(item.songs);
 
     this.store.ui.setSelected('album', item.name);
   }
 
-  onClickPlayArtist(item: Artist): void {
+  onClickPlayArtist(item) {
     let items = [];
     item.albums.forEach(album => {
       items = items.concat(album.songs);
@@ -64,53 +55,55 @@ class MmssEvent {
     this.store.playlist.init(items);
   }
 
-  onClickPlayAlbum(item: Album): void {
+  onClickPlayAlbum(item) {
     this.store.playlist.init(item.songs);
   }
 
-  onClickPlaySong(item: Song): void {
+  onClickPlaySong(item) {
     this.store.playlist.init([item]);
   }
 
-  onMouseEnterPlayer(): void {
+  onMouseEnterPlayer() {
     this.store.ui.setHoverPlayer(true);
   }
-  onMouseLeavePlayer(): void {
+  onMouseLeavePlayer() {
     this.store.ui.setHoverPlayer(false);
   }
-  onMouseEnterPlaylist(): void {
+  onMouseEnterPlaylist() {
     this.store.ui.setHoverPlaylist(true);
   }
-  onMouseLeavePlaylist(): void {
+  onMouseLeavePlaylist() {
     this.store.ui.setHoverPlaylist(false);
   }
 
-  onEndedMedia(): void {
+  onEndedMedia() {
     this.store.playlist.next();
   }
 
-  onClickPrev(): void {
+  onClickPrev() {
     this.store.playlist.prev();
   }
 
-  onClickNext(): void {
+  onClickNext() {
     this.store.playlist.next();
   }
 
-  onClickNowPlaying(): void {
+  onClickNowPlaying() {
     const nowPlaying = this.store.playlist.nowPlaying;
-    if (!nowPlaying) { return; }
+    if (!nowPlaying) {
+      return;
+    }
 
     // albumArtistはパスからしか取れない
     const [artist] = nowPlaying.path.split('/');
     this.store.ui.setFilterBy(artist);
   }
 
-  onClickPlaylistItem(item: Song): void {
+  onClickPlaylistItem(item) {
     this.store.playlist.jump(item);
   }
 
-  _onChangeNowPlaying(nowPlaying: Song): void {
+  _onChangeNowPlaying(nowPlaying) {
     const path = nowPlaying.path;
     const cached = this.store.mediaCache.get(path);
 
@@ -123,30 +116,31 @@ class MmssEvent {
 
     this.store.ui.setMediaLoading(true);
     getMedia
-      .then((blob: Blob) => {
+      .then(blob => {
         this.store.media.setSrc(blob);
         this.store.ui.setMediaLoading(false);
         showNotification(nowPlaying);
       })
       .then(() => {
         const nextPlaying = this.store.playlist.nextPlaying;
-        nextPlaying && _getAndCacheMedia(nextPlaying.path, this.store.mediaCache);
+        nextPlaying &&
+          _getAndCacheMedia(nextPlaying.path, this.store.mediaCache);
       })
       .catch(() => {
         location.reload(true);
       });
 
-    function _getAndCacheMedia(path: string, cache: Map<string, Blob>): Promise<Blob> {
+    function _getAndCacheMedia(path, cache) {
       return getMediaSerial('/api/track', { path })
-      .then((blob: Blob) => {
-        if (blob.type !== 'audio/mpeg') {
-          return Promise.reject();
-        }
+        .then(blob => {
+          if (blob.type !== 'audio/mpeg') {
+            return Promise.reject();
+          }
 
-        cache.set(path, blob);
-        return Promise.resolve(blob);
-      })
-      .catch(console.error);
+          cache.set(path, blob);
+          return Promise.resolve(blob);
+        })
+        .catch(console.error);
     }
   }
 }

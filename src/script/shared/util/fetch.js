@@ -1,30 +1,27 @@
-// @flow
-export function getJSON(url: string, param?: Object): Promise<any> {
+export function getJSON(url, param) {
   if (param) {
     url += `?${_paramToQs(param)}`;
   }
-  return fetch(url, { credentials: 'same-origin' })
-    .then(res => res.json());
+  return fetch(url, { credentials: 'same-origin' }).then(res => res.json());
 }
 
-export function postJSON(url: string, param?: Object): Promise<any> {
-  const options: RequestOptions = {
+export function postJSON(url, param) {
+  const options = {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   };
   if (param) {
     options.body = JSON.stringify(param);
   }
 
-  return fetch(url, options)
-    .then(res => res.json());
+  return fetch(url, options).then(res => res.json());
 }
 
-let _mediaXhr: XMLHttpRequest;
-export function getMediaSerial(url: string, param?: Object): Promise<Blob> {
+let _mediaXhr;
+export function getMediaSerial(url, param) {
   return new Promise((resolve, reject) => {
     // 音源は重いので、常にシングルリクエストに
     if (_mediaXhr) {
@@ -53,8 +50,8 @@ export function getMediaSerial(url: string, param?: Object): Promise<Blob> {
   });
 }
 
-function _paramToQs(param: { [string]: string; }): string {
-  let ret: string[] = [];
+function _paramToQs(param) {
+  let ret = [];
   Object.entries(param).forEach(kv => {
     const key = kv[0];
     const val = kv[1];

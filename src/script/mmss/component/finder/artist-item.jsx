@@ -1,18 +1,7 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
-
 class ArtistItem extends React.Component {
-  el: HTMLDivElement;
-  _handleMouseEnter: () => void;
-  props: {
-    item: Artist;
-    isSelected: boolean;
-    onClick: (item: Artist) => void;
-    onClickPlay: (item: Artist) => void;
-  };
-
   constructor() {
     super();
 
@@ -22,26 +11,28 @@ class ArtistItem extends React.Component {
   }
 
   render() {
-    const {
-      item,
-      isSelected,
-      onClickPlay,
-    } = this.props;
+    const { item, isSelected, onClickPlay } = this.props;
 
     return (
       <div
-        ref={(ref) => { this.el = ref; }}
+        ref={ref => {
+          this.el = ref;
+        }}
         className={`ArtistItem ${isSelected ? '-selected' : ''}`}
       >
-        <a className="ArtistItem_Action" href="#" onClick={(ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-          onClickPlay(item);
-        }}>[play]</a>
+        <a
+          className="ArtistItem_Action"
+          href="#"
+          onClick={ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            onClickPlay(item);
+          }}
+        >
+          [play]
+        </a>
         <div className="ArtistItem_Body">
-          <div>
-          {item.name}
-          </div>
+          <div>{item.name}</div>
           <div className="ArtistItem_Body_Sub">
             {item.albums.length} album(s)
           </div>

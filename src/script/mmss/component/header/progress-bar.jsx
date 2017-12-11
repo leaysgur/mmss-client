@@ -1,18 +1,9 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
-
-const ProgressBar = ({
-  loadProgress,
-}: {
-  loadProgress: number;
-}) => (
+const ProgressBar = ({ loadProgress }) => (
   <div className="ProgressBar">
-    <div
-      className="ProgressBar_Inner"
-      style={{ width: `${loadProgress}%` }}
-    ></div>
+    <div className="ProgressBar_Inner" style={{ width: `${loadProgress}%` }} />
   </div>
 );
 

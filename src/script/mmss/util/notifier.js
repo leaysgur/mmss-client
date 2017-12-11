@@ -1,15 +1,16 @@
-// @flow
 
-export function initNotification(): void {
-  if ('Notification' in window === false) { return; }
+export function initNotification() {
+  if ('Notification' in window === false) {
+    return;
+  }
   Notification.requestPermission();
 }
 
-export function showNotification(nowPlaying: Song): void {
-  if ('Notification' in window === false) { return; }
-  const {
-    name, artist, album,
-  } = nowPlaying;
+export function showNotification(nowPlaying) {
+  if ('Notification' in window === false) {
+    return;
+  }
+  const { name, artist, album } = nowPlaying;
 
   const notif = new Notification(name, {
     tag: 'nowPlaying',

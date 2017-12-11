@@ -1,15 +1,9 @@
-// @flow
 import { autorun } from 'mobx';
 import { postJSON } from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
-import type EntryStore from './store';
-
-
 class EntryEvent {
-  store: EntryStore;
-
-  constructor(store: EntryStore) {
+  constructor(store) {
     bindAll(this);
 
     this.store = store;
@@ -20,11 +14,11 @@ class EntryEvent {
     });
   }
 
-  onClickTab(tabName: string): void {
+  onClickTab(tabName) {
     this.store.ui.showTab(tabName);
   }
 
-  onLoginSubmit(item: LoginItem): void {
+  onLoginSubmit(item) {
     const id = item.id.trim();
     const pw = item.pw.trim();
 
@@ -34,7 +28,7 @@ class EntryEvent {
     }
 
     postJSON('/api/login', { id, pw })
-      .then((res: APIJSONRes) => {
+      .then(res => {
         if (res === null) {
           this.store.ui.showLoginError(false);
           // セッション確立してるのでMmssアプリへ
@@ -45,14 +39,10 @@ class EntryEvent {
       .catch(console.error);
   }
 
-  onChangeKeyword(keyword: string): void {
+  onChangeKeyword(keyword) {
     keyword = keyword.trim();
     this.store.search.setKeyword(keyword);
   }
 }
 
-export type LoginItem = {
-  id: string;
-  pw: string;
-};
 export default EntryEvent;

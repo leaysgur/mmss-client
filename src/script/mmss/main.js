@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
@@ -7,10 +6,9 @@ import MmssApp from './app.jsx';
 import MmssStore from './store';
 import MmssEvent from './event';
 
-
-export default function(json: MusicJSON) {
-  const store: MmssStore = new MmssStore(json);
-  const event: MmssEvent = new MmssEvent(store);
+export default function(json) {
+  const store = new MmssStore(json);
+  const event = new MmssEvent(store);
 
   ReactDOM.render(
     <Provider event={event}>

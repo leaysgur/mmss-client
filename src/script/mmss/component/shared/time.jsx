@@ -1,22 +1,11 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
-
-const Time = ({
-  seconds,
-}: {
-  seconds: string;
-}) => (
-  <span>
-    {format(seconds)}
-  </span>
-);
+const Time = ({ seconds }) => <span>{format(seconds)}</span>;
 
 export default observer(Time);
 
-
-export function format(sec: string): string {
+export function format(sec) {
   const seconds = parseInt(sec, 10);
 
   const h = Math.floor(seconds / 3600);

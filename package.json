@@ -9,7 +9,6 @@
     "dev:css": "postcss ./src/style/main.css -o ./dist/main.css -w",
     "build:js": "NODE_ENV=production webpack",
     "build:css": "postcss ./src/style/main.css -o ./dist/main.css",
-    "typecheck": "flow",
     "build": "npm run typecheck && npm run cp && npm run build:js && npm run build:css",
     "cp": "cp ~/backup/music/music.json ./dist/music.json"
   },
@@ -29,7 +28,6 @@
     "babel-loader": "^6.3.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-preset-react": "^6.23.0",
-    "flow-bin": "0.39.0",
     "postcss-cli": "^3.0.0-beta",
     "postcss-import": "^9.1.0",
     "postcss-nested": "^1.0.0",

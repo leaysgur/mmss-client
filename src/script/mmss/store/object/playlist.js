@@ -1,20 +1,8 @@
-// @flow
-import {
-  computed,
-  extendObservable,
-} from 'mobx';
+import { computed, extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
-import type { IObservableArray } from 'mobx';
-
-
 class Playlist {
-  items: IObservableArray<Song>;
-  nowPlayingIdx: number;
-  nowPlaying: Song | null;
-  nextPlaying: Song | null;
-
   constructor() {
     actionAll(this);
 
@@ -24,13 +12,17 @@ class Playlist {
       nowPlayingIdx: -1,
       nowPlaying: computed(() => {
         const idx = this.nowPlayingIdx;
-        if (idx === -1) { return null; }
+        if (idx === -1) {
+          return null;
+        }
 
         return this.items[idx];
       }),
       nextPlaying: computed(() => {
         const idx = this.nowPlayingIdx;
-        if (idx === -1) { return null; }
+        if (idx === -1) {
+          return null;
+        }
 
         const nextIdx = idx === this.items.length - 1 ? 0 : idx + 1;
         return this.items[nextIdx];
@@ -38,13 +30,13 @@ class Playlist {
     });
   }
 
-  init(items: Song[]) {
+  init(items) {
     this.items.replace(items);
     // 先頭から再生
     this.nowPlayingIdx = 0;
   }
 
-  prev(): void {
+  prev() {
     const idx = this.nowPlayingIdx;
 
     if (idx === 0) {
@@ -54,7 +46,7 @@ class Playlist {
     }
   }
 
-  next(): void {
+  next() {
     const idx = this.nowPlayingIdx;
 
     if (idx === this.items.length - 1) {
@@ -64,7 +56,7 @@ class Playlist {
     }
   }
 
-  jump(item: Song): void {
+  jump(item) {
     const idx = this.items.indexOf(item);
     if (idx !== -1) {
       this.nowPlayingIdx = idx;

@@ -1,30 +1,7 @@
-// @flow
 import React from 'react';
-import {
-  inject,
-  observer,
-} from 'mobx-react';
-
-import type MmssEvent from '../event';
-import type PlaylistObject from '../store/object/playlist';
-import type MediaObject from '../store/object/media';
-import type UiObject from '../store/object/ui';
-
+import { inject, observer } from 'mobx-react';
 
 class Player extends React.Component {
-  el: HTMLDivElement;
-  audioEl: HTMLAudioElement;
-  _handleEnded: () => void;
-  _handleMouseEnter: () => void;
-  _handleMouseLeave: () => void;
-  _handleKeyDown: (KeyboardEvent) => void;
-  props: {
-    event: MmssEvent;
-    playlist: PlaylistObject;
-    media: MediaObject;
-    ui: UiObject;
-  };
-
   constructor() {
     super();
 
@@ -37,42 +14,67 @@ class Player extends React.Component {
     this._handleMouseLeave = () => {
       this.props.event.onMouseLeavePlayer();
     };
-    this._handleKeyDown = (ev: KeyboardEvent) => {
-      if (ev.keyCode !== 32) { return; }
-      if (this.audioEl.src.length === 0) { return; }
+    this._handleKeyDown = ev => {
+      if (ev.keyCode !== 32) {
+        return;
+      }
+      if (this.audioEl.src.length === 0) {
+        return;
+      }
       ev.preventDefault();
       this.audioEl.paused ? this.audioEl.play() : this.audioEl.pause();
     };
   }
 
   render() {
-    const {
-      onClickPrev, onClickNext,
-      onClickNowPlaying,
-    } = this.props.event;
+    const { onClickPrev, onClickNext, onClickNowPlaying } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
     const { isMediaLoading } = this.props.ui;
 
     return (
       <div
-        ref={(ref) => { this.el = ref; }}
+        ref={ref => {
+          this.el = ref;
+        }}
         className="Player"
       >
         <div className={`Player_Action ${isMediaLoading ? '-loading' : ''}`}>
-          <a {...currentSrc && !isMediaLoading ? { onClick: (ev) => { ev.preventDefault(); onClickPrev(); }, href: '#' } : {}}>
+          <a
+            {...(currentSrc && !isMediaLoading
+              ? {
+                  onClick: ev => {
+                    ev.preventDefault();
+                    onClickPrev();
+                  },
+                  href: '#',
+                }
+              : {})}
+          >
             [prev]
           </a>
-          <a {...currentSrc && !isMediaLoading ? { onClick: (ev) => { ev.preventDefault(); onClickNext(); }, href: '#' } : {}}>
+          <a
+            {...(currentSrc && !isMediaLoading
+              ? {
+                  onClick: ev => {
+                    ev.preventDefault();
+                    onClickNext();
+                  },
+                  href: '#',
+                }
+              : {})}
+          >
             [next]
           </a>
           <audio
-            ref={(ref) => { this.audioEl = ref; }}
+            ref={ref => {
+              this.audioEl = ref;
+            }}
             className="Player_Audio"
             autoPlay
             controls
             src={currentSrc}
-          ></audio>
+          />
         </div>
         <div className="Player_Info" onClick={onClickNowPlaying}>
           {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}

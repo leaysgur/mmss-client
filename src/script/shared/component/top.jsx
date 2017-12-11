@@ -1,14 +1,8 @@
-// @flow
 import React from 'react';
 
-
-const Top = ({
-  onClick,
-}: {
-  onClick?: () => void;
-}) => (
+const Top = ({ onClick }) => (
   <div className="Top">
-    <span onClick={() => onClick && onClick() }>MMSS</span>
+    <span onClick={() => onClick && onClick()}>MMSS</span>
   </div>
 );
 

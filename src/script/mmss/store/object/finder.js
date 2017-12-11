@@ -1,26 +1,9 @@
-// @flow
-import {
-  computed,
-  extendObservable,
-  observable,
-} from 'mobx';
+import { computed, extendObservable, observable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
-import type { IObservableArray } from 'mobx';
-
-
 class Finder {
-  _json: MusicJSON;
-
-  isNameSort: boolean;
-
-  artists: Artist[];
-  albums: IObservableArray<Album>;
-  songs: IObservableArray<Song>;
-
-
-  constructor(json: MusicJSON) {
+  constructor(json) {
     actionAll(this);
 
     this._json = json;
@@ -35,7 +18,9 @@ class Finder {
       artists: computed(() => {
         const artists = this._json.slice();
         if (this.isNameSort) {
-          artists.sort((a: Artist, b: Artist) => { return a.name < b.name ? -1 : 1; });
+          artists.sort((a, b) => {
+            return a.name < b.name ? -1 : 1;
+          });
         }
 
         return artists;
@@ -46,17 +31,17 @@ class Finder {
     });
   }
 
-  sortArtist(sort: ArtistSort): void {
+  sortArtist(sort) {
     this.isNameSort = sort === 'name';
   }
 
-  initAlbums(albums: Album[]): void {
+  initAlbums(albums) {
     this.albums.replace(albums);
     // アーティストを変えたら曲も初期化しておく
     this.songs.clear();
   }
 
-  initSongs(songs: Song[]): void {
+  initSongs(songs) {
     this.songs.replace(songs);
   }
 }

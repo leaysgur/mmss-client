@@ -1,22 +1,10 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
 import Result from './search-result.jsx';
 
-import type { SearchResult } from '../store/object/search';
-
-
-const SearchForm = ({
-  keyword,
-  results,
-  onChange,
-}: {
-  keyword: string;
-  results: SearchResult;
-  onChange: (keyword: string) => void;
-}) => {
-  const _onChange = (ev: Event): void => {
+const SearchForm = ({ keyword, results, onChange }) => {
+  const _onChange = ev => {
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLInputElement) {
       onChange(ev.currentTarget.value);

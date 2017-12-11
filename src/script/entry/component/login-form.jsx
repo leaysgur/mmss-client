@@ -1,24 +1,14 @@
-// @flow
 import React from 'react';
 import { observer } from 'mobx-react';
 
 import Logo from '../../shared/component/logo.jsx';
 
-import type { LoginItem } from '../event';
-
-
-const LoginForm = ({
-  onSubmit,
-  hasError,
-}: {
-  onSubmit: (item: LoginItem) => void;
-  hasError: boolean;
-}) => {
-  const _onSubmit = (ev: Event): void => {
+const LoginForm = ({ onSubmit, hasError }) => {
+  const _onSubmit = ev => {
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLFormElement) {
       // XXX: ほんとはフォーム要素ごとに型をつける
-      const form: Object = ev.currentTarget.elements;
+      const form = ev.currentTarget.elements;
       onSubmit({
         id: form.id.value,
         pw: form.pw.value,
@@ -39,7 +29,7 @@ const LoginForm = ({
         <div>
           <button type="submit">Login</button>
         </div>
-        { hasError && <div className="LoginForm_Error">Error!</div> }
+        {hasError && <div className="LoginForm_Error">Error!</div>}
       </form>
     </div>
   );

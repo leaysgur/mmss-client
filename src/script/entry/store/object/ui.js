@@ -1,14 +1,9 @@
-// @flow
 import { extendObservable } from 'mobx';
 
 import { actionAll } from '../../../shared/util/class';
 
-
 class UiObject {
-  hasLoginError: boolean;
-  visibleTab: string;
-
-  constructor(initTab: string) {
+  constructor(initTab) {
     actionAll(this);
 
     extendObservable(this, {
@@ -17,11 +12,11 @@ class UiObject {
     });
   }
 
-  showLoginError(bool: boolean): void {
+  showLoginError(bool) {
     this.hasLoginError = bool;
   }
 
-  showTab(tabName: string): void {
+  showTab(tabName) {
     this.visibleTab = tabName;
   }
 }
