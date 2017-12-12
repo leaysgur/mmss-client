@@ -46,13 +46,14 @@
   cursor: pointer;
   font-size: .9rem;
   padding: 5px 10px;
-  height: 40px;
+  line-height: 1.1rem;
 
   &.-selected {
-    font-weight: bold;
+    border-left: 4px solid #08f;
   }
 
   &_Sub {
+    padding-top: 5px;
     color: #b3b3b3;
     text-align: right;
     font-size: .7rem;
@@ -60,8 +61,6 @@
 }
 
 .SongItem {
-  height: 60px;
-
   &_Sub {
     display: flex;
     justify-content: space-between;
