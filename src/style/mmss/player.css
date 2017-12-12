@@ -3,10 +3,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
-  align-items: center;
   height: var(--footerHeight);
-  padding: 10px;
+  padding: 0 30px;
   box-sizing: border-box;
   background-color: #fafafa;
 
@@ -17,33 +15,33 @@
     right: 0;
   }
 
-  &_Action {
+  &_Info {
+    padding: 15px 0;
+    font-size: .8rem;
+    text-align: center;
+  }
+
+  &_Controls {
     display: flex;
-    flex: 1 1 auto;
     align-items: center;
 
     &.-loading {
       pointer-events: none;
       opacity: .6;
     }
-  }
 
-  &_Audio {
-    flex: 1 1 auto;
-  }
-
-  &_Info {
-    font-size: .8rem;
-    width: 30%;
+    &_Audio {
+      flex: 1 1 auto;
+    }
   }
 }
 
 .ProgressBar {
-  height: 5px;
+  height: 4px;
   background-color: #e6e6e6;
 
   &_Inner {
-    height: 5px;
+    height: 4px;
     background-color: var(--linkColor);
   }
 }

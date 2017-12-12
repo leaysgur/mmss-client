@@ -44,7 +44,12 @@ class Player extends React.Component {
         <div className="Player_ProgressBar">
           <ProgressBar loadProgress={loadProgress} />
         </div>
-        <div className={`Player_Action ${isMediaLoading ? '-loading' : ''}`}>
+
+        <div className="Player_Info" onClick={onClickNowPlaying}>
+          {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}
+        </div>
+
+        <div className={`Player_Controls ${isMediaLoading ? '-loading' : ''}`}>
           <a
             {...(currentSrc && !isMediaLoading
               ? {
@@ -75,14 +80,11 @@ class Player extends React.Component {
             ref={ref => {
               this.audioEl = ref;
             }}
-            className="Player_Audio"
+            className="Player_Controls_Audio"
             autoPlay
             controls
             src={currentSrc}
           />
-        </div>
-        <div className="Player_Info" onClick={onClickNowPlaying}>
-          {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}
         </div>
       </div>
     );
