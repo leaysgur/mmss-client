@@ -15,27 +15,17 @@ class ArtistItem extends React.Component {
 
     return (
       <div
+        className={`ArtistItem ${isSelected ? '-selected' : ''}`}
         ref={ref => {
           this.el = ref;
         }}
-        className={`ArtistItem ${isSelected ? '-selected' : ''}`}
+        onClick={() => {
+          onClickPlay(item);
+        }}
       >
-        <a
-          className="ArtistItem_Action"
-          href="#"
-          onClick={ev => {
-            ev.preventDefault();
-            ev.stopPropagation();
-            onClickPlay(item);
-          }}
-        >
-          [play]
-        </a>
-        <div className="ArtistItem_Body">
-          <div>{item.name}</div>
-          <div className="ArtistItem_Body_Sub">
-            {item.albums.length} album(s)
-          </div>
+        <div>{item.name || '-'}</div>
+        <div className="ArtistItem_Sub">
+          {item.albums.length} album(s)
         </div>
       </div>
     );

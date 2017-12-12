@@ -31,10 +31,8 @@
 
   &_Row {
     box-sizing: border-box;
-    padding: 5px 10px;
     margin: 2px;
     background-color: #fff;
-    height: 60px;
   }
 }
 
@@ -43,49 +41,29 @@
 }
 
 .ArtistItem,
-.AlbumItem {
-  display: flex;
+.AlbumItem,
+.SongItem {
   cursor: pointer;
   font-size: .9rem;
+  padding: 5px 10px;
+  height: 40px;
 
   &.-selected {
     font-weight: bold;
   }
 
-  &_Action {
-    width: 50px;
-    margin-right: 5px;
-  }
-
-  &_Body {
-    flex: 1 1 auto;
-
-    &_Sub {
-      text-align: right;
-      font-size: .7rem;
-    }
+  &_Sub {
+    color: #b3b3b3;
+    text-align: right;
+    font-size: .7rem;
   }
 }
 
 .SongItem {
-  display: flex;
-  font-size: .9rem;
+  height: 60px;
 
-  &_Action {
-    width: 50px;
-    margin-right: 5px;
-  }
-
-  &_Body {
-    flex: 1 1 auto;
-
-    &_Artist {
-      font-size: .8rem;
-    }
-
-    &_Sub {
-      text-align: right;
-      font-size: .7rem;
-    }
+  &_Sub {
+    display: flex;
+    justify-content: space-between;
   }
 }

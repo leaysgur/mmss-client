@@ -19,23 +19,13 @@ class AlbumItem extends React.Component {
         ref={ref => {
           this.el = ref;
         }}
+        onClick={() => {
+          onClickPlay(item);
+        }}
       >
-        <a
-          className="AlbumItem_Action"
-          href="#"
-          onClick={ev => {
-            ev.preventDefault();
-            ev.stopPropagation();
-            onClickPlay(item);
-          }}
-        >
-          [play]
-        </a>
-        <div className="AlbumItem_Body">
-          <div>{item.name || '-'}</div>
-          <div className="AlbumItem_Body_Sub">
-            {item.year || '-'} / {item.songs.length} song(s)
-          </div>
+        <div>{item.name || '-'}</div>
+        <div className="AlbumItem_Sub">
+          {item.year || '-'} / {item.songs.length} song(s)
         </div>
       </div>
     );
