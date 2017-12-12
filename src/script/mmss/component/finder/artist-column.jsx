@@ -13,7 +13,7 @@ const ArtistColumn = ({
   <div className="Finder_Column">
     <div>
       <div className="Finder_Head">
-        <p># Artists</p>
+        <p>Artists</p>
         <a
           href="#"
           onClick={ev => {

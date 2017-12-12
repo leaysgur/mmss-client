@@ -7,14 +7,11 @@ const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
   <div className="Finder_Column">
     <div>
       <div className="Finder_Head">
-        <p># Albums</p>
+        <p>Albums</p>
       </div>
     </div>
     <div className="Scroller">
       <ul>
-        {albums.length === 0 && (
-          <li className="Finder_Row">Artist not selected</li>
-        )}
         {albums.map(album => (
           <li className="Finder_Row" key={album.name}>
             <AlbumItem
