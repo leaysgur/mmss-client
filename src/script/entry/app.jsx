@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Top from '../shared/component/top.jsx';
+import Top from './component/top.jsx';
 import LoginForm from './component/login-form.jsx';
 import SearchForm from './component/search-form.jsx';
 import TabTrigger from './component/tab-trigger.jsx';

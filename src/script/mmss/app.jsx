@@ -1,7 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Header from './container/header.jsx';
 import Finder from './container/finder.jsx';
 import Playlist from './container/playlist.jsx';
 import Player from './container/player.jsx';
@@ -12,7 +11,6 @@ class MmssApp extends React.Component {
 
     return (
       <div className="MmssApp">
-        <Header />
         <Finder
           {...{
             finder,

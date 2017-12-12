@@ -1,13 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import Logo from '../../shared/component/logo.jsx';
-
 const LoginForm = ({ onSubmit, hasError }) => {
   const _onSubmit = ev => {
     ev.preventDefault();
     if (ev.currentTarget instanceof HTMLFormElement) {
-      // XXX: ほんとはフォーム要素ごとに型をつける
       const form = ev.currentTarget.elements;
       onSubmit({
         id: form.id.value,
@@ -18,7 +15,8 @@ const LoginForm = ({ onSubmit, hasError }) => {
 
   return (
     <div className="LoginForm">
-      <Logo />
+      <img src="./image/icon.png" className="Logo" />
+
       <form action="/" onSubmit={_onSubmit}>
         <div>
           <input name="id" type="text" placeholder="Username" />
