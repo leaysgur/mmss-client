@@ -1,12 +1,12 @@
 .Playlist {
-  --_playlistHeight: 40vh;
-  --_playlistRowHeight: 2vh;
+  --_playlistHeight: 33vh;
+  --_playlistRowHeight: 20px;
+
   position: fixed;
   bottom: var(--footerHeight);
   left: 0;
   right: 0;
   height: var(--_playlistHeight);
-  padding: 10px;
   background-color: #fafafa;
   font-size: .8rem;
   transform: translateY(100vh);
@@ -19,9 +19,9 @@
   &_Header {
     position: relative;
     height: var(--_playlistRowHeight);
+    background-color: #9cc2c3;
+    color: #fff;
     text-transform: uppercase;
-    border-bottom: 1px solid;
-    margin-bottom: 5px;
   }
 
   &_Inner {
@@ -31,6 +31,7 @@
 
   &_Row {
     list-style: inside decimal-leading-zero;
+    padding-left: 20px;
     position: relative;
     height: var(--_playlistRowHeight);
     background-color: #fff;
@@ -52,15 +53,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* for list-style-image */
-  text-indent: 10px;
 
   &_Mark {
-    width: 4%;
+    width: 5%;
     text-align: right;
   }
   &_Name {
-    width: 40%;
+    width: 39%;
   }
   &_Artist {
     width: 25%;
