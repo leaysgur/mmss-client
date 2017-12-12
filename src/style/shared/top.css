@@ -2,6 +2,6 @@
   height: var(--topHeight);
   line-height: var(--topHeight);
   text-align: center;
-  background-color: var(--darkBgColor);
+  background-color: #434343;
   color: #fff;
 }

@@ -25,6 +25,6 @@
 
   &_Error {
     margin: 10px auto;
-    color: var(--errorColor);
+    color: #f44242;
   }
 }

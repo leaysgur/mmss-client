@@ -6,7 +6,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    height: var(--topHeight);
+    height: 30px;
+    background-color: #9cc2c3;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: .8rem;
   }
 
   &_Index {
@@ -28,10 +32,9 @@
   &_Row {
     box-sizing: border-box;
     padding: 5px 10px;
-
-    &:nth-child(even) {
-      background-color: var(--lightBgColor);
-    }
+    margin: 2px;
+    background-color: #fff;
+    height: 60px;
   }
 }
 
@@ -39,32 +42,11 @@
   overflow: scroll;
 }
 
-.ArtistItem {
-  display: flex;
-  cursor: pointer;
-
-  &.-selected {
-    font-weight: bold;
-  }
-
-  &_Action {
-    width: 50px;
-    margin-right: 5px;
-  }
-
-  &_Body {
-    flex: 1 1 auto;
-
-    &_Sub {
-      text-align: right;
-      font-size: .7rem;
-    }
-  }
-}
-
+.ArtistItem,
 .AlbumItem {
   display: flex;
   cursor: pointer;
+  font-size: .9rem;
 
   &.-selected {
     font-weight: bold;
@@ -87,6 +69,7 @@
 
 .SongItem {
   display: flex;
+  font-size: .9rem;
 
   &_Action {
     width: 50px;

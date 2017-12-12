@@ -7,7 +7,7 @@
   right: 0;
   height: var(--_playlistHeight);
   padding: 10px;
-  background-color: var(--lightBgColor);
+  background-color: #fafafa;
   font-size: .8rem;
   transform: translateY(100vh);
   transition: transform .25s ease;
@@ -33,6 +33,11 @@
     list-style: inside decimal-leading-zero;
     position: relative;
     height: var(--_playlistRowHeight);
+    background-color: #fff;
+
+    &:nth-child(even) {
+      background-color: #f8f8f8;
+    }
   }
 
   &_NoItem {

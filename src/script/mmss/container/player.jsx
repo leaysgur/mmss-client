@@ -1,6 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
+import ProgressBar from '../component/player/progress-bar.jsx';
+
 class Player extends React.Component {
   constructor() {
     super();
@@ -30,7 +32,7 @@ class Player extends React.Component {
     const { onClickPrev, onClickNext, onClickNowPlaying } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
-    const { isMediaLoading } = this.props.ui;
+    const { isMediaLoading, loadProgress } = this.props.ui;
 
     return (
       <div
@@ -39,6 +41,9 @@ class Player extends React.Component {
         }}
         className="Player"
       >
+        <div className="Player_ProgressBar">
+          <ProgressBar loadProgress={loadProgress} />
+        </div>
         <div className={`Player_Action ${isMediaLoading ? '-loading' : ''}`}>
           <a
             {...(currentSrc && !isMediaLoading

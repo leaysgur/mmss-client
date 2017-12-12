@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #f6f6f6;
 }
 
 ul {
@@ -15,8 +16,5 @@ a {
 
 :root {
   --topHeight: 4vh;
-  --linkColor: #4285f4;
-  --errorColor: #f44242;
-  --darkBgColor: #434343;
-  --lightBgColor: #fafafa;
+  --linkColor: #08f;
 }

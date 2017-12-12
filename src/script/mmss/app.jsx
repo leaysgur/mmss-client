@@ -12,11 +12,7 @@ class MmssApp extends React.Component {
 
     return (
       <div className="MmssApp">
-        <Header
-          {...{
-            ui,
-          }}
-        />
+        <Header />
         <Finder
           {...{
             finder,

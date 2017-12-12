@@ -22,7 +22,7 @@
 
 .SearchResult {
   padding: 10px;
-  background-color: var(--lightBgColor);
+  background-color: #fafafa;
   text-align: left;
   font-size: .8rem;
 
