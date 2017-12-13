@@ -1,5 +1,13 @@
 .Finder {
-  display: flex;
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  height: var(--finderHeight);
+
+  &_Column {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    height: inherit;
+  }
 
   &_Head {
     display: flex;
@@ -13,39 +21,20 @@
     font-size: .8rem;
   }
 
-  &_Index {
-    display: flex;
-    width: 50%;
+  &_Body {
+    overflow: scroll;
   }
-
-  &_Detail {
-    width: 50%;
-  }
-
-  &_Column {
-    display: flex;
-    flex-direction: column;
-    height: var(--finderHeight);
-    width: 100%;
-  }
-
-  &_Row {
-    box-sizing: border-box;
-    margin: 2px;
-    background-color: #fff;
-  }
-}
-
-.Scroller {
-  overflow: scroll;
 }
 
 .ArtistItem,
 .AlbumItem,
 .SongItem {
+  box-sizing: border-box;
+  margin: 2px;
+  padding: 5px 10px;
+  background-color: #fff;
   cursor: pointer;
   font-size: .9rem;
-  padding: 5px 10px;
   line-height: 1.1rem;
 
   &.-selected {

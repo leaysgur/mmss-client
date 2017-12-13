@@ -11,27 +11,25 @@ const ArtistColumn = ({
   onClickPlayArtist,
 }) => (
   <div className="Finder_Column">
-    <div>
-      <div className="Finder_Head">
-        <p>Artists</p>
-        <a
-          href="#"
-          onClick={ev => {
-            ev.preventDefault();
-            onClickSortArtist();
-          }}
-        >
-          [sort by {ui.sortBy}]
-        </a>
-      </div>
+    <div className="Finder_Head">
+      <p>Artists</p>
+      <a
+        href="#"
+        onClick={ev => {
+          ev.preventDefault();
+          onClickSortArtist();
+        }}
+      >
+        [sort by {ui.sortBy}]
+      </a>
     </div>
-    <div className="Scroller">
+    <div className="Finder_Body">
       <ul>
         {artists
           // 絞込されてるならそれ、されてないなら全部
           .filter(artist => (ui.filterBy ? artist.name === ui.filterBy : true))
           .map(artist => (
-            <li className="Finder_Row" key={artist.name}>
+            <li key={artist.name}>
               <ArtistItem
                 item={artist}
                 isSelected={artist.name === ui.selected.artist}

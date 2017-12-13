@@ -5,15 +5,13 @@ import SongItem from './song-item.jsx';
 
 const SongColumn = ({ songs, onClickPlaySong }) => (
   <div className="Finder_Column">
-    <div>
-      <div className="Finder_Head">
-        <p>Songs</p>
-      </div>
+    <div className="Finder_Head">
+      <p>Songs</p>
     </div>
-    <div className="Scroller">
+    <div className="Finder_Body">
       <ul>
         {songs.map((song, idx) => (
-          <li className="Finder_Row" key={song.name + idx}>
+          <li key={song.name + idx}>
             <SongItem item={song} onClickPlay={onClickPlaySong} />
           </li>
         ))}

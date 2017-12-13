@@ -19,25 +19,23 @@ class Finder extends React.Component {
 
     return (
       <div className="Finder">
-        <div className="Finder_Index">
-          <ArtistColumn
-            ui={ui}
-            artists={finder.artists}
-            onClickSortArtist={onClickSortArtist}
-            onClickArtist={onClickArtist}
-            onClickPlayArtist={onClickPlayArtist}
-          />
-          <AlbumColumn
-            ui={ui}
-            albums={finder.albums}
-            onClickAlbum={onClickAlbum}
-            onClickPlayAlbum={onClickPlayAlbum}
-          />
-        </div>
-
-        <div className="Finder_Detail">
-          <SongColumn songs={finder.songs} onClickPlaySong={onClickPlaySong} />
-        </div>
+        <ArtistColumn
+          ui={ui}
+          artists={finder.artists}
+          onClickSortArtist={onClickSortArtist}
+          onClickArtist={onClickArtist}
+          onClickPlayArtist={onClickPlayArtist}
+        />
+        <AlbumColumn
+          ui={ui}
+          albums={finder.albums}
+          onClickAlbum={onClickAlbum}
+          onClickPlayAlbum={onClickPlayAlbum}
+        />
+        <SongColumn
+          songs={finder.songs}
+          onClickPlaySong={onClickPlaySong}
+        />
       </div>
     );
   }

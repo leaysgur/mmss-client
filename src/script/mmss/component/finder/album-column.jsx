@@ -5,15 +5,13 @@ import AlbumItem from './album-item.jsx';
 
 const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
   <div className="Finder_Column">
-    <div>
-      <div className="Finder_Head">
-        <p>Albums</p>
-      </div>
+    <div className="Finder_Head">
+      <p>Albums</p>
     </div>
-    <div className="Scroller">
+    <div className="Finder_Body">
       <ul>
         {albums.map(album => (
-          <li className="Finder_Row" key={album.name}>
+          <li key={album.name}>
             <AlbumItem
               item={album}
               isSelected={album.name === ui.selected.album}
