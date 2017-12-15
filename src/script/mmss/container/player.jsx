@@ -33,6 +33,7 @@ class Player extends React.Component {
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
     const { isMediaLoading, loadProgress } = this.props.ui;
+    const isControlable = currentSrc && !isMediaLoading;
 
     return (
       <div
@@ -49,32 +50,22 @@ class Player extends React.Component {
           {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : '-'}
         </div>
 
-        <div className={`Player_Controls ${isMediaLoading ? '-loading' : ''}`}>
+        <div className={`Player_Controls ${isControlable ? '' :  '-disabled'}`}>
           <a
-            {...(currentSrc && !isMediaLoading
-              ? {
-                  onClick: ev => {
-                    ev.preventDefault();
-                    onClickPrev();
-                  },
-                  href: '#',
-                }
-              : {})}
+            className="Player_Controls_Item"
+            onClick={() => {
+              isControlable && onClickPrev();
+            }}
           >
-            [prev]
+            <img src="/image/i-backward.png" />
           </a>
           <a
-            {...(currentSrc && !isMediaLoading
-              ? {
-                  onClick: ev => {
-                    ev.preventDefault();
-                    onClickNext();
-                  },
-                  href: '#',
-                }
-              : {})}
+            className="Player_Controls_Item"
+            onClick={() => {
+              isControlable && onClickNext();
+            }}
           >
-            [next]
+            <img src="/image/i-forward.png" />
           </a>
           <audio
             ref={ref => {

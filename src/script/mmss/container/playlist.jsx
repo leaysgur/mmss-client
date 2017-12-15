@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import PlaylistItem, { PlaylistHeader } from '../component/playlist/item.jsx';
+import { PlaylistItem, PlaylistHeader } from '../component/playlist/item.jsx';
 
 class Playlist extends React.Component {
   constructor() {
@@ -35,6 +35,7 @@ class Playlist extends React.Component {
           {items.map((song, idx) => (
             <li key={`${song.path}`} className="Playlist_Row">
               <PlaylistItem
+                no={idx + 1}
                 item={song}
                 isPlaying={nowPlayingIdx === idx}
                 onClick={onClickPlaylistItem}

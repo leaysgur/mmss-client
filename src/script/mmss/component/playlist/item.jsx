@@ -3,9 +3,14 @@ import { observer } from 'mobx-react';
 
 import Time, { format } from '../shared/time.jsx';
 
-const PlaylistItem = ({ item, isPlaying, onClick }) => (
+export const PlaylistItem = observer(({ no, item, isPlaying, onClick }) => (
   <div className="PlaylistItem">
-    <div className="PlaylistItem_Mark">{isPlaying ? '✓' : '　'}</div>
+    <div className="PlaylistItem_No">{no}</div>
+    <div className="PlaylistItem_Mark">
+      {isPlaying ? (
+        <img src="/image/i-playing.png" />
+      ) : null }
+    </div>
     <div className="PlaylistItem_Name" title={item.name}>
       {isPlaying ? (
         <span>{item.name || '-'}</span>
@@ -31,10 +36,11 @@ const PlaylistItem = ({ item, isPlaying, onClick }) => (
       <Time seconds={item.duration} />
     </div>
   </div>
-);
+));
 
 export const PlaylistHeader = () => (
   <div className="PlaylistItem">
+    <div className="PlaylistItem_No" />
     <div className="PlaylistItem_Mark" />
     <div className="PlaylistItem_Name">Song</div>
     <div className="PlaylistItem_Artist">Artist</div>
@@ -42,5 +48,3 @@ export const PlaylistHeader = () => (
     <div className="PlaylistItem_Duration">Time</div>
   </div>
 );
-
-export default observer(PlaylistItem);

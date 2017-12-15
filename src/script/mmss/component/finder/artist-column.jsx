@@ -14,13 +14,13 @@ const ArtistColumn = ({
     <div className="Finder_Head">
       <p>Artists</p>
       <a
-        href="#"
-        onClick={ev => {
-          ev.preventDefault();
+        className="Finder_Head_Sorter"
+        onClick={() => {
           onClickSortArtist();
         }}
       >
-        [sort by {ui.sortBy}]
+        {ui.sortBy}
+        <img src="/image/i-sort.png" />
       </a>
     </div>
     <div className="Finder_Body">

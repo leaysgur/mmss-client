@@ -30,9 +30,6 @@
   }
 
   &_Row {
-    list-style: inside decimal-leading-zero;
-    padding-left: 20px;
-    position: relative;
     height: var(--_playlistRowHeight);
     background-color: #fff;
 
@@ -48,36 +45,30 @@
 }
 
 .PlaylistItem {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 4% 4% 40% 20% 20% 10%;
 
+  &_No {
+    text-align: right;
+  }
   &_Mark {
-    width: 5%;
     text-align: right;
-  }
-  &_Name {
-    width: 39%;
-  }
-  &_Artist {
-    width: 25%;
-  }
-  &_Album {
-    width: 25%;
-  }
-  &_Duration {
-    width: 5%;
-    text-align: right;
+    padding-right: 5px;
+
+    & img {
+      height: 8px;
+    }
   }
 
   &_Name,
   &_Artist,
-  &_Album,
-  &_Duration {
+  &_Album {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  &_Duration {
+    text-align: right;
   }
 }
