@@ -8,7 +8,6 @@ My Mp3 Streaming Server CLIENT.
 # dev
 npm run dev:css
 npm run dev:js
-npm run typecheck
 
 # prod
 npm run build

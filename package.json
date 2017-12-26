@@ -16,7 +16,7 @@
   "author": "leader22",
   "license": "MIT",
   "dependencies": {
-    "core-js": "^2.4.1",
+    "core-js": "^2.5.3",
     "mobx": "^3.4.1",
     "mobx-react": "^4.3.5",
     "react": "^16.2.0",
@@ -24,14 +24,14 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
-    "babel-preset-react": "^6.23.0",
-    "postcss-cli": "^3.0.0-beta",
-    "postcss-import": "^9.1.0",
-    "postcss-nested": "^1.0.0",
-    "webpack": "^2.2.1"
+    "babel-preset-react": "^6.24.1",
+    "postcss-cli": "^4.1.1",
+    "postcss-import": "^11.0.0",
+    "postcss-nested": "^3.0.0",
+    "webpack": "^3.10.0"
   },
   "babel": {
     "presets": [
