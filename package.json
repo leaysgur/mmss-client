@@ -5,10 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:js": "webpack -w",
-    "dev:css": "postcss ./src/style/main.css -o ./dist/main.css -w",
-    "build:js": "NODE_ENV=production webpack",
-    "build:css": "postcss ./src/style/main.css -o ./dist/main.css",
+    "dev:js": "webpack --config ./config/webpack.config.js -w",
+    "dev:css": "postcss -c ./config/postcss.config.js ./src/style/main.css -o ./dist/main.css -w",
+    "build:js": "NODE_ENV=production webpack --config ./config/webpack.config.production.js",
+    "build:css": "postcss -c ./config/postcss.config.js ./src/style/main.css -o ./dist/main.css",
     "build": "npm run cp && npm run build:js && npm run build:css",
     "cp": "cp ~/backup/music/music.json ./dist/music.json"
   },
