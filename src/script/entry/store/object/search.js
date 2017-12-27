@@ -23,11 +23,11 @@ class SearchObject {
         }
 
         const ret = {};
-        this._json.forEach(artist => {
+        for (const artist of this._json) {
           if (reg.test(artist.name)) {
             ret[artist.name] = artist.albums.map(album => album.name);
           }
-        });
+        }
 
         if (Object.keys(ret).length === 0) {
           return null;

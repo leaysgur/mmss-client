@@ -18,7 +18,7 @@ class EntryEvent {
     this.store.ui.showTab(tabName);
   }
 
-  onLoginSubmit(item) {
+  async onLoginSubmit(item) {
     const id = item.id.trim();
     const pw = item.pw.trim();
 
@@ -27,16 +27,14 @@ class EntryEvent {
       return;
     }
 
-    postJSON('/api/login', { id, pw })
-      .then(res => {
-        if (res === null) {
-          this.store.ui.showLoginError(false);
-          // セッション確立してるのでMmssアプリへ
-          return location.reload(true);
-        }
-        this.store.ui.showLoginError(true);
-      })
-      .catch(console.error);
+    const res = await postJSON('/api/login', { id, pw });
+    const isLogin = res === null;
+
+    this.store.ui.showLoginError(!isLogin);
+    if (isLogin) {
+      // セッション確立してるのでMmssアプリへ
+      return location.reload(true);
+    }
   }
 
   onChangeKeyword(keyword) {
