@@ -5,34 +5,32 @@ import Finder from './container/finder.jsx';
 import Playlist from './container/playlist.jsx';
 import Player from './container/player.jsx';
 
-class MmssApp extends React.Component {
-  render() {
-    const { playlist, finder, ui, media } = this.props.store;
+const MmssApp = ({ store }) => {
+  const { playlist, finder, ui, media } = store;
 
-    return (
-      <div className="MmssApp">
-        <Finder
-          {...{
-            finder,
-            ui,
-          }}
-        />
-        <Playlist
-          {...{
-            playlist,
-            ui,
-          }}
-        />
-        <Player
-          {...{
-            playlist,
-            media,
-            ui,
-          }}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="MmssApp">
+      <Finder
+        {...{
+          finder,
+          ui,
+        }}
+      />
+      <Playlist
+        {...{
+          playlist,
+          ui,
+        }}
+      />
+      <Player
+        {...{
+          playlist,
+          media,
+          ui,
+        }}
+      />
+    </div>
+  );
+};
 
 export default inject('event')(observer(MmssApp));
