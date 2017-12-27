@@ -23,7 +23,6 @@
 
   &_Controls {
     display: flex;
-    align-items: center;
 
     &.-disabled {
       pointer-events: none;
@@ -40,7 +39,7 @@
 
       & img {
         height: 15px;
-        vertical-align: text-top;
+        vertical-align: bottom;
       }
     }
   }
@@ -54,4 +53,9 @@
     height: 4px;
     background-color: var(--linkColor);
   }
+}
+
+.Audio {
+  width: 100%;
+  vertical-align: top;
 }
