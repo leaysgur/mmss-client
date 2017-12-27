@@ -7,17 +7,11 @@ class Player extends React.Component {
   constructor() {
     super();
 
-    this._handleEnded = () => {
-      this.props.event.onEndedMedia();
-    };
-    this._handleMouseEnter = () => {
-      this.props.event.onMouseEnterPlayer();
-    };
-    this._handleMouseLeave = () => {
-      this.props.event.onMouseLeavePlayer();
-    };
     this._handleKeyDown = ev => {
       if (ev.keyCode !== 32) {
+        return;
+      }
+      if (this.audioEl instanceof HTMLAudioElement === false) {
         return;
       }
       if (this.audioEl.src.length === 0) {
@@ -29,7 +23,13 @@ class Player extends React.Component {
   }
 
   render() {
-    const { onClickPrev, onClickNext, onClickNowPlaying } = this.props.event;
+    const {
+      onClickPrev, onClickNext,
+      onClickNowPlaying,
+      onMouseEnterPlayer,
+      onMouseLeavePlayer,
+      onEndedMedia,
+    } = this.props.event;
     const { nowPlaying } = this.props.playlist;
     const { currentSrc } = this.props.media;
     const { isMediaLoading, loadProgress } = this.props.ui;
@@ -37,10 +37,9 @@ class Player extends React.Component {
 
     return (
       <div
-        ref={ref => {
-          this.el = ref;
-        }}
         className="Player"
+        onMouseEnter={onMouseEnterPlayer}
+        onMouseLeave={onMouseLeavePlayer}
       >
         <div className="Player_ProgressBar">
           <ProgressBar loadProgress={loadProgress} />
@@ -68,13 +67,12 @@ class Player extends React.Component {
             <img src="/image/i-forward.png" />
           </a>
           <audio
-            ref={ref => {
-              this.audioEl = ref;
-            }}
+            ref={el => this.audioEl = el}
             className="Player_Controls_Audio"
             autoPlay
             controls
             src={currentSrc}
+            onEnded={onEndedMedia}
           />
         </div>
       </div>
@@ -82,16 +80,10 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.el.addEventListener('mouseenter', this._handleMouseEnter, false);
-    this.el.addEventListener('mouseleave', this._handleMouseLeave, false);
-    this.audioEl.addEventListener('ended', this._handleEnded, false);
     window.addEventListener('keydown', this._handleKeyDown, false);
   }
 
   componentWillUnmount() {
-    this.el.removeEventListener('mouseenter', this._handleMouseEnter, false);
-    this.el.removeEventListener('mouseleave', this._handleMouseLeave, false);
-    this.audioEl.removeEventListener('ended', this._handleEnded, false);
     window.removeEventListener('keydown', this._handleKeyDown, false);
   }
 }
