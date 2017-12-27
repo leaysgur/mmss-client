@@ -17,6 +17,7 @@ class Player extends React.Component {
       if (this.audioEl.src.length === 0) {
         return;
       }
+
       ev.preventDefault();
       this.audioEl.paused ? this.audioEl.play() : this.audioEl.pause();
     };
