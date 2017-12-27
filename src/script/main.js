@@ -19,11 +19,12 @@ const YYYYMMDD = new Date()
   .join('');
 
 // セッションがあればアプリを、なければログイン画面を
-Promise.all([
-  getJSON('/api/session'),
-  getJSON('./dist/music.json', { _: YYYYMMDD }),
-])
-  .then(([isLoginRes, musicRes]) => {
-    isLoginRes === null ? MmssMain(musicRes) : EntryMain(musicRes);
-  })
+(async () => {
+  const [isLoginRes, musicRes] = await Promise.all([
+    getJSON('/api/session'),
+    getJSON('./dist/music.json', { _: YYYYMMDD }),
+  ])
   .catch(console.error);
+
+  isLoginRes === null ? MmssMain(musicRes) : EntryMain(musicRes);
+})();
