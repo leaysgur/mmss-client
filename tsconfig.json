@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ES2015",
+    "lib": ["dom", "ES2017"],
+    "moduleResolution": "node",
+    "rootDir": "./src/tscript",
+    "jsx": "react",
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "./src/tscript/**/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}

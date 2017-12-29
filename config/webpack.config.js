@@ -13,18 +13,22 @@ console.log(`[Settings]
 module.exports = {
   context: rootPath,
   entry: {
-    main: './src/script/main.js',
+    main: './src/tscript/main.ts',
   },
   output: {
     filename: '[name].js',
     path: `${rootPath}/dist`,
   },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: [/node_modules/],
-        use: ['babel-loader'],
+        use: ['awesome-typescript-loader'],
       },
     ],
   },
