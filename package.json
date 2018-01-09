@@ -28,12 +28,13 @@
     "@types/react-dom": "^16.0.3",
     "awesome-typescript-loader": "^3.4.1",
     "babel-minify-webpack-plugin": "^0.2.0",
+    "eslint": "^4.15.0",
+    "eslint-plugin-react": "^7.5.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
     "postcss-nested": "^3.0.0",
-    "tslint": "^5.8.0",
-    "tslint-react": "^3.3.3",
     "typescript": "^2.6.2",
+    "typescript-eslint-parser": "^11.0.0",
     "webpack": "^3.10.0"
   }
 }
