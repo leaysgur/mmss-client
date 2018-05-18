@@ -6,7 +6,7 @@
   height: var(--footerHeight);
   padding: 0 30px;
   box-sizing: border-box;
-  background-color: #fafafa;
+  background-color: #f1f3f4;
 
   &_ProgressBar {
     position: absolute;
