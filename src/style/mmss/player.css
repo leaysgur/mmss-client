@@ -16,7 +16,7 @@
   }
 
   &_Info {
-    padding: 15px 0;
+    padding: 15px 0 5px;
     font-size: .8rem;
     text-align: center;
   }
@@ -34,12 +34,13 @@
     }
 
     &_Item {
-      width: 20px;
-      color: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
 
       & img {
         height: 15px;
-        vertical-align: bottom;
       }
     }
   }
