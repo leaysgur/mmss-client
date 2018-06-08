@@ -3,6 +3,7 @@ const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const base = require('./webpack.config');
 
+base.mode = 'production';
 base.plugins.push(
   new webpack.LoaderOptionsPlugin({
     minimize: true,

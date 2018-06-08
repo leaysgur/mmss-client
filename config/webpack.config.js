@@ -11,6 +11,7 @@ console.log(`[Settings]
 `);
 
 module.exports = {
+  mode: 'development',
   context: rootPath,
   entry: {
     main: './src/script/main.js',
