@@ -1,31 +1,23 @@
-import { computed, extendObservable } from 'mobx';
-
-import { actionAll } from '../../../shared/util/class';
+import { decorate, observable, computed } from 'mobx';
 
 class Ui {
   constructor() {
-    actionAll(this);
-
     this._timer = null;
 
-    extendObservable(this, {
-      isPlaylistShown: computed(() => {
-        return this._isHoverPlayer || this._isHoverPlaylist;
-      }),
-      isMediaLoading: false,
-      _isHoverPlayer: false,
-      _isHoverPlaylist: false,
+    this.isMediaLoading = false;
+    this._isHoverPlayer = false;
+    this._isHoverPlaylist = false;
+    this.selected = {
+      artist: null,
+      album: null,
+    };
+    this.sortBy = 'latest';
+    this.filterBy = null;
+    this.loadProgress = 0;
+  }
 
-      selected: {
-        artist: null,
-        album: null,
-      },
-
-      sortBy: 'latest',
-      filterBy: null,
-
-      loadProgress: 0,
-    });
+  get isPlaylistShown() {
+    return this._isHoverPlayer || this._isHoverPlaylist;
   }
 
   setHoverPlayer(bool) {
@@ -86,4 +78,14 @@ class Ui {
   }
 }
 
+decorate(Ui, {
+  isMediaLoading: observable,
+  _isHoverPlayer: observable,
+  _isHoverPlaylist: observable,
+  selected: observable,
+  sortBy: observable,
+  filterBy: observable,
+  loadProgress: observable,
+  isPlaylistShown: computed,
+});
 export default Ui;

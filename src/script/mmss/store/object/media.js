@@ -1,14 +1,8 @@
-import { extendObservable } from 'mobx';
-
-import { actionAll } from '../../../shared/util/class';
+import { decorate, observable } from 'mobx';
 
 class Media {
   constructor() {
-    actionAll(this);
-
-    extendObservable(this, {
-      currentSrc: null,
-    });
+    this.currentSrc = null;
   }
 
   setSrc(blob) {
@@ -20,4 +14,7 @@ class Media {
   }
 }
 
+decorate(Media, {
+  currentSrc: observable,
+});
 export default Media;

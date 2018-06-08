@@ -1,33 +1,28 @@
-import { computed, extendObservable } from 'mobx';
-
-import { actionAll } from '../../../shared/util/class';
+import { decorate, observable, computed } from 'mobx';
 
 class Playlist {
   constructor() {
-    actionAll(this);
+    this.items = [];
+    this.nowPlayingIdx = -1;
+  }
 
-    extendObservable(this, {
-      items: [],
+  get nowPlaying() {
+    const idx = this.nowPlayingIdx;
+    if (idx === -1) {
+      return null;
+    }
 
-      nowPlayingIdx: -1,
-      nowPlaying: computed(() => {
-        const idx = this.nowPlayingIdx;
-        if (idx === -1) {
-          return null;
-        }
+    return this.items[idx];
+  }
 
-        return this.items[idx];
-      }),
-      nextPlaying: computed(() => {
-        const idx = this.nowPlayingIdx;
-        if (idx === -1) {
-          return null;
-        }
+  get nextPlaying() {
+    const idx = this.nowPlayingIdx;
+    if (idx === -1) {
+      return null;
+    }
 
-        const nextIdx = idx === this.items.length - 1 ? 0 : idx + 1;
-        return this.items[nextIdx];
-      }),
-    });
+    const nextIdx = idx === this.items.length - 1 ? 0 : idx + 1;
+    return this.items[nextIdx];
   }
 
   init(items) {
@@ -58,10 +53,17 @@ class Playlist {
 
   jump(item) {
     const idx = this.items.indexOf(item);
+
     if (idx !== -1) {
       this.nowPlayingIdx = idx;
     }
   }
 }
 
+decorate(Playlist, {
+  items: observable,
+  nowPlayingIdx: observable,
+  nowPlaying: computed,
+  nextPlaying: computed,
+});
 export default Playlist;

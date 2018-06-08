@@ -1,5 +1,3 @@
-import { action } from 'mobx';
-
 export function combineEvent(baseEvent, ...events) {
   for (const event of [...events]) {
     for (const evName of Object.keys(event)) {
@@ -9,13 +7,6 @@ export function combineEvent(baseEvent, ...events) {
       });
     }
   }
-}
-
-export function actionAll(instance) {
-  const methods = _getProtoMethodNames(instance);
-  methods.forEach(methodName => {
-    instance[methodName] = action(instance[methodName]);
-  });
 }
 
 export function bindAll(instance) {

@@ -1,15 +1,10 @@
 import 'whatwg-fetch';
 import 'core-js/fn/object/entries';
 
-import { useStrict } from 'mobx';
-
 import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
 import { getJSON } from './shared/util/fetch';
-
-// use mobx strict
-useStrict(true);
 
 // キャッシュ飛ばしたい時もあると思うのでとりあえず
 const YYYYMMDD = new Date()

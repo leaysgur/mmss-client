@@ -1,15 +1,9 @@
-import { extendObservable } from 'mobx';
-
-import { actionAll } from '../../../shared/util/class';
+import { decorate, observable } from 'mobx';
 
 class UiObject {
   constructor(initTab) {
-    actionAll(this);
-
-    extendObservable(this, {
-      hasLoginError: false,
-      visibleTab: initTab,
-    });
+    this.hasLoginError = false;
+    this.visibleTab = initTab;
   }
 
   showLoginError(bool) {
@@ -21,4 +15,8 @@ class UiObject {
   }
 }
 
+decorate(UiObject, {
+  hasLoginError: observable,
+  visibleTab: observable,
+});
 export default UiObject;
