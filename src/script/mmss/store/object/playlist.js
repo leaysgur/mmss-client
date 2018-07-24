@@ -31,6 +31,10 @@ class Playlist {
     this.nowPlayingIdx = 0;
   }
 
+  add(item) {
+    this.items.push(item);
+  }
+
   prev() {
     const idx = this.nowPlayingIdx;
 

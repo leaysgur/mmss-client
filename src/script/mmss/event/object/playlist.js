@@ -15,6 +15,10 @@ const PlaylistEvent = {
     this.store.playlist.init([item]);
   },
 
+  onClickAddSongToPlaylist(item) {
+    this.store.playlist.add(item);
+  },
+
   onEndedMedia() {
     this.store.playlist.next();
   },

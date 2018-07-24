@@ -13,6 +13,7 @@ const Finder = ({ finder, ui, event }) => {
     onClickPlayArtist,
     onClickPlayAlbum,
     onClickPlaySong,
+    onClickAddSongToPlaylist,
   } = event;
 
   return (
@@ -33,6 +34,7 @@ const Finder = ({ finder, ui, event }) => {
       <SongColumn
         songs={finder.songs}
         onClickPlaySong={onClickPlaySong}
+        onClickAddSongToPlaylist={onClickAddSongToPlaylist}
       />
     </div>
   );
