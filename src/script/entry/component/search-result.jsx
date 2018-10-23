@@ -1,32 +1,48 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 const Result = ({ results }) => {
   if (results === null) {
-    return <div className="SearchResult">Not found</div>;
+    return <Wrap>Not found</Wrap>;
   }
 
   return (
-    <ul className="SearchResult">
-      {Object.keys(results).map(artistName => {
-        if (results === null) {
-          return;
-        }
-        return (
+    <Wrap>
+      <ul>
+        {Object.keys(results).map(artistName => (
           <li key={artistName}>
-            <div className="SearchResult_Artist"># {artistName}</div>
+            <Artist># {artistName}</Artist>
             <ul>
               {results[artistName].map(albumName => (
-                <li key={albumName} className="SearchResult_Album">
-                  - {albumName}
+                <li key={albumName}>
+                  <Album>- {albumName}</Album>
                 </li>
               ))}
             </ul>
           </li>
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  min-height: 10vh;
+  padding: 10px;
+  background-color: #fafafa;
+  text-align: left;
+  font-size: .8rem;
+`;
+
+const Artist = styled.div`
+  font-weight: 900;
+`;
+
+const Album = styled.div`
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+`;
 
 export default observer(Result);
