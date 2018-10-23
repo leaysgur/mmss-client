@@ -1,21 +1,22 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import styled from 'styled-components';
+import { inject, Observer } from 'mobx-react';
 
-const LoginForm = ({ onSubmit, hasError }) => (
-  <Wrap action="/" onSubmit={ev => _onSubmit(ev, onSubmit)}>
-    <div>
+const LoginForm = ({ event, ui }) => {
+  const { onLoginSubmit } = event;
+
+  return (
+    <Wrap action="/" onSubmit={ev => _onSubmit(ev, onLoginSubmit)}>
       <Input name="id" type="text" placeholder="UserName" />
-    </div>
-    <div>
       <Input name="pw" type="password" placeholder="PassWord" />
-    </div>
-    <div>
       <Button type="submit">Login</Button>
-    </div>
-    {hasError && <Error>Error!</Error>}
-  </Wrap>
-);
+
+      <Observer render={() =>
+        <>{ui.hasLoginError && <Error>Error!</Error>}</>
+      }/>
+    </Wrap>
+  );
+};
 
 function _onSubmit(ev, onSubmit) {
   ev.preventDefault();
@@ -30,14 +31,15 @@ function _onSubmit(ev, onSubmit) {
 
 const Wrap = styled.form`
   text-align: center;
-  --_width: 200px;
+  --_width: 250px;
 `;
 
 const Input = styled.input`
+  display: block;
   box-sizing: border-box;
   width: var(--_width);
   padding: 5px 10px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
   font-size: 1rem;
 
   &:hover,
@@ -59,4 +61,4 @@ const Error = styled.div`
   color: #f44242;
 `;
 
-export default observer(LoginForm);
+export default inject('event', 'ui')(LoginForm);
