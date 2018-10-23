@@ -1,7 +1,5 @@
 import { reaction } from 'mobx';
 
-import { initNotification, showNotification } from '../util/notifier';
-
 import { getMediaSerial, postJSON } from '../../shared/util/fetch';
 import { combineEvent, bindAll } from '../../shared/util/class';
 
@@ -14,8 +12,6 @@ class MmssEvent {
     bindAll(this);
 
     this.store = store;
-
-    initNotification();
 
     reaction(
       () => this.store.playlist.nowPlaying,
@@ -76,7 +72,6 @@ class MmssEvent {
 
     this.store.media.setSrc(blob);
     this.store.ui.setMediaLoading(false);
-    showNotification(nowPlaying);
 
     // prefetch next
     const nextPlaying = this.store.playlist.nextPlaying;
