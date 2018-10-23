@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import AlbumItem from './album-item.jsx';
+import AlbumItem from './album-item';
 
 const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
   <Wrap>

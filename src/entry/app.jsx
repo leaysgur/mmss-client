@@ -1,10 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Top from './component/top.jsx';
-import LoginForm from './component/login-form.jsx';
-import SearchForm from './component/search-form.jsx';
-import TabTrigger from './component/tab-trigger.jsx';
+import Top from './component/top';
+import LoginForm from './component/login-form';
+import SearchForm from './component/search-form';
+import TabTrigger from './component/tab-trigger';
 
 const EntryApp = ({ store, event }) => {
   const { search, ui, tabNames } = store;

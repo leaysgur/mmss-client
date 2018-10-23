@@ -2,8 +2,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import ProgressBar from '../component/player/progress-bar.jsx';
-import Audio from '../component/player/audio.jsx';
+import ProgressBar from '../component/player/progress-bar';
+import Audio from '../component/player/audio';
 
 const Player = ({
   event,

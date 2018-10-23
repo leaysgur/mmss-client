@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import Time, { format } from '../shared/time.jsx';
+import Time, { format } from '../shared/time';
 
 export const PlaylistItem = observer(({ no, item, isPlaying, onClick }) => (
   <Wrap>

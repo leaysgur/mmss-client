@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import ArtistItem from './artist-item.jsx';
+import ArtistItem from './artist-item';
 
 const ArtistColumn = ({
   ui,

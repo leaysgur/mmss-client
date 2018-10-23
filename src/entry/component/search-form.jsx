@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import Result from './search-result.jsx';
+import Result from './search-result';
 
 const SearchForm = ({ keyword, results, onChange }) => (
   <Wrap>

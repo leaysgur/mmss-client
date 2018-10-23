@@ -2,9 +2,9 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import ArtistColumn from '../component/finder/artist-column.jsx';
-import AlbumColumn from '../component/finder/album-column.jsx';
-import SongColumn from '../component/finder/song-column.jsx';
+import ArtistColumn from '../component/finder/artist-column';
+import AlbumColumn from '../component/finder/album-column';
+import SongColumn from '../component/finder/song-column';
 
 const Finder = ({ finder, ui, event }) => {
   const {

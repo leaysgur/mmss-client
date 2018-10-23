@@ -20,6 +20,9 @@ module.exports = {
     filename: '[name].js',
     path: `${rootPath}/dist`,
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {

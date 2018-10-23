@@ -2,9 +2,9 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import Finder from './container/finder.jsx';
-import Playlist from './container/playlist.jsx';
-import Player from './container/player.jsx';
+import Finder from './container/finder';
+import Playlist from './container/playlist';
+import Player from './container/player';
 
 const MmssApp = ({ store }) => {
   const { playlist, finder, ui, media } = store;

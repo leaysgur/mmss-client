@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import SongItem from './song-item.jsx';
+import SongItem from './song-item';
 
 const SongColumn = ({ songs, onClickPlaySong, onClickAddSongToPlaylist }) => (
   <Wrap>
