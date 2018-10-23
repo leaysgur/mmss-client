@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
 
 import Finder from './finder';
 import Playlist from './playlist';
@@ -24,4 +25,4 @@ const Wrap = styled.div`
 `;
 
 // Appなのでcontainerにしたけど、inject()するものがない
-export default MmssApp;
+export default inject()(observer(MmssApp));

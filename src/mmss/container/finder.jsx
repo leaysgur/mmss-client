@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
 import ArtistColumn from '../component/finder/artist-column';
 import AlbumColumn from '../component/finder/album-column';
@@ -49,4 +49,4 @@ const Wrap = styled.div`
   height: var(--finderHeight);
 `;
 
-export default inject('event','finder', 'ui')(Finder);
+export default inject('event','finder', 'ui')(observer(Finder));

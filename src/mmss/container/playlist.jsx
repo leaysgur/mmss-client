@@ -1,6 +1,6 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
 
 import { PlaylistItem, PlaylistHeader } from '../component/playlist/item';
 

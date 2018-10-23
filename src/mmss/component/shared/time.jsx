@@ -1,8 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 const Time = ({ seconds }) => <span>{format(seconds)}</span>;
 
-export default Time;
+export default observer(Time);
 
 export function format(sec) {
   const seconds = parseInt(sec, 10);
