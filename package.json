@@ -32,7 +32,13 @@
       "@babel/preset-react"
     ],
     "plugins": [
-      "babel-plugin-styled-components"
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": false,
+          "pure": true
+        }
+      ]
     ]
   }
 }
