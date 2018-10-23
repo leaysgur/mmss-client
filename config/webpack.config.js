@@ -1,5 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 
 const rootPath = path.resolve('');
 const nodeEnv = process.env.NODE_ENV;
@@ -14,7 +14,7 @@ module.exports = {
   mode: 'development',
   context: rootPath,
   entry: {
-    main: './src/script/main.js',
+    main: './src/main.js',
   },
   output: {
     filename: '[name].js',
