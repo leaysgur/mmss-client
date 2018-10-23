@@ -1,17 +1,18 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 import Time, { format } from '../shared/time.jsx';
 
 export const PlaylistItem = observer(({ no, item, isPlaying, onClick }) => (
-  <div className="PlaylistItem">
-    <div className="PlaylistItem_No">{no}</div>
-    <div className="PlaylistItem_Mark">
+  <Wrap>
+    <No>{no}</No>
+    <Mark>
       {isPlaying ? (
         <img src="/image/i-playing.png" />
       ) : null }
-    </div>
-    <div className="PlaylistItem_Name" title={item.name}>
+    </Mark>
+    <Item title={item.name}>
       {isPlaying ? (
         <span>{item.name || '-'}</span>
       ) : (
@@ -25,26 +26,54 @@ export const PlaylistItem = observer(({ no, item, isPlaying, onClick }) => (
           {item.name || '-'}
         </a>
       )}
-    </div>
-    <div className="PlaylistItem_Artist" title={item.artist}>
+    </Item>
+    <Item title={item.artist}>
       {item.artist || '-'}
-    </div>
-    <div className="PlaylistItem_Album" title={item.album}>
+    </Item>
+    <Item title={item.album}>
       {item.album || '-'}
-    </div>
-    <div className="PlaylistItem_Duration" title={format(item.duration)}>
+    </Item>
+    <Duration title={format(item.duration)}>
       <Time seconds={item.duration} />
-    </div>
-  </div>
+    </Duration>
+  </Wrap>
 ));
 
 export const PlaylistHeader = () => (
-  <div className="PlaylistItem">
-    <div className="PlaylistItem_No" />
-    <div className="PlaylistItem_Mark" />
-    <div className="PlaylistItem_Name">Song</div>
-    <div className="PlaylistItem_Artist">Artist</div>
-    <div className="PlaylistItem_Album">Album</div>
-    <div className="PlaylistItem_Duration">Time</div>
-  </div>
+  <Wrap>
+    <No />
+    <Mark />
+    <Item>Song</Item>
+    <Item>Artist</Item>
+    <Item>Album</Item>
+    <Duration>Time</Duration>
+  </Wrap>
 );
+
+const Wrap = styled.div`
+  display: grid;
+  grid-template-columns: 4% 4% 40% 20% 20% 10%;
+`;
+
+const No = styled.div`
+  text-align: right;
+`;
+
+const Mark = styled.div`
+  text-align: right;
+  padding-right: 5px;
+
+  & img {
+    height: 8px;
+  }
+`;
+
+const Item = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const Duration = styled.div`
+  text-align: right;
+`;
