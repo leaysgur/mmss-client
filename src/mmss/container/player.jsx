@@ -103,4 +103,4 @@ const ControlsAudio = styled.div`
   flex: 1 1 auto;
 `;
 
-export default inject('event')(observer(Player));
+export default inject('event', 'playlist', 'media', 'ui')(observer(Player));

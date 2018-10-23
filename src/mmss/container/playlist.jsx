@@ -85,4 +85,4 @@ const NoItem = styled.div`
   padding-top: 10vh;
 `;
 
-export default inject('event')(observer(Playlist));
+export default inject('event', 'playlist', 'ui')(observer(Playlist));
