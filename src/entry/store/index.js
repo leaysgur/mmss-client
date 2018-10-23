@@ -10,7 +10,7 @@ class EntryStore {
     const initTab =
       tabName && tabNames.indexOf(tabName) !== -1 ? tabName : 'login';
 
-    this.tabNames = tabNames;
+    this.constants = { tabNames };
 
     this.ui = new UiObject(initTab);
     this.search = new SearchObject(json);

@@ -1,10 +1,10 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
-const TabTrigger = ({ tabNames, visibleTab, onClick }) => (
+export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }) => (
   <Wrap>
-    {tabNames.map(name => (
+    {tabTriggers.map(name => (
       <Item
         key={name}
         {...(visibleTab === name
@@ -13,17 +13,20 @@ const TabTrigger = ({ tabNames, visibleTab, onClick }) => (
             }
           : {
               href: '#',
-              onClick: ev => {
-                ev.preventDefault();
-                onClick(name);
-              },
-            })}
+              onClick: ev => _onClick(ev, onClick, name),
+            }
+        )}
       >
         {name}
       </Item>
     ))}
   </Wrap>
-);
+));
+
+function _onClick(ev, onClick, name) {
+  ev.preventDefault();
+  onClick(name);
+}
 
 const Wrap = styled.div`
   display: flex;
@@ -32,7 +35,7 @@ const Wrap = styled.div`
 
 const Item = styled.a`
   padding: 0 10px;
-  margin: 10px 0;
+  margin: 10px .5px;
   color: inherit;
 
   &:hover,
@@ -41,4 +44,7 @@ const Item = styled.a`
   }
 `;
 
-export default observer(TabTrigger);
+export const TabContent = observer(({ tabContents, visibleTab }) => {
+  const Content = tabContents[visibleTab];
+  return <Content />;
+});

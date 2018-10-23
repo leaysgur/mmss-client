@@ -1,8 +1,8 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
 
-import { PlaylistItem, PlaylistHeader } from '../component/playlist/item.jsx';
+import { PlaylistItem, PlaylistHeader } from '../component/playlist/item';
 
 const Playlist = ({ playlist, ui, event }) => {
   const { items, nowPlayingIdx } = playlist;
@@ -85,4 +85,4 @@ const NoItem = styled.div`
   padding-top: 10vh;
 `;
 
-export default inject('event')(observer(Playlist));
+export default inject('event', 'playlist', 'ui')(observer(Playlist));

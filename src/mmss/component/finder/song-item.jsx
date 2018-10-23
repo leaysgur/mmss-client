@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import Time from '../shared/time.jsx';
+import Time from '../shared/time';
 
 const SongItem = ({ item, onClickPlay, onClickAddToPlaylist }) => (
   <Wrap

@@ -1,21 +1,24 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
 
-import Result from './search-result.jsx';
+import Result from '../component/search/search-result';
 
-const SearchForm = ({ keyword, results, onChange }) => (
-  <Wrap>
-    <Input
-      type="text"
-      placeholder="ArtistName"
-      onChange={ev => _onChange(ev, onChange)}
-      value={keyword}
-    />
+const SearchForm = ({ event, search }) => {
+  const { onChangeKeyword } = event;
 
-    <Result results={results} />
-  </Wrap>
-);
+  return (
+    <Wrap>
+      <Input
+        type="text"
+        placeholder="ArtistName"
+        onChange={ev => _onChange(ev, onChangeKeyword)}
+        value={search.keyword}
+      />
+      <Result results={search.results} />
+    </Wrap>
+  );
+};
 
 function _onChange(ev, onChange) {
   ev.preventDefault();
@@ -42,4 +45,4 @@ const Input = styled.input`
   }
 `;
 
-export default observer(SearchForm);
+export default inject('event', 'search')(observer(SearchForm));
