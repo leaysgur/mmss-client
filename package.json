@@ -4,36 +4,35 @@
   "version": "1.7.0",
   "description": "",
   "scripts": {
-    "dev:js": "webpack --config ./config/webpack.config.js -w",
-    "dev:css": "postcss -c ./config/postcss.config.js ./src/style/main.css -o ./dist/main.css -w",
-    "build:js": "NODE_ENV=production webpack --config ./config/webpack.config.production.js",
-    "build:css": "postcss -c ./config/postcss.config.js ./src/style/main.css -o ./dist/main.css",
-    "build": "npm run cp && npm run build:js && npm run build:css",
+    "dev": "webpack --config ./config/webpack.config.js -w",
+    "build": "npm run cp && npm run build",
     "cp": "cp ~/backup/music/music.json ./dist/music.json"
   },
   "keywords": [],
   "author": "leader22",
   "license": "MIT",
   "dependencies": {
-    "mobx": "^5.0.0",
-    "mobx-react": "^5.2.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "mobx": "^5.5.1",
+    "mobx-react": "^5.3.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "styled-components": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babel-minify-webpack-plugin": "^0.3.1",
-    "postcss-cli": "^6.0.1",
-    "postcss-import": "^12.0.0",
-    "postcss-nested": "^4.1.0",
+    "babel-plugin-styled-components": "^1.8.0",
     "webpack": "^4.11.1",
     "webpack-cli": "^3.0.3"
   },
   "babel": {
     "presets": [
       "@babel/preset-react"
+    ],
+    "plugins": [
+      "babel-plugin-styled-components"
     ]
   }
 }
