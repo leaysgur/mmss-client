@@ -15,12 +15,10 @@
   "author": "leader22",
   "license": "MIT",
   "dependencies": {
-    "core-js": "^2.5.3",
     "mobx": "^5.0.0",
     "mobx-react": "^5.2.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "whatwg-fetch": "^3.0.0"
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

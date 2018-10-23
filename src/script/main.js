@@ -1,6 +1,3 @@
-import 'whatwg-fetch';
-import 'core-js/fn/object/entries';
-
 import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
