@@ -1,5 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 
 const rootPath = path.resolve('');
 const nodeEnv = process.env.NODE_ENV;

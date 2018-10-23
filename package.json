@@ -3,7 +3,6 @@
   "name": "mmss-client",
   "version": "1.7.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev:js": "webpack --config ./config/webpack.config.js -w",
     "dev:css": "postcss -c ./config/postcss.config.js ./src/style/main.css -o ./dist/main.css -w",
@@ -21,22 +20,22 @@
     "mobx-react": "^5.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "babel-minify-webpack-plugin": "^0.3.1",
-    "babel-preset-react": "^6.24.1",
-    "postcss-cli": "^5.0.0",
-    "postcss-import": "^11.0.0",
-    "postcss-nested": "^3.0.0",
+    "postcss-cli": "^6.0.1",
+    "postcss-import": "^12.0.0",
+    "postcss-nested": "^4.1.0",
     "webpack": "^4.11.1",
     "webpack-cli": "^3.0.3"
   },
   "babel": {
     "presets": [
-      "react"
+      "@babel/preset-react"
     ]
   }
 }
