@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import styled from 'styled-components';
 
 import ArtistColumn from '../component/finder/artist-column.jsx';
 import AlbumColumn from '../component/finder/album-column.jsx';
@@ -17,7 +18,7 @@ const Finder = ({ finder, ui, event }) => {
   } = event;
 
   return (
-    <div className="Finder">
+    <Wrap>
       <ArtistColumn
         ui={ui}
         artists={finder.artists}
@@ -36,8 +37,14 @@ const Finder = ({ finder, ui, event }) => {
         onClickPlaySong={onClickPlaySong}
         onClickAddSongToPlaylist={onClickAddSongToPlaylist}
       />
-    </div>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  height: var(--finderHeight);
+`;
 
 export default inject('event')(observer(Finder));

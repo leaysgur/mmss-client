@@ -1,14 +1,15 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 import AlbumItem from './album-item.jsx';
 
 const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
-  <div className="Finder_Column">
-    <div className="Finder_Head">
+  <Wrap>
+    <Head>
       <p>Albums</p>
-    </div>
-    <div className="Finder_Body">
+    </Head>
+    <Body>
       <ul>
         {albums.map(album => (
           <li key={album.name}>
@@ -21,8 +22,30 @@ const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
           </li>
         ))}
       </ul>
-    </div>
-  </div>
+    </Body>
+  </Wrap>
 );
+
+const Wrap = styled.div`
+  display: grid;
+  grid-template-rows: 30px 1fr;
+  height: inherit;
+`;
+
+const Head = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 30px;
+  background-color: #9cc2c3;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: .8rem;
+`;
+
+const Body = styled.div`
+  overflow: scroll;
+`;
 
 export default observer(AlbumColumn);

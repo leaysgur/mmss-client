@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import styled from 'styled-components';
 
 import Finder from './container/finder.jsx';
 import Playlist from './container/playlist.jsx';
@@ -9,7 +10,7 @@ const MmssApp = ({ store }) => {
   const { playlist, finder, ui, media } = store;
 
   return (
-    <div className="MmssApp">
+    <Wrap>
       <Finder
         {...{
           finder,
@@ -29,8 +30,18 @@ const MmssApp = ({ store }) => {
           ui,
         }}
       />
-    </div>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  position: relative;
+  height: var(--mmssHeight);
+  overflow: hidden;
+
+  --mmssHeight: 100vh;
+  --finderHeight: calc(var(--mmssHeight) - var(--footerHeight));
+  --footerHeight: 10vh;
+`;
 
 export default inject('event')(observer(MmssApp));
