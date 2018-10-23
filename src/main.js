@@ -13,8 +13,7 @@ const YYYYMMDD = new Date()
 // セッションがあればアプリを、なければログイン画面を
 (async () => {
   const [isLoginRes, musicRes] = await Promise.all([
-    Promise.resolve(null),
-    // getJSON('/api/session'),
+    getJSON('/api/session'),
     getJSON('./dist/music.json', { _: YYYYMMDD }),
   ])
   .catch(console.error);

@@ -14,7 +14,7 @@ module.exports = {
   mode: 'development',
   context: rootPath,
   entry: {
-    main: './src/script/main.js',
+    main: './src/main.js',
   },
   output: {
     filename: '[name].js',
