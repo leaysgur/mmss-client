@@ -1,14 +1,14 @@
 import React from 'react';
-import { inject, Observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
-import Top from '../component/top';
-import { TabTrigger, TabContent } from '../component/tab';
-import LoginForm from './login-form';
-import SearchForm from './search-form';
+import Top from '../component/shared/top';
+import { TabTrigger, TabContent } from '../component/shared/tab';
+import Login from './login';
+import Search from './search';
 
 const tabContents = {
-  login: LoginForm,
-  search: SearchForm,
+  login: Login,
+  search: Search,
 };
 
 const EntryApp = ({ ui, constants, event }) => {
@@ -17,21 +17,17 @@ const EntryApp = ({ ui, constants, event }) => {
   return (
     <>
       <Top />
-      <Observer render={() =>
-        <>
-          <TabTrigger
-            tabTriggers={constants.tabNames}
-            visibleTab={ui.visibleTab}
-            onClick={onClickTab}
-          />
-          <TabContent
-            tabContents={tabContents}
-            visibleTab={ui.visibleTab}
-          />
-        </>
-      } />
+      <TabTrigger
+        tabTriggers={constants.tabNames}
+        visibleTab={ui.visibleTab}
+        onClick={onClickTab}
+      />
+      <TabContent
+        tabContents={tabContents}
+        visibleTab={ui.visibleTab}
+      />
     </>
   );
 };
 
-export default inject('event', 'ui', 'constants')(EntryApp);
+export default inject('event', 'ui', 'constants')(observer(EntryApp));

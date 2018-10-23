@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
 const Result = ({ results }) => {
   if (results === null) {
@@ -46,4 +47,4 @@ const Album = styled.div`
   text-overflow:ellipsis;
 `;
 
-export default Result;
+export default observer(Result);

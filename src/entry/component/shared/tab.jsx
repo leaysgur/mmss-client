@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
-export const TabTrigger = ({ tabTriggers, visibleTab, onClick }) => (
+export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }) => (
   <Wrap>
     {tabTriggers.map(name => (
       <Item
@@ -20,7 +21,7 @@ export const TabTrigger = ({ tabTriggers, visibleTab, onClick }) => (
       </Item>
     ))}
   </Wrap>
-);
+));
 
 function _onClick(ev, onClick, name) {
   ev.preventDefault();
@@ -43,7 +44,7 @@ const Item = styled.a`
   }
 `;
 
-export const TabContent = ({ tabContents, visibleTab }) => {
+export const TabContent = observer(({ tabContents, visibleTab }) => {
   const Content = tabContents[visibleTab];
   return <Content />;
-};
+});

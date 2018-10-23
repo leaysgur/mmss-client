@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { inject, Observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
 const LoginForm = ({ event, ui }) => {
   const { onLoginSubmit } = event;
@@ -11,9 +11,7 @@ const LoginForm = ({ event, ui }) => {
       <Input name="pw" type="password" placeholder="PassWord" />
       <Button type="submit">Login</Button>
 
-      <Observer render={() =>
-        <>{ui.hasLoginError && <Error>Error!</Error>}</>
-      }/>
+      {ui.hasLoginError && <Error>Error!</Error>}
     </Wrap>
   );
 };
@@ -61,4 +59,4 @@ const Error = styled.div`
   color: #f44242;
 `;
 
-export default inject('event', 'ui')(LoginForm);
+export default inject('event', 'ui')(observer(LoginForm));
