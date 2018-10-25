@@ -1,4 +1,5 @@
-export function combineEvent(baseEvent, ...events) {
+/* tslint:disable no-any */
+export function combineEvent(baseEvent: any, ...events: any[]): void {
   for (const event of [...events]) {
     for (const evName of Object.keys(event)) {
       Object.defineProperty(baseEvent.__proto__, evName, {
@@ -9,14 +10,14 @@ export function combineEvent(baseEvent, ...events) {
   }
 }
 
-export function bindAll(instance) {
+export function bindAll(instance: any): void {
   const methods = _getProtoMethodNames(instance);
   methods.forEach(methodName => {
     instance[methodName] = instance[methodName].bind(instance);
   });
 }
 
-function _getProtoMethodNames(instance) {
+function _getProtoMethodNames(instance: object): string[] {
   const proto = Object.getPrototypeOf(instance);
   return Object.getOwnPropertyNames(proto).filter(name => {
     return name !== 'constructor' && typeof proto[name] === 'function';

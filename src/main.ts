@@ -1,5 +1,6 @@
 import EntryMain from './entry/main';
-import MmssMain from './mmss/main';
+// import MmssMain from './mmss/main';
+const MmssMain = (a: {}) => a;
 
 import { getJSON } from './shared/util/fetch';
 
