@@ -6,19 +6,19 @@ module.exports = {
   mode: 'development',
   context: rootPath,
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
   },
   output: {
     filename: '[name].js',
     path: `${rootPath}/dist`,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'], // TODO: 最後は tsx? のみに
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.[tj]sx?$/, // TODO: おなじく
         exclude: [/node_modules/],
         use: ['babel-loader'],
       },
