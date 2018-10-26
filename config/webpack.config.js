@@ -14,12 +14,12 @@ module.exports = {
     path: `${rootPath}/dist`,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'], // TODO: 最後は tsx? のみに
+    extensions: ['.ts', '.tsx'],
   },
   module: {
     rules: [
       {
-        test: /\.[tj]sx?$/, // TODO: おなじく
+        test: /\.tsx?$/,
         exclude: [/node_modules/],
         use: ['babel-loader'],
       },
