@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import EntryStore from '../store';
 import EntryEvent from '../event';
 
-interface LoginProps {
+interface Props {
   event: EntryEvent;
   ui: EntryStore['ui'];
 }
@@ -14,7 +14,7 @@ interface LoginFormElements extends HTMLFormControlsCollection {
   pw: HTMLInputElement;
 }
 
-const Login = ({ event, ui }: LoginProps) => {
+const Login = ({ event, ui }: Props) => {
   const { onLoginSubmit } = event;
 
   return (
@@ -28,7 +28,7 @@ const Login = ({ event, ui }: LoginProps) => {
   );
 };
 
-function _onSubmit(ev: React.FormEvent<HTMLFormElement>, onSubmit: LoginProps['event']['onLoginSubmit']) {
+function _onSubmit(ev: React.FormEvent<HTMLFormElement>, onSubmit: Props['event']['onLoginSubmit']) {
   ev.preventDefault();
   const form = ev.currentTarget.elements as LoginFormElements;
   onSubmit({

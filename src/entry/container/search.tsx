@@ -7,12 +7,12 @@ import Result from '../component/search/search-result';
 import EntryStore from '../store';
 import EntryEvent from '../event';
 
-interface SearchProps {
+interface Props {
   event: EntryEvent;
   search: EntryStore['search'];
 }
 
-const Search = ({ event, search }: SearchProps) => {
+const Search = ({ event, search }: Props) => {
   const { onChangeKeyword } = event;
 
   return (
@@ -28,7 +28,7 @@ const Search = ({ event, search }: SearchProps) => {
   );
 };
 
-function _onChange(ev: React.ChangeEvent<HTMLInputElement>, onChange: SearchProps['event']['onChangeKeyword']) {
+function _onChange(ev: React.ChangeEvent<HTMLInputElement>, onChange: Props['event']['onChangeKeyword']) {
   ev.preventDefault();
   onChange(ev.currentTarget.value);
 }
