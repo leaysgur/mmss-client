@@ -4,7 +4,16 @@ import styled from 'styled-components';
 
 import Time, { format } from '../shared/time';
 
-export const PlaylistItem = observer(({ no, item, isPlaying, onClick }) => (
+import { Song } from '../../../shared/typings/mmss';
+
+interface Props {
+  no: string;
+  item: Song;
+  isPlaying: boolean;
+  onClick(item: Song): void;
+}
+
+export const PlaylistItem = observer(({ no, item, isPlaying, onClick }: Props) => (
   <Wrap>
     <No>{no}</No>
     <Mark>

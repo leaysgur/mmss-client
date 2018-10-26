@@ -4,7 +4,15 @@ import styled from 'styled-components';
 
 import SongItem from './song-item';
 
-const SongColumn = ({ songs, onClickPlaySong, onClickAddSongToPlaylist }) => (
+import { Song } from '../../../shared/typings/mmss';
+
+interface Props {
+  songs: Song[];
+  onClickPlaySong(item: Song): void;
+  onClickAddSongToPlaylist(item: Song): void;
+}
+
+const SongColumn = ({ songs, onClickPlaySong, onClickAddSongToPlaylist }: Props) => (
   <Wrap>
     <Head>
       <p>Songs</p>

@@ -2,50 +2,61 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-class Audio extends React.Component {
-  constructor() {
-    super();
+interface Props {
+  src: string;
+  onEnded(): void;
+}
+
+class Audio extends React.Component<Props> {
+  elRef: React.RefObject<HTMLAudioElement>;
+
+  constructor(props: Props) {
+    super(props);
 
     this.elRef = React.createRef();
-    this._handleKeyDown = ev => {
-      if (ev.keyCode !== 32) {
-        return;
-      }
-
-      const el = this.elRef.current;
-      if (el instanceof HTMLAudioElement === false) {
-        return;
-      }
-      if (el.readyState !== HTMLAudioElement.HAVE_ENOUGH_DATA) {
-        return;
-      }
-
-      ev.preventDefault();
-      el.paused ? el.play() : el.pause();
-    };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   render() {
     const { src, onEnded } = this.props;
 
     return (
-      <Wrap
-        ref={this.elRef}
-        autoPlay
-        controls
-        controlsList="nodownload"
-        src={src}
-        onEnded={onEnded}
-      />
+      <Wrap>
+        <audio
+          ref={this.elRef}
+          autoPlay
+          controls
+          controlsList="nodownload"
+          src={src}
+          onEnded={onEnded}
+        />
+      </Wrap>
     );
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this._handleKeyDown, false);
+    window.addEventListener('keydown', this.handleKeyDown, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this._handleKeyDown, false);
+    window.removeEventListener('keydown', this.handleKeyDown, false);
+  }
+
+  private handleKeyDown(ev: KeyboardEvent) {
+    if (ev.keyCode !== 32) {
+      return;
+    }
+
+    const el = this.elRef.current;
+    if (!el || el instanceof HTMLAudioElement === false) {
+      return;
+    }
+    if (el.readyState !== HTMLAudioElement.prototype.HAVE_ENOUGH_DATA) {
+      return;
+    }
+
+    ev.preventDefault();
+    el.paused ? el.play() : el.pause();
   }
 }
 

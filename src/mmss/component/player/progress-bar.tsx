@@ -2,7 +2,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-const ProgressBar = ({ loadProgress }) => (
+interface Props {
+  loadProgress: number;
+}
+
+const ProgressBar = ({ loadProgress }: Props) => (
   <Wrap>
     <Inner style={{ width: `${loadProgress}%` }} />
   </Wrap>

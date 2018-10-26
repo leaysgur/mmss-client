@@ -1,11 +1,15 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-const Time = ({ seconds }) => <span>{format(seconds)}</span>;
+interface Props {
+  seconds: string;
+}
+
+const Time = ({ seconds }: Props) => <span>{format(seconds)}</span>;
 
 export default observer(Time);
 
-export function format(sec) {
+export function format(sec: string): string {
   const seconds = parseInt(sec, 10);
 
   const h = Math.floor(seconds / 3600);

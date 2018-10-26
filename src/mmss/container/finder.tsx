@@ -39,7 +39,7 @@ const Finder = ({ store, event }: Props) => {
       />
 
       <AlbumColumn
-        ui={ui}
+        selectedAlbum={ui.selected.album}
         albums={finder.albums}
         onClickAlbum={onClickAlbum}
         onClickPlayAlbum={onClickPlayAlbum}

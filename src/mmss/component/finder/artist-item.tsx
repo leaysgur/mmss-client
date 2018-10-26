@@ -2,12 +2,21 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
+import { Artist } from '../../../shared/typings/mmss';
+
+interface Props {
+  item: Artist;
+  isSelected: boolean;
+  onClickPlay(item: Artist): void;
+  onClick(item: Artist): void;
+}
+
 const ArtistItem = ({
   item,
   isSelected,
   onClickPlay,
   onClick,
-}) => (
+}: Props) => (
   <Wrap
     className={isSelected ? 'isSelected' : ''}
     onClick={() => onClickPlay(item)}

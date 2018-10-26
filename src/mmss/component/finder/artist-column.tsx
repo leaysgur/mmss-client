@@ -4,13 +4,24 @@ import styled from 'styled-components';
 
 import ArtistItem from './artist-item';
 
+import MmssStore from '../../store';
+import { Artist } from '../../../shared/typings/mmss';
+
+interface Props {
+  ui: MmssStore['ui'];
+  artists: Artist[];
+  onClickSortArtist(): void;
+  onClickArtist(item: Artist): void;
+  onClickPlayArtist(item: Artist): void;
+}
+
 const ArtistColumn = ({
   ui,
   artists,
   onClickSortArtist,
   onClickArtist,
   onClickPlayArtist,
-}) => (
+}: Props) => (
   <Wrap>
     <Head>
       <p>Artists</p>

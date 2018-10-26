@@ -4,7 +4,16 @@ import styled from 'styled-components';
 
 import AlbumItem from './album-item';
 
-const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
+import { Album } from '../../../shared/typings/mmss';
+
+interface Props {
+  selectedAlbum: string | null;
+  albums: Album[];
+  onClickAlbum(item: Album): void;
+  onClickPlayAlbum(item: Album): void;
+}
+
+const AlbumColumn = ({ selectedAlbum, albums, onClickAlbum, onClickPlayAlbum }: Props) => (
   <Wrap>
     <Head>
       <p>Albums</p>
@@ -15,7 +24,7 @@ const AlbumColumn = ({ ui, albums, onClickAlbum, onClickPlayAlbum }) => (
           <li key={album.name}>
             <AlbumItem
               item={album}
-              isSelected={album.name === ui.selected.album}
+              isSelected={album.name === selectedAlbum}
               onClick={onClickAlbum}
               onClickPlay={onClickPlayAlbum}
             />

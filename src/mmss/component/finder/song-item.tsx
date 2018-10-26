@@ -4,7 +4,15 @@ import styled from 'styled-components';
 
 import Time from '../shared/time';
 
-const SongItem = ({ item, onClickPlay, onClickAddToPlaylist }) => (
+import { Song } from '../../../shared/typings/mmss';
+
+interface Props {
+  item: Song;
+  onClickPlay(item: Song): void;
+  onClickAddToPlaylist(item: Song): void;
+}
+
+const SongItem = ({ item, onClickPlay, onClickAddToPlaylist }: Props) => (
   <Wrap
     onClick={ev => {
       ev.metaKey
