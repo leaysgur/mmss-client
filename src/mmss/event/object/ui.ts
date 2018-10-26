@@ -1,25 +1,27 @@
-import MmssEvent from '../../event';
+import MmssStore from '../../store';
 
-const UiEvent = {
+class UiEvent {
+  private ui: MmssStore['ui'];
+
+  constructor(ui: MmssStore['ui']) {
+    this.ui = ui;
+  }
+
   onMouseEnterPlayer() {
-    const $this = this as unknown as MmssEvent;
-    $this.store.ui.setHoverPlayer(true);
-  },
+    this.ui.setHoverPlayer(true);
+  }
 
   onMouseLeavePlayer() {
-    const $this = this as unknown as MmssEvent;
-    $this.store.ui.setHoverPlayer(false);
-  },
+    this.ui.setHoverPlayer(false);
+  }
 
   onMouseEnterPlaylist() {
-    const $this = this as unknown as MmssEvent;
-    $this.store.ui.setHoverPlaylist(true);
-  },
+    this.ui.setHoverPlaylist(true);
+  }
 
   onMouseLeavePlaylist() {
-    const $this = this as unknown as MmssEvent;
-    $this.store.ui.setHoverPlaylist(false);
-  },
-};
+    this.ui.setHoverPlaylist(false);
+  }
+}
 
 export default UiEvent;

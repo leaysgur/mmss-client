@@ -1,15 +1,5 @@
 /* tslint:disable no-any */
-export function combineEvent(baseEvent: any, ...events: any[]) {
-  for (const event of [...events]) {
-    for (const evName of Object.keys(event)) {
-      Object.defineProperty(baseEvent.__proto__, evName, {
-        value: event[evName],
-        writable: true,
-      });
-    }
-  }
-}
-
+// TODO: いらない？
 export function bindAll(instance: any) {
   const methods = _getProtoMethodNames(instance);
   methods.forEach(methodName => {

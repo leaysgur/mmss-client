@@ -1,7 +1,7 @@
 import { reaction } from 'mobx';
 
 import { getMediaSerial, postJSON } from '../../shared/util/fetch';
-import { combineEvent, bindAll } from '../../shared/util/class';
+import { bindAll } from '../../shared/util/class';
 
 import UiEvent from './object/ui';
 import PlaylistEvent from './object/playlist';
@@ -10,14 +10,16 @@ import MmssStore from '../store';
 import { Artist, Album, Song } from '../../shared/typings/mmss';
 
 class MmssEvent {
-  // XXX: 本来はprivateだがcombineEvent()先で型がほしい
-  store: MmssStore;
+  playlistEvent: PlaylistEvent;
+  uiEvent: UiEvent;
+  private store: MmssStore;
 
   constructor(store: MmssStore) {
-    combineEvent(this, UiEvent, PlaylistEvent);
     bindAll(this);
 
     this.store = store;
+    this.playlistEvent = new PlaylistEvent(store.playlist);
+    this.uiEvent = new UiEvent(store.ui);
 
     reaction(
       () => this.store.playlist.nowPlaying,
