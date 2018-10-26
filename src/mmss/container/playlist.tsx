@@ -4,14 +4,24 @@ import { inject, observer } from 'mobx-react';
 
 import { PlaylistItem, PlaylistHeader } from '../component/playlist/item';
 
-const Playlist = ({ playlist, ui, event }) => {
-  const { items, nowPlayingIdx } = playlist;
-  const { isPlaylistShown } = ui;
+import MmssEvent from '../event';
+import MmssStore from '../store';
+
+interface Props {
+  event: MmssEvent;
+  store: MmssStore;
+}
+
+const Playlist = ({ store, event }: Props) => {
+  const { items, nowPlayingIdx } = store.playlist;
+  const { isPlaylistShown } = store.ui;
   const {
     onClickPlaylistItem,
+  } = event.playlistEvent;
+  const {
     onMouseEnterPlaylist,
     onMouseLeavePlaylist,
-  } = event;
+  } = event.uiEvent;
 
   return (
     <Wrap
@@ -85,4 +95,4 @@ const NoItem = styled.div`
   padding-top: 10vh;
 `;
 
-export default inject('event', 'playlist', 'ui')(observer(Playlist));
+export default inject('event', 'store')(observer(Playlist));

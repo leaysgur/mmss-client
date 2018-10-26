@@ -5,22 +5,30 @@ import { inject, observer } from 'mobx-react';
 import ProgressBar from '../component/player/progress-bar';
 import Audio from '../component/player/audio';
 
-const Player = ({
-  event,
-  media,
-  playlist,
-  ui,
-}) => {
+import MmssEvent from '../event';
+import MmssStore from '../store';
+
+interface Props {
+  event: MmssEvent;
+  store: MmssStore;
+}
+
+const Player = ({ event, store }: Props) => {
+  const {
+    onClickNowPlaying,
+  } = event;
   const {
     onClickPrev, onClickNext,
-    onClickNowPlaying,
+    onEndedMedia,
+  } = event.playlistEvent;
+  const {
     onMouseEnterPlayer,
     onMouseLeavePlayer,
-    onEndedMedia,
-  } = event;
-  const { nowPlaying } = playlist;
-  const { currentSrc } = media;
-  const { isMediaLoading, loadProgress } = ui;
+  } = event.uiEvent;
+
+  const { nowPlaying } = store.playlist;
+  const { currentSrc } = store.media;
+  const { isMediaLoading, loadProgress } = store.ui;
   const isControlable = currentSrc && !isMediaLoading;
 
   return (
@@ -103,4 +111,4 @@ const ControlsAudio = styled.div`
   flex: 1 1 auto;
 `;
 
-export default inject('event', 'playlist', 'media', 'ui')(observer(Player));
+export default inject('event', 'store')(observer(Player));
