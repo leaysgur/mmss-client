@@ -16,6 +16,6 @@ export default function(musicRes: MusicJSON) {
     <Provider event={event} store={store}>
       <EntryApp />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 }
