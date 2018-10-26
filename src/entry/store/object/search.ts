@@ -7,11 +7,11 @@ interface SearchResults {
 }
 
 class SearchObject {
-  _json: MusicJSON;
   keyword: string;
+  private json: MusicJSON;
 
   constructor(json: MusicJSON) {
-    this._json = json;
+    this.json = json;
 
     this.keyword = '';
   }
@@ -29,7 +29,7 @@ class SearchObject {
     }
 
     const ret: SearchResults = {};
-    for (const artist of this._json) {
+    for (const artist of this.json) {
       if (reg.test(artist.name)) {
         ret[artist.name] = artist.albums.map(album => album.name);
       }

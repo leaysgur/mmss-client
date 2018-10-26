@@ -6,12 +6,21 @@ import { TabTrigger, TabContent } from '../component/shared/tab';
 import Login from './login';
 import Search from './search';
 
+import EntryStore from '../store';
+import EntryEvent from '../event';
+
+interface EntryAppProps {
+  event: EntryEvent;
+  ui: EntryStore['ui'];
+  constants: EntryStore['constants'];
+}
+
 const tabContents = {
   login: Login,
   search: Search,
 };
 
-const EntryApp = ({ ui, constants, event }) => {
+const EntryApp = ({ ui, constants, event }: EntryAppProps) => {
   const { onClickTab } = event;
 
   return (

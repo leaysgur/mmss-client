@@ -6,7 +6,7 @@ import EntryStore from './store';
 import { LoginItem } from '../shared/typings/mmss';
 
 class EntryEvent {
-  store: EntryStore;
+  private store: EntryStore;
 
   constructor(store: EntryStore) {
     bindAll(this);
