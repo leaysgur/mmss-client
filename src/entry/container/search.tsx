@@ -8,13 +8,13 @@ import EntryStore from '../store';
 import EntryEvent from '../event';
 
 interface Props {
-  event: EntryEvent;
-  store: EntryStore;
+  event?: EntryEvent;
+  store?: EntryStore;
 }
 
 const Search = ({ event, store }: Props) => {
-  const { onChangeKeyword } = event;
-  const { search } = store;
+  const { onChangeKeyword } = event!;
+  const { search } = store!;
 
   return (
     <Wrap>
@@ -29,7 +29,7 @@ const Search = ({ event, store }: Props) => {
   );
 };
 
-function _onChange(ev: React.ChangeEvent<HTMLInputElement>, onChange: Props['event']['onChangeKeyword']) {
+function _onChange(ev: React.ChangeEvent<HTMLInputElement>, onChange: EntryEvent['onChangeKeyword']) {
   ev.preventDefault();
   onChange(ev.currentTarget.value);
 }

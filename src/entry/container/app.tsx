@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactType } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import Top from '../component/shared/top';
@@ -14,7 +14,9 @@ interface Props {
   store?: EntryStore;
 }
 
-const tabContents = {
+const tabContents: {
+  [key: string]: ReactType;
+} = {
   login: Login,
   search: Search,
 };

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactType } from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
-interface Props {
+interface TriggerProps {
   tabTriggers: string[];
   visibleTab: string;
   onClick(name: string): void;
 }
 
-export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }: Props) => (
+export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }: TriggerProps) => (
   <Wrap>
     {tabTriggers.map(name => (
       <Item
@@ -29,7 +29,7 @@ export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }: Props)
   </Wrap>
 ));
 
-function _onClick(ev: React.MouseEvent<HTMLAnchorElement>, onClick: Props['onClick'], name: string) {
+function _onClick(ev: React.MouseEvent<HTMLAnchorElement>, onClick: TriggerProps['onClick'], name: string) {
   ev.preventDefault();
   onClick(name);
 }
@@ -50,7 +50,13 @@ const Item = styled.a`
   }
 `;
 
-export const TabContent = observer(({ tabContents, visibleTab }) => {
-  const Content = tabContents[visibleTab];
-  return <Content />;
-});
+interface ContentProps {
+  tabContents: {
+    [key: string]: ReactType;
+  };
+  visibleTab: string;
+}
+
+export const TabContent = observer(({ tabContents, visibleTab }: ContentProps) =>
+  <>{tabContents[visibleTab]}</>,
+);

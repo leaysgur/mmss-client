@@ -6,8 +6,8 @@ import EntryStore from '../store';
 import EntryEvent from '../event';
 
 interface Props {
-  event: EntryEvent;
-  store: EntryStore;
+  event?: EntryEvent;
+  store?: EntryStore;
 }
 interface LoginFormElements extends HTMLFormControlsCollection {
   id: HTMLInputElement;
@@ -15,8 +15,8 @@ interface LoginFormElements extends HTMLFormControlsCollection {
 }
 
 const Login = ({ event, store }: Props) => {
-  const { onLoginSubmit } = event;
-  const { ui } = store;
+  const { onLoginSubmit } = event!;
+  const { ui } = store!;
 
   return (
     <Wrap action="/" onSubmit={ev => _onSubmit(ev, onLoginSubmit)}>
@@ -29,7 +29,7 @@ const Login = ({ event, store }: Props) => {
   );
 };
 
-function _onSubmit(ev: React.FormEvent<HTMLFormElement>, onSubmit: Props['event']['onLoginSubmit']) {
+function _onSubmit(ev: React.FormEvent<HTMLFormElement>, onSubmit: EntryEvent['onLoginSubmit']) {
   ev.preventDefault();
   const form = ev.currentTarget.elements as LoginFormElements;
   onSubmit({

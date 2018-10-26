@@ -25,3 +25,7 @@ export interface LoginItem {
   id: string;
   pw: string;
 }
+
+export type SearchResults = {
+  [key: string]: string[];
+} | null;

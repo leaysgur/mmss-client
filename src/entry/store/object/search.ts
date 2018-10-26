@@ -1,22 +1,15 @@
 import { decorate, observable, computed } from 'mobx';
 
-import { MusicJSON } from '../../../shared/typings/mmss';
-
-interface SearchResults {
-  [ley: string]: string[];
-}
+import { MusicJSON, SearchResults } from '../../../shared/typings/mmss';
 
 class SearchObject {
   keyword: string;
-  private json: MusicJSON;
 
-  constructor(json: MusicJSON) {
-    this.json = json;
-
+  constructor(private json: MusicJSON) {
     this.keyword = '';
   }
 
-  get results(): SearchResults | null {
+  get results(): SearchResults {
     if (this.keyword.length === 0) {
       return null;
     }
@@ -38,6 +31,7 @@ class SearchObject {
     if (Object.keys(ret).length === 0) {
       return null;
     }
+
     return ret;
   }
 

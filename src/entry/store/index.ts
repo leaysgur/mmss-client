@@ -21,10 +21,7 @@ class EntryStore {
     const match = hash.match(/#!\/(.*)/);
     const tabName = match ? match[1] : null;
 
-    const initTab =
-      tabName && tabNames.includes(tabName) ? tabName : 'login';
-
-    return initTab;
+    return tabName && tabNames.includes(tabName) ? tabName : 'login';
   }
 }
 

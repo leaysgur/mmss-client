@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
+import { SearchResults } from '../../../shared/typings/mmss';
+
 interface Props {
-  results: { [key: string]: string[]; } | null;
+  results: SearchResults;
 }
 
 const Result = ({ results }: Props) => {

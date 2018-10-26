@@ -6,12 +6,8 @@ import EntryStore from './store';
 import { LoginItem } from '../shared/typings/mmss';
 
 class EntryEvent {
-  private store: EntryStore;
-
-  constructor(store: EntryStore) {
+  constructor(private store: EntryStore) {
     bindAll(this);
-
-    this.store = store;
 
     autorun(() => {
       const tabName = this.store.ui.visibleTab;
