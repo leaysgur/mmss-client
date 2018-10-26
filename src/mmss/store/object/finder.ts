@@ -1,16 +1,23 @@
-import { decorate, observable, computed } from 'mobx';
+import { decorate, observable, computed, IObservableArray } from 'mobx';
+
+import { MusicJSON, Album, Song } from '../../../shared/typings/mmss';
 
 class Finder {
-  constructor(json) {
-    this._json = json;
+  isNameSort: boolean;
+  albums: IObservableArray<Album>;
+  songs: IObservableArray<Song>;
+  private json: MusicJSON;
+
+  constructor(json: MusicJSON) {
+    this.json = json;
 
     this.isNameSort = false;
-    this.albums = [];
-    this.songs = [];
+    this.albums = [] as unknown[] as IObservableArray<Album>;
+    this.songs = [] as unknown[] as IObservableArray<Song>;
   }
 
-  get artists() {
-    const artists = this._json.slice();
+  get artists(): MusicJSON {
+    const artists = this.json.slice();
     if (this.isNameSort) {
       artists.sort((a, b) => a.name < b.name ? -1 : 1);
     }
@@ -18,17 +25,17 @@ class Finder {
     return artists;
   }
 
-  sortArtist(sort) {
+  sortArtist(sort: string) {
     this.isNameSort = sort === 'name';
   }
 
-  initAlbums(albums) {
+  initAlbums(albums: Album[]) {
     this.albums.replace(albums);
     // アーティストを変えたら曲も初期化しておく
     this.songs.clear();
   }
 
-  initSongs(songs) {
+  initSongs(songs: Song[]) {
     this.songs.replace(songs);
   }
 }

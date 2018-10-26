@@ -1,11 +1,13 @@
 import { decorate, observable } from 'mobx';
 
 class Media {
+  currentSrc: string | null;
+
   constructor() {
     this.currentSrc = null;
   }
 
-  setSrc(blob) {
+  setSrc(blob: Blob) {
     const objectUrl = URL.createObjectURL(blob);
     if (this.currentSrc) {
       URL.revokeObjectURL(this.currentSrc);

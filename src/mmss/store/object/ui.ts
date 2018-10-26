@@ -1,12 +1,20 @@
 import { decorate, observable, computed } from 'mobx';
 
 class Ui {
-  constructor() {
-    this._timer = null;
+  isMediaLoading: boolean;
+  selected: {
+    artist: string | null;
+    album: string | null;
+  };
+  sortBy: 'latest' | 'name';
+  filterBy: string | null;
+  loadProgress: number;
+  isHoverPlayer: boolean; // TODO: private
+  isHoverPlaylist: boolean; // TODO: private
+  private timer: number | undefined;
 
+  constructor() {
     this.isMediaLoading = false;
-    this._isHoverPlayer = false;
-    this._isHoverPlaylist = false;
     this.selected = {
       artist: null,
       album: null,
@@ -14,65 +22,72 @@ class Ui {
     this.sortBy = 'latest';
     this.filterBy = null;
     this.loadProgress = 0;
+    this.timer = undefined;
+    this.isHoverPlayer = false;
+    this.isHoverPlaylist = false;
   }
 
-  get isPlaylistShown() {
-    return this._isHoverPlayer || this._isHoverPlaylist;
+  get isPlaylistShown(): boolean {
+    return this.isHoverPlayer || this.isHoverPlaylist;
   }
 
-  setHoverPlayer(bool) {
-    this._isHoverPlayer = bool;
+  setHoverPlayer(bool: boolean) {
+    this.isHoverPlayer = bool;
   }
 
-  setHoverPlaylist(bool) {
-    this._isHoverPlaylist = bool;
+  setHoverPlaylist(bool: boolean) {
+    this.isHoverPlaylist = bool;
   }
 
-  setMediaLoading(bool) {
+  setMediaLoading(bool: boolean) {
     this.isMediaLoading = bool;
 
     if (bool) {
       this.loadProgress = 0;
-      if (this._timer) {
+      if (this.timer) {
         return;
       }
-      this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
+      this.timer = requestAnimationFrame(() => this.incrementLoadProgress());
     } else {
-      this._timer && cancelAnimationFrame(this._timer);
+      if (this.timer) {
+        cancelAnimationFrame(this.timer);
+      }
       this.loadProgress = 100;
-      this._timer = setTimeout(() => this._clearLoadProgress(), 500);
+      this.timer = window.setTimeout(() => this.clearLoadProgress(), 500);
     }
   }
 
-  setSelected(target, name) {
+  setSelected(target: string, name: string) {
     if (target === 'artist') {
       this.selected.album = null;
+      this.selected.artist = name;
     }
-    this.selected[target] = name;
+    if (target === 'album') {
+      this.selected.album = name;
+    }
   }
 
   lotateSortBy() {
     if (this.sortBy === 'latest') {
       this.sortBy = 'name';
-      return;
     }
     if (this.sortBy === 'name') {
       this.sortBy = 'latest';
-      return;
     }
   }
 
-  setFilterBy(artistName) {
+  setFilterBy(artistName: string) {
     this.filterBy = this.filterBy ? null : artistName;
   }
 
-  _clearLoadProgress() {
+  private clearLoadProgress() {
     this.loadProgress = 0;
-    clearTimeout(this._timer);
-    this._timer = null;
+    clearTimeout(this.timer);
+    this.timer = undefined;
   }
-  _incrementLoadProgress() {
-    this._timer = requestAnimationFrame(() => this._incrementLoadProgress());
+
+  private incrementLoadProgress() {
+    this.timer = requestAnimationFrame(() => this.incrementLoadProgress());
     // カカシなので99で止めて間をもたせる
     this.loadProgress = Math.min(this.loadProgress + 1, 99);
   }
@@ -80,12 +95,12 @@ class Ui {
 
 decorate(Ui, {
   isMediaLoading: observable,
-  _isHoverPlayer: observable,
-  _isHoverPlaylist: observable,
   selected: observable,
   sortBy: observable,
   filterBy: observable,
   loadProgress: observable,
+  isHoverPlayer: observable,
+  isHoverPlaylist: observable,
   isPlaylistShown: computed,
 });
 export default Ui;

@@ -1,12 +1,17 @@
-import { decorate, observable, computed } from 'mobx';
+import { decorate, observable, computed, IObservableArray } from 'mobx';
+
+import { Song } from '../../../shared/typings/mmss';
 
 class Playlist {
+  items: IObservableArray<Song>;
+  nowPlayingIdx: number;
+
   constructor() {
-    this.items = [];
+    this.items = [] as unknown[] as IObservableArray<Song>;
     this.nowPlayingIdx = -1;
   }
 
-  get nowPlaying() {
+  get nowPlaying(): Song | null {
     const idx = this.nowPlayingIdx;
     if (idx === -1) {
       return null;
@@ -15,7 +20,7 @@ class Playlist {
     return this.items[idx];
   }
 
-  get nextPlaying() {
+  get nextPlaying(): Song | null {
     const idx = this.nowPlayingIdx;
     if (idx === -1) {
       return null;
@@ -25,13 +30,13 @@ class Playlist {
     return this.items[nextIdx];
   }
 
-  init(items) {
+  init(items: Song[]) {
     this.items.replace(items);
     // 先頭から再生
     this.nowPlayingIdx = 0;
   }
 
-  add(item) {
+  add(item: Song) {
     this.items.push(item);
   }
 
@@ -55,7 +60,7 @@ class Playlist {
     }
   }
 
-  jump(item) {
+  jump(item: Song) {
     const idx = this.items.indexOf(item);
 
     if (idx !== -1) {

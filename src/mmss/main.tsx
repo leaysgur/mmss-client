@@ -6,12 +6,14 @@ import MmssApp from './container/app';
 import MmssStore from './store';
 import MmssEvent from './event';
 
-export default function(json) {
-  const store = new MmssStore(json);
+import { MusicJSON } from '../shared/typings/mmss';
+
+export default function(musicRes: MusicJSON) {
+  const store = new MmssStore(musicRes);
   const event = new MmssEvent(store);
 
   ReactDOM.render(
-    <Provider event={event} {...store}>
+    <Provider event={event} store={store}>
       <MmssApp />
     </Provider>,
     document.getElementById('root')
