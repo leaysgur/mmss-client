@@ -8,20 +8,20 @@ import MmssEvent from '../event';
 import MmssStore from '../store';
 
 interface Props {
-  event: MmssEvent;
-  store: MmssStore;
+  event?: MmssEvent;
+  store?: MmssStore;
 }
 
 const Playlist = ({ store, event }: Props) => {
-  const { items, nowPlayingIdx } = store.playlist;
-  const { isPlaylistShown } = store.ui;
+  const { items, nowPlayingIdx } = store!.playlist;
+  const { isPlaylistShown } = store!.ui;
   const {
     onClickPlaylistItem,
-  } = event.playlistEvent;
+  } = event!.playlistEvent;
   const {
     onMouseEnterPlaylist,
     onMouseLeavePlaylist,
-  } = event.uiEvent;
+  } = event!.uiEvent;
 
   return (
     <Wrap
@@ -37,7 +37,7 @@ const Playlist = ({ store, event }: Props) => {
         {items.map((song, idx) => (
           <Row key={`${song.path}`}>
             <PlaylistItem
-              no={idx + 1}
+              no={`${idx + 1}`}
               item={song}
               isPlaying={nowPlayingIdx === idx}
               onClick={onClickPlaylistItem}

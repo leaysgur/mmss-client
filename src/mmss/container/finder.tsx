@@ -10,8 +10,8 @@ import MmssEvent from '../event';
 import MmssStore from '../store';
 
 interface Props {
-  event: MmssEvent;
-  store: MmssStore;
+  event?: MmssEvent;
+  store?: MmssStore;
 }
 
 const Finder = ({ store, event }: Props) => {
@@ -19,14 +19,14 @@ const Finder = ({ store, event }: Props) => {
     onClickSortArtist,
     onClickArtist,
     onClickAlbum,
-  } = event;
+  } = event!;
   const {
     onClickPlayArtist,
     onClickPlayAlbum,
     onClickPlaySong,
     onClickAddSongToPlaylist,
-  } = event.playlistEvent;
-  const { ui, finder } = store;
+  } = event!.playlistEvent;
+  const { ui, finder } = store!;
 
   return (
     <Wrap>

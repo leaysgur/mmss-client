@@ -9,26 +9,26 @@ import MmssEvent from '../event';
 import MmssStore from '../store';
 
 interface Props {
-  event: MmssEvent;
-  store: MmssStore;
+  event?: MmssEvent;
+  store?: MmssStore;
 }
 
 const Player = ({ event, store }: Props) => {
   const {
     onClickNowPlaying,
-  } = event;
+  } = event!;
   const {
     onClickPrev, onClickNext,
     onEndedMedia,
-  } = event.playlistEvent;
+  } = event!.playlistEvent;
   const {
     onMouseEnterPlayer,
     onMouseLeavePlayer,
-  } = event.uiEvent;
+  } = event!.uiEvent;
 
-  const { nowPlaying } = store.playlist;
-  const { currentSrc } = store.media;
-  const { isMediaLoading, loadProgress } = store.ui;
+  const { nowPlaying } = store!.playlist;
+  const { currentSrc } = store!.media;
+  const { isMediaLoading, loadProgress } = store!.ui;
   const isControlable = currentSrc && !isMediaLoading;
 
   return (
@@ -54,7 +54,7 @@ const Player = ({ event, store }: Props) => {
 
         <ControlsAudio>
           <Audio
-            src={currentSrc}
+            src={currentSrc ? currentSrc : ''}
             onEnded={onEndedMedia}
           />
         </ControlsAudio>
