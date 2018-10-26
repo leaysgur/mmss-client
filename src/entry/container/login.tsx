@@ -2,7 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 
-const LoginForm = ({ event, ui }) => {
+import EntryStore from '../store';
+import EntryEvent from '../event';
+
+interface LoginProps {
+  event: EntryEvent;
+  ui: EntryStore['ui'];
+}
+interface LoginFormElements extends HTMLFormControlsCollection {
+  id: HTMLInputElement;
+  pw: HTMLInputElement;
+}
+
+const Login = ({ event, ui }: LoginProps) => {
   const { onLoginSubmit } = event;
 
   return (
@@ -16,15 +28,13 @@ const LoginForm = ({ event, ui }) => {
   );
 };
 
-function _onSubmit(ev, onSubmit) {
+function _onSubmit(ev: React.FormEvent<HTMLFormElement>, onSubmit: LoginProps['event']['onLoginSubmit']) {
   ev.preventDefault();
-  if (ev.currentTarget instanceof HTMLFormElement) {
-    const form = ev.currentTarget.elements;
-    onSubmit({
-      id: form.id.value,
-      pw: form.pw.value,
-    });
-  }
+  const form = ev.currentTarget.elements as LoginFormElements;
+  onSubmit({
+    id: form.id.value,
+    pw: form.pw.value,
+  });
 }
 
 const Wrap = styled.form`
@@ -59,4 +69,4 @@ const Error = styled.div`
   color: #f44242;
 `;
 
-export default inject('event', 'ui')(observer(LoginForm));
+export default inject('event', 'ui')(observer(Login));

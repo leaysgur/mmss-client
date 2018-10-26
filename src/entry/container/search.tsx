@@ -4,7 +4,15 @@ import { inject, observer } from 'mobx-react';
 
 import Result from '../component/search/search-result';
 
-const SearchForm = ({ event, search }) => {
+import EntryStore from '../store';
+import EntryEvent from '../event';
+
+interface SearchProps {
+  event: EntryEvent;
+  search: EntryStore['search'];
+}
+
+const Search = ({ event, search }: SearchProps) => {
   const { onChangeKeyword } = event;
 
   return (
@@ -20,11 +28,9 @@ const SearchForm = ({ event, search }) => {
   );
 };
 
-function _onChange(ev, onChange) {
+function _onChange(ev: React.ChangeEvent<HTMLInputElement>, onChange: SearchProps['event']['onChangeKeyword']) {
   ev.preventDefault();
-  if (ev.currentTarget instanceof HTMLInputElement) {
-    onChange(ev.currentTarget.value);
-  }
+  onChange(ev.currentTarget.value);
 }
 
 const Wrap = styled.div`
@@ -45,4 +51,4 @@ const Input = styled.input`
   }
 `;
 
-export default inject('event', 'search')(observer(SearchForm));
+export default inject('event', 'search')(observer(Search));
