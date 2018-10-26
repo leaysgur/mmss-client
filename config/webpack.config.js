@@ -4,21 +4,22 @@ const rootPath = path.resolve('');
 
 module.exports = {
   mode: 'development',
+  devtool: false,
   context: rootPath,
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
   },
   output: {
     filename: '[name].js',
     path: `${rootPath}/dist`,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.ts', '.tsx'],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: [/node_modules/],
         use: ['babel-loader'],
       },
