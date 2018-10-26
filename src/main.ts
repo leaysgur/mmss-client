@@ -1,8 +1,9 @@
 import EntryMain from './entry/main';
-// import MmssMain from './mmss/main';
-const MmssMain = (a: {}) => a;
+import MmssMain from './mmss/main';
 
 import { getJSON } from './shared/util/fetch';
+
+import { MusicJSON } from './shared/typings/mmss';
 
 // キャッシュ飛ばしたい時もあると思うのでとりあえず
 const YYYYMMDD = new Date()
@@ -13,11 +14,8 @@ const YYYYMMDD = new Date()
 
 // セッションがあればアプリを、なければログイン画面を
 (async () => {
-  const [isLoginRes, musicRes] = await Promise.all([
-    getJSON('/api/session'),
-    getJSON('./dist/music.json', { _: YYYYMMDD }),
-  ])
-  .catch(console.error);
+  const isLoginRes = await getJSON('/api/session').then(() => true).catch(() => false);
+  const musicRes = await getJSON('./dist/music.json', { _: YYYYMMDD }) as MusicJSON;
 
-  isLoginRes === null ? MmssMain(musicRes) : EntryMain(musicRes);
-})();
+  isLoginRes ? MmssMain(musicRes) : EntryMain(musicRes);
+})().catch(console.error);
