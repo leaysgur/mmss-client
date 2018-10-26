@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
-const Result = ({ results }) => {
+interface Props {
+  results: { [key: string]: string[]; } | null;
+}
+
+const Result = ({ results }: Props) => {
   if (results === null) {
     return (
       <Wrap>
