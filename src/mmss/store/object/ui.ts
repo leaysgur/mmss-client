@@ -58,21 +58,23 @@ class Ui {
   }
 
   setSelected(target: string, name: string) {
-    if (target === 'artist') {
-      this.selected.album = null;
-      this.selected.artist = name;
-    }
-    if (target === 'album') {
-      this.selected.album = name;
+    switch (target) {
+      case 'artist':
+        this.selected.album = null;
+        this.selected.artist = name;
+        break;
+      case 'album':
+        this.selected.album = name;
+        break;
+      default:
     }
   }
 
   lotateSortBy() {
-    if (this.sortBy === 'latest') {
-      this.sortBy = 'name';
-    }
-    if (this.sortBy === 'name') {
-      this.sortBy = 'latest';
+    switch (this.sortBy) {
+      case 'latest': this.sortBy = 'name'; break;
+      case 'name': this.sortBy = 'latest'; break;
+      default:
     }
   }
 

@@ -20,10 +20,12 @@ class Audio extends React.Component<Props> {
   render() {
     const { src, onEnded } = this.props;
 
+    // XXX: 本来は <Wrap /> 自体が audio であってほしいが、そうするとなぜか ref で型エラーが出る
     return (
       <Wrap>
         <audio
           ref={this.elRef}
+          style={{ width: 'inherit', verticalAlign: 'inherit' }}
           autoPlay
           controls
           controlsList="nodownload"
@@ -60,7 +62,7 @@ class Audio extends React.Component<Props> {
   }
 }
 
-const Wrap = styled.audio`
+const Wrap = styled.div`
   width: 100%;
   vertical-align: top;
 `;
