@@ -1,5 +1,5 @@
 /* tslint:disable no-any */
-export function combineEvent(baseEvent: any, ...events: any[]): void {
+export function combineEvent(baseEvent: any, ...events: any[]) {
   for (const event of [...events]) {
     for (const evName of Object.keys(event)) {
       Object.defineProperty(baseEvent.__proto__, evName, {
@@ -10,7 +10,7 @@ export function combineEvent(baseEvent: any, ...events: any[]): void {
   }
 }
 
-export function bindAll(instance: any): void {
+export function bindAll(instance: any) {
   const methods = _getProtoMethodNames(instance);
   methods.forEach(methodName => {
     instance[methodName] = instance[methodName].bind(instance);

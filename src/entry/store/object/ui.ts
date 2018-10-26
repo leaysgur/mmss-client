@@ -1,16 +1,19 @@
 import { decorate, observable } from 'mobx';
 
 class UiObject {
-  constructor(initTab) {
+  hasLoginError: boolean;
+  visibleTab: string;
+
+  constructor(initTab: string) {
     this.hasLoginError = false;
     this.visibleTab = initTab;
   }
 
-  showLoginError(bool) {
+  showLoginError(bool: boolean) {
     this.hasLoginError = bool;
   }
 
-  showTab(tabName) {
+  showTab(tabName: string) {
     this.visibleTab = tabName;
   }
 }

@@ -6,7 +6,9 @@ import EntryApp from './container/app';
 import EntryStore from './store';
 import EntryEvent from './event';
 
-export default function(musicRes) {
+import { MusicJSON } from '../shared/typings/mmss';
+
+export default function(musicRes: MusicJSON) {
   const store = new EntryStore(musicRes, location.hash);
   const event = new EntryEvent(store);
 

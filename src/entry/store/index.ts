@@ -1,8 +1,16 @@
 import SearchObject from './object/search';
 import UiObject from './object/ui';
 
+import { MusicJSON } from '../../shared/typings/mmss';
+
 class EntryStore {
-  constructor(json, hash) {
+  constants: {
+    tabNames: string[];
+  };
+  ui: UiObject;
+  search: SearchObject;
+
+  constructor(json: MusicJSON, hash: string) {
     const tabNames = ['login', 'search'];
     const match = hash.match(/#!\/(.*)/);
     const tabName = match ? match[1] : null;

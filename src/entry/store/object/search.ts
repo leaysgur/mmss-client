@@ -1,13 +1,22 @@
 import { decorate, observable, computed } from 'mobx';
 
+import { MusicJSON } from '../../../shared/typings/mmss';
+
+interface SearchResults {
+  [ley: string]: string[];
+}
+
 class SearchObject {
-  constructor(json) {
+  _json: MusicJSON;
+  keyword: string;
+
+  constructor(json: MusicJSON) {
     this._json = json;
 
     this.keyword = '';
   }
 
-  get results() {
+  get results(): SearchResults | null {
     if (this.keyword.length === 0) {
       return null;
     }
@@ -19,7 +28,7 @@ class SearchObject {
       return null;
     }
 
-    const ret = {};
+    const ret: SearchResults = {};
     for (const artist of this._json) {
       if (reg.test(artist.name)) {
         ret[artist.name] = artist.albums.map(album => album.name);
@@ -32,7 +41,7 @@ class SearchObject {
     return ret;
   }
 
-  setKeyword(keyword) {
+  setKeyword(keyword: string) {
     this.keyword = keyword;
   }
 }

@@ -2,8 +2,13 @@ import { autorun } from 'mobx';
 import { postJSON } from '../shared/util/fetch';
 import { bindAll } from '../shared/util/class';
 
+import EntryStore from './store';
+import { LoginItem } from '../shared/typings/mmss';
+
 class EntryEvent {
-  constructor(store) {
+  store: EntryStore;
+
+  constructor(store: EntryStore) {
     bindAll(this);
 
     this.store = store;
@@ -14,11 +19,11 @@ class EntryEvent {
     });
   }
 
-  onClickTab(tabName) {
+  onClickTab(tabName: string) {
     this.store.ui.showTab(tabName);
   }
 
-  async onLoginSubmit(item) {
+  async onLoginSubmit(item: LoginItem) {
     const id = item.id.trim();
     const pw = item.pw.trim();
 
@@ -37,7 +42,7 @@ class EntryEvent {
     }
   }
 
-  onChangeKeyword(keyword) {
+  onChangeKeyword(keyword: string) {
     keyword = keyword.trim();
     this.store.search.setKeyword(keyword);
   }
