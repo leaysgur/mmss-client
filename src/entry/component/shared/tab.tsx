@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
-export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }) => (
+interface Props {
+  tabTriggers: string[];
+  visibleTab: string;
+  onClick(name: string): void;
+}
+
+export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }: Props) => (
   <Wrap>
     {tabTriggers.map(name => (
       <Item
@@ -23,7 +29,7 @@ export const TabTrigger = observer(({ tabTriggers, visibleTab, onClick }) => (
   </Wrap>
 ));
 
-function _onClick(ev, onClick, name) {
+function _onClick(ev: React.MouseEvent<HTMLAnchorElement>, onClick: Props['onClick'], name: string) {
   ev.preventDefault();
   onClick(name);
 }
