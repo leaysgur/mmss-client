@@ -13,7 +13,7 @@ export default function(musicRes: MusicJSON) {
   const event = new EntryEvent(store);
 
   ReactDOM.render(
-    <Provider event={event} {...store}>
+    <Provider event={event} store={store}>
       <EntryApp />
     </Provider>,
     document.getElementById('root')

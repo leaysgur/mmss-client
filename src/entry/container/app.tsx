@@ -10,9 +10,8 @@ import EntryStore from '../store';
 import EntryEvent from '../event';
 
 interface Props {
-  event: EntryEvent;
-  ui: EntryStore['ui'];
-  constants: EntryStore['constants'];
+  event?: EntryEvent;
+  store?: EntryStore;
 }
 
 const tabContents = {
@@ -20,8 +19,9 @@ const tabContents = {
   search: Search,
 };
 
-const EntryApp = ({ ui, constants, event }: Props) => {
-  const { onClickTab } = event;
+const EntryApp = (props: Props) => {
+  const { onClickTab } = props.event!;
+  const { constants, ui } = props.store!;
 
   return (
     <>
