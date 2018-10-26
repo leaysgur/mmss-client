@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "dev": "webpack --config ./config/webpack.config.js -w",
-    "build": "webpack --config ./config/webpack.config.production.js",
+    "typecheck": "tsc",
+    "build": "tsc && webpack --config ./config/webpack.config.production.js",
     "cp": "cp ~/backup/music/music.json ./dist/music.json"
   },
   "keywords": [],
