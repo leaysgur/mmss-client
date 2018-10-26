@@ -4,6 +4,7 @@ const rootPath = path.resolve('');
 
 module.exports = {
   mode: 'development',
+  devtool: false,
   context: rootPath,
   entry: {
     main: './src/main.ts',
