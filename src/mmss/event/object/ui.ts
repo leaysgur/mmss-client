@@ -1,18 +1,24 @@
+import MmssEvent from '../../event';
+
 const UiEvent = {
   onMouseEnterPlayer() {
-    this.store.ui.setHoverPlayer(true);
+    const $this = this as unknown as MmssEvent;
+    $this.store.ui.setHoverPlayer(true);
   },
 
   onMouseLeavePlayer() {
-    this.store.ui.setHoverPlayer(false);
+    const $this = this as unknown as MmssEvent;
+    $this.store.ui.setHoverPlayer(false);
   },
 
   onMouseEnterPlaylist() {
-    this.store.ui.setHoverPlaylist(true);
+    const $this = this as unknown as MmssEvent;
+    $this.store.ui.setHoverPlaylist(true);
   },
 
   onMouseLeavePlaylist() {
-    this.store.ui.setHoverPlaylist(false);
+    const $this = this as unknown as MmssEvent;
+    $this.store.ui.setHoverPlaylist(false);
   },
 };
 

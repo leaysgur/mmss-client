@@ -6,8 +6,14 @@ import { combineEvent, bindAll } from '../../shared/util/class';
 import UiEvent from './object/ui';
 import PlaylistEvent from './object/playlist';
 
+import MmssStore from '../store';
+import { Artist, Album, Song } from '../../shared/typings/mmss';
+
 class MmssEvent {
-  constructor(store) {
+  // XXX: 本来はprivateだがcombineEvent()先で型がほしい
+  store: MmssStore;
+
+  constructor(store: MmssStore) {
     combineEvent(this, UiEvent, PlaylistEvent);
     bindAll(this);
 
@@ -19,7 +25,7 @@ class MmssEvent {
         if (nowPlaying === null) {
           return;
         }
-        this._onChangeNowPlaying(nowPlaying);
+        this.onChangeNowPlaying(nowPlaying);
       }
     );
   }
@@ -34,13 +40,13 @@ class MmssEvent {
     this.store.finder.sortArtist(this.store.ui.sortBy);
   }
 
-  onClickArtist(item) {
+  onClickArtist(item: Artist) {
     this.store.finder.initAlbums(item.albums);
 
     this.store.ui.setSelected('artist', item.name);
   }
 
-  onClickAlbum(item) {
+  onClickAlbum(item: Album) {
     this.store.finder.initSongs(item.songs);
 
     this.store.ui.setSelected('album', item.name);
@@ -57,7 +63,7 @@ class MmssEvent {
     this.store.ui.setFilterBy(artist);
   }
 
-  async _onChangeNowPlaying(nowPlaying) {
+  private async onChangeNowPlaying(nowPlaying: Song) {
     const path = nowPlaying.path;
 
     this.store.ui.setMediaLoading(true);
@@ -67,7 +73,7 @@ class MmssEvent {
     if (cached) {
       blob = cached;
     } else {
-      blob = await this._getAndCacheMedia(path, this.store.mediaCache);
+      blob = await this.getAndCacheMedia(path, this.store.mediaCache);
     }
 
     this.store.media.setSrc(blob);
@@ -75,13 +81,14 @@ class MmssEvent {
 
     // prefetch next
     const nextPlaying = this.store.playlist.nextPlaying;
-    nextPlaying &&
-      this._getAndCacheMedia(nextPlaying.path, this.store.mediaCache);
+    if (nextPlaying) {
+      this.getAndCacheMedia(nextPlaying.path, this.store.mediaCache);
+    }
   }
 
-  async _getAndCacheMedia(path, cache) {
+  private async getAndCacheMedia(path: string, cache: MmssStore['mediaCache']): Promise<Blob> {
     const blob = await getMediaSerial('/api/track', { path })
-      .catch(console.error);
+      .catch(console.error) as Blob;
 
     cache.set(path, blob);
     return blob;
