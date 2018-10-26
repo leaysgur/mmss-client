@@ -57,6 +57,7 @@ interface ContentProps {
   visibleTab: string;
 }
 
-export const TabContent = observer(({ tabContents, visibleTab }: ContentProps) =>
-  <>{tabContents[visibleTab]}</>,
-);
+export const TabContent = observer(({ tabContents, visibleTab }: ContentProps) => {
+  const Content = tabContents[visibleTab];
+  return <Content />;
+});
