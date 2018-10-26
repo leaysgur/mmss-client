@@ -2,8 +2,11 @@ import EntryMain from './entry/main';
 import MmssMain from './mmss/main';
 
 import { getJSON } from './shared/util/fetch';
+import pkg from '../package.json';
 
 import { MusicJSON } from './shared/typings/mmss';
+
+console.log(`${pkg.name}@${pkg.version}`);
 
 // キャッシュ飛ばしたい時もあると思うのでとりあえず
 const YYYYMMDD = new Date()
