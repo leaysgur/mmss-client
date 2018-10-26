@@ -1,5 +1,4 @@
 /* tslint:disable no-any */
-// TODO: いらない？
 export function bindAll(instance: any) {
   const methods = _getProtoMethodNames(instance);
   methods.forEach(methodName => {

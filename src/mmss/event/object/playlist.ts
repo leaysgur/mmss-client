@@ -1,3 +1,5 @@
+import { bindAll } from '../../../shared/util/class';
+
 import MmssStore from '../../store';
 import { Artist, Album, Song } from '../../../shared/typings/mmss';
 
@@ -5,6 +7,8 @@ class PlaylistEvent {
   private playlist: MmssStore['playlist'];
 
   constructor(playlist: MmssStore['playlist']) {
+    bindAll(this);
+
     this.playlist = playlist;
   }
 

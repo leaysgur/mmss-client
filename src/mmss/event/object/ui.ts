@@ -1,9 +1,13 @@
+import { bindAll } from '../../../shared/util/class';
+
 import MmssStore from '../../store';
 
 class UiEvent {
   private ui: MmssStore['ui'];
 
   constructor(ui: MmssStore['ui']) {
+    bindAll(this);
+
     this.ui = ui;
   }
 
