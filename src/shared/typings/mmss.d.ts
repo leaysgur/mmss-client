@@ -1,4 +1,4 @@
-interface Song {
+export interface Song {
   album: string;
   artist: string;
   name: string;
@@ -8,13 +8,13 @@ interface Song {
   path: string;
 }
 
-interface Album {
+export interface Album {
   name: string;
   year: string;
   songs: Song[];
 }
 
-interface Artist {
+export interface Artist {
   name: string;
   albums: Album[];
 }
