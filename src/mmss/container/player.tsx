@@ -16,7 +16,7 @@ interface Props {
 const Player = ({ event, store }: Props) => {
   const {
     onClickNowPlaying,
-  } = event!;
+  } = event!.commonEvent;
   const {
     onClickPrev, onClickNext,
     onEndedMedia,

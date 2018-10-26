@@ -19,7 +19,7 @@ const Finder = ({ store, event }: Props) => {
     onClickSortArtist,
     onClickArtist,
     onClickAlbum,
-  } = event!;
+  } = event!.commonEvent;
   const {
     onClickPlayArtist,
     onClickPlayAlbum,

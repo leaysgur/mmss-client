@@ -9,8 +9,10 @@ class Ui {
   sortBy: 'latest' | 'name';
   filterBy: string | null;
   loadProgress: number;
-  isHoverPlayer: boolean; // TODO: private
-  isHoverPlaylist: boolean; // TODO: private
+  // XXX: なぜか private にすると decorate() で型エラーになる
+  isHoverPlayer: boolean;
+  // XXX: なぜか private にすると decorate() で型エラーになる
+  isHoverPlaylist: boolean;
   private timer: number | undefined;
 
   constructor() {

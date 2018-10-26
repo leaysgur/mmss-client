@@ -7,6 +7,7 @@ class Playlist {
   nowPlayingIdx: number;
 
   constructor() {
+    // XXX: [] のままだと型エラーな上に、 unknown[] を経由しないとキャストもできない
     this.items = [] as unknown[] as IObservableArray<Song>;
     this.nowPlayingIdx = -1;
   }

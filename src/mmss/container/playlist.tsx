@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 
-import { PlaylistItem, PlaylistHeader } from '../component/playlist/item';
+import { PlaylistItem, PlaylistHeader } from '../component/playlist/row';
 
 import MmssEvent from '../event';
 import MmssStore from '../store';

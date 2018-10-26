@@ -6,12 +6,10 @@ class Finder {
   isNameSort: boolean;
   albums: IObservableArray<Album>;
   songs: IObservableArray<Song>;
-  private json: MusicJSON;
 
-  constructor(json: MusicJSON) {
-    this.json = json;
-
+  constructor(private json: MusicJSON) {
     this.isNameSort = false;
+    // XXX: [] のままだと型エラーな上に、 unknown[] を経由しないとキャストもできない
     this.albums = [] as unknown[] as IObservableArray<Album>;
     this.songs = [] as unknown[] as IObservableArray<Song>;
   }
