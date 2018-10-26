@@ -9,11 +9,12 @@ import EntryEvent from '../event';
 
 interface Props {
   event: EntryEvent;
-  search: EntryStore['search'];
+  store: EntryStore;
 }
 
-const Search = ({ event, search }: Props) => {
+const Search = ({ event, store }: Props) => {
   const { onChangeKeyword } = event;
+  const { search } = store;
 
   return (
     <Wrap>
@@ -51,4 +52,4 @@ const Input = styled.input`
   }
 `;
 
-export default inject('event', 'search')(observer(Search));
+export default inject('event', 'store')(observer(Search));

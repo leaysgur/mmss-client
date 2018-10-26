@@ -7,15 +7,16 @@ import EntryEvent from '../event';
 
 interface Props {
   event: EntryEvent;
-  ui: EntryStore['ui'];
+  store: EntryStore;
 }
 interface LoginFormElements extends HTMLFormControlsCollection {
   id: HTMLInputElement;
   pw: HTMLInputElement;
 }
 
-const Login = ({ event, ui }: Props) => {
+const Login = ({ event, store }: Props) => {
   const { onLoginSubmit } = event;
+  const { ui } = store;
 
   return (
     <Wrap action="/" onSubmit={ev => _onSubmit(ev, onLoginSubmit)}>
@@ -69,4 +70,4 @@ const Error = styled.div`
   color: #f44242;
 `;
 
-export default inject('event', 'ui')(observer(Login));
+export default inject('event', 'store')(observer(Login));

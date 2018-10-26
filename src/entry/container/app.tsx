@@ -39,4 +39,4 @@ const EntryApp = (props: Props) => {
   );
 };
 
-export default inject('event', 'ui', 'constants')(observer(EntryApp));
+export default inject('event', 'store')(observer(EntryApp));
