@@ -7,7 +7,7 @@ class Ui {
     album: string | null;
   };
   sortBy: 'latest' | 'name';
-  filterBy: string | null;
+  pinnedArtist: string | null;
   loadProgress: number;
   // XXX: なぜか private にすると decorate() で型エラーになる
   isHoverPlayer: boolean;
@@ -22,7 +22,7 @@ class Ui {
       album: null,
     };
     this.sortBy = 'latest';
-    this.filterBy = null;
+    this.pinnedArtist = null;
     this.loadProgress = 0;
     this.timer = undefined;
     this.isHoverPlayer = false;
@@ -80,8 +80,8 @@ class Ui {
     }
   }
 
-  setFilterBy(artistName: string) {
-    this.filterBy = this.filterBy ? null : artistName;
+  setPinnedArtist(artistName: string) {
+    this.pinnedArtist = this.pinnedArtist ? null : artistName;
   }
 
   private clearLoadProgress() {
@@ -101,7 +101,7 @@ decorate(Ui, {
   isMediaLoading: observable,
   selected: observable,
   sortBy: observable,
-  filterBy: observable,
+  pinnedArtist: observable,
   loadProgress: observable,
   isHoverPlayer: observable,
   isHoverPlaylist: observable,

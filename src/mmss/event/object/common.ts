@@ -51,7 +51,7 @@ class CommonEvent {
 
     // albumArtistはパスからしか取れない
     const [artist] = nowPlaying.path.split('/');
-    this.store.ui.setFilterBy(artist);
+    this.store.ui.setPinnedArtist(artist);
   }
 
   private async onChangeNowPlaying(nowPlaying: Song) {

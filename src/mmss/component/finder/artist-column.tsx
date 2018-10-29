@@ -35,7 +35,7 @@ const ArtistColumn = ({
       <ul>
         {artists
           // 絞込されてるならそれ、されてないなら全部
-          .filter(artist => (ui.filterBy ? artist.name === ui.filterBy : true))
+          .filter(artist => (ui.pinnedArtist !== null ? artist.name === ui.pinnedArtist : true))
           .map(artist => (
             <li key={artist.name}>
               <ArtistItem
