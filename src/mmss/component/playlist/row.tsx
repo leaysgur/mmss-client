@@ -18,7 +18,7 @@ export const PlaylistItem = observer(({ no, item, isPlaying, onClick }: Props) =
     <No>{no}</No>
     <Mark>
       {isPlaying ? (
-        <img src="/image/i-playing.png" />
+        <img src="/image/i-playing.svg" />
       ) : null }
     </Mark>
     <Item title={item.name}>

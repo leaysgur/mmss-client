@@ -46,10 +46,10 @@ const Player = ({ event, store }: Props) => {
 
       <Controls className={isControlable ? '' : 'isDisabled'}>
         <ControlsItem onClick={() => isControlable && onClickPrev()}>
-          <img src="/image/i-backward.png" />
+          <img src="/image/i-backward.svg" />
         </ControlsItem>
         <ControlsItem onClick={() => isControlable && onClickNext()}>
-          <img src="/image/i-forward.png" />
+          <img src="/image/i-forward.svg" />
         </ControlsItem>
 
         <ControlsAudio>
@@ -103,7 +103,7 @@ const ControlsItem = styled.a`
   width: 25px;
 
   & img {
-    height: 15px;
+    height: 16px;
   }
 `;
 
