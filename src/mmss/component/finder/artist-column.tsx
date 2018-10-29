@@ -25,12 +25,9 @@ const ArtistColumn = ({
   <Wrap>
     <Head>
       <p>Artists</p>
-      <Controller>
+      <Controller onClick={() => onClickSortArtist()}>
         {ui.sortBy}
-        <img
-          onClick={() => onClickSortArtist()}
-          src="/image/i-sort.svg"
-        />
+        <img src="/image/i-sort.svg" />
       </Controller>
     </Head>
 
@@ -76,6 +73,7 @@ const Controller = styled.div`
   display: flex;
   align-items: center;
   font-size: .6rem;
+  cursor: pointer;
 
   & img {
     height: 12px;
