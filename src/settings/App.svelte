@@ -3,10 +3,9 @@
 
   export let reason;
   export let token;
-  $: {
-    // save token on update
-    if (token.trim().length > 0) localStorage.setItem(storageTokenKey, token);
-  }
+
+  // save token on update
+  $: localStorage.setItem(storageTokenKey, token);
 </script>
 
 <main>
