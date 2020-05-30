@@ -1,5 +1,6 @@
 <script>
-
+  export let api;
+  api.getTrack;
 </script>
 
 <div>Player</div>

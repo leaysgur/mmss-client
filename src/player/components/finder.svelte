@@ -50,14 +50,14 @@
     font-size: 0.8rem;
   }
 
-  .ArtistColumn .head .controller {
+  .ArtistColumn .controller {
     display: flex;
     align-items: center;
     font-size: 0.6rem;
     cursor: pointer;
   }
 
-  .ArtistColumn .head .controller img {
+  .ArtistColumn .controller img {
     height: 12px;
     vertical-align: text-top;
     margin: 0 5px;

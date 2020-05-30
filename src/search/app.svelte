@@ -11,10 +11,10 @@
   <h1>Search</h1>
   <p>Search albums by artist name.</p>
 
-  <input type="text" bind:value="{keyword}" />
+  <input class="Keyword" type="text" bind:value="{keyword}" />
 
   {#if results !== null}
-    <ul class="results">
+    <ul class="Results">
       {#each Object.keys(results) as artistName (artistName)}
         <li class="item">
           <div class="artist"># {artistName}</div>
@@ -38,7 +38,7 @@
     text-align: center;
   }
 
-  input {
+  .Keyword {
     box-sizing: border-box;
     width: 250px;
     padding: 5px 10px;
@@ -46,27 +46,28 @@
     font-size: 1rem;
   }
 
-  input:hover,
-  input:focus {
+  .Keyword:hover,
+  .Keyword:focus {
     border: 2px solid var(--linkColor);
     outline: none;
   }
 
-  .results {
+  .Results {
     min-height: 10vh;
     padding: 10px;
     background-color: #fafafa;
     text-align: left;
   }
 
-  .item {
+  .Results .item {
     margin-bottom: 5px;
   }
 
-  .artist {
+  .Results .artist {
     font-weight: 900;
   }
-  .album {
+
+  .Results .album {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
