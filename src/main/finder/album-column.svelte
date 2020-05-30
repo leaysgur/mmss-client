@@ -1,6 +1,6 @@
 <script>
   import ColumnView from "./column-view.svelte";
-  import AlbumItem from "./album-item.svelte";
+  import RowView from "./row-view.svelte";
 
   export let albums;
   export let selected;
@@ -12,11 +12,16 @@
   <ul slot="body">
     {#each albums as album (album)}
       <li>
-        <AlbumItem
-          item={album}
+        <RowView
           isSelected={selected === album.name}
-          {selectAlbum}
-        />
+          selectItem={() => selectAlbum(album)}
+        >
+          <div slot="main">{album.name}</div>
+          <div slot="sub-left" />
+          <div slot="sub-right">
+            {album.year || '-'} / {album.songs.length} song(s)
+          </div>
+        </RowView>
       </li>
     {/each}
   </ul>

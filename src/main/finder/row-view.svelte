@@ -1,20 +1,18 @@
 <script>
-  export let item;
-  export let isSelected;
-  export let selectArtist;
+  export let isSelected = false;
+  export let selectItem = () => {};
 </script>
 
-<div
-  class="ArtistItem"
-  class:isSelected
-  on:mouseenter={() => selectArtist(item)}
->
-  <div>{item.name}</div>
-  <div class="sub">{item.albums.length} album(s)</div>
+<div class="Row" class:isSelected on:mouseenter={selectItem}>
+  <slot name="main" />
+  <div class="sub">
+    <slot name="sub-left" />
+    <slot name="sub-right" />
+  </div>
 </div>
 
 <style>
-  .ArtistItem {
+  .Row {
     box-sizing: border-box;
     margin: 2px;
     padding: 5px 10px;
@@ -25,14 +23,16 @@
     border-left: 4px solid #fff;
   }
 
-  .ArtistItem.isSelected {
+  .Row.isSelected {
     border-left: 4px solid #08f;
   }
 
-  .ArtistItem .sub {
+  .Row .sub {
     padding-top: 5px;
     color: #b3b3b3;
     text-align: right;
     font-size: 0.7rem;
+    display: flex;
+    justify-content: space-between;
   }
 </style>

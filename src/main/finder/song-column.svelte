@@ -1,6 +1,7 @@
 <script>
+  import { formatTime } from "../utils";
   import ColumnView from "./column-view.svelte";
-  import SongItem from "./song-item.svelte";
+  import RowView from "./row-view.svelte";
 
   export let songs;
 </script>
@@ -10,7 +11,13 @@
   <ul slot="body">
     {#each songs as song (song)}
       <li>
-        <SongItem item={song} />
+        <RowView>
+          <div slot="main">{song.name}</div>
+          <div slot="sub-left">{song.artist}</div>
+          <div slot="sub-right">
+            Disc {song.disc || '-'} / Track {song.track || '-'} / {formatTime(song.duration)}
+          </div>
+        </RowView>
       </li>
     {/each}
   </ul>

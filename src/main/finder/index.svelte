@@ -15,6 +15,7 @@
     selected.artist = artist.name;
     selected.album = "";
     albums = artist.albums;
+    songs = [];
   }
   function selectAlbum(album) {
     selected.album = album.name;
