@@ -23,8 +23,8 @@
 </script>
 
 <div class="Finder">
-  <ArtistColumn {artists} selected="{selected.artist}" {selectArtist} />
-  <AlbumColumn {albums} selected="{selected.album}" {selectAlbum} />
+  <ArtistColumn {artists} selected={selected.artist} {selectArtist} />
+  <AlbumColumn {albums} selected={selected.album} {selectAlbum} />
   <SongColumn {songs} />
 </div>
 

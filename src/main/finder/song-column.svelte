@@ -12,7 +12,7 @@
     <ul>
       {#each songs as song (song)}
         <li>
-          <SongItem item="{song}" />
+          <SongItem item={song} />
         </li>
       {/each}
     </ul>

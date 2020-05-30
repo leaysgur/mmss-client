@@ -13,7 +13,7 @@
   <p>You are here because `{reason}`.</p>
   <label>
     Token:
-    <input type="text" bind:value="{token}" />
+    <input type="text" bind:value={token} />
   </label>
   <hr />
   <a href="/">player</a>

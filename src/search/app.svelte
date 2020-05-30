@@ -11,7 +11,7 @@
   <h1>Search</h1>
   <p>Search albums by artist name.</p>
 
-  <input class="Keyword" type="text" bind:value="{keyword}" />
+  <input class="Keyword" type="text" bind:value={keyword} />
 
   {#if results !== null}
     <ul class="Results">

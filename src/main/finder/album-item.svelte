@@ -4,11 +4,7 @@
   export let selectAlbum;
 </script>
 
-<div
-  class="AlbumItem"
-  class:isSelected
-  on:mouseenter="{() => selectAlbum(item)}"
->
+<div class="AlbumItem" class:isSelected on:mouseenter={() => selectAlbum(item)}>
   <div>{item.name}</div>
   <div class="sub">{item.year || '-'} / {item.songs.length} song(s)</div>
 </div>

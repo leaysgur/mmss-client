@@ -1,7 +1,9 @@
-<script></script>
-<div>
-  Playlist
-</div>
+<script>
+
+</script>
+
+<div>Playlist</div>
+
 <style>
   div {
     --_playlistHeight: 33vh;
@@ -13,9 +15,9 @@
     right: 0;
     height: var(--_playlistHeight);
     background-color: #fafafa;
-    font-size: .8rem;
+    font-size: 0.8rem;
     transform: translateY(100vh);
-    transition: transform .25s ease;
+    transition: transform 0.25s ease;
   }
 
   div.isShown {

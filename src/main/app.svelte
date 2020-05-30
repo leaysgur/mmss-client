@@ -8,7 +8,7 @@
 </script>
 
 <main>
-  <Finder artists="{json}" />
+  <Finder artists={json} />
   <Playlist />
   <Player {api} />
 </main>

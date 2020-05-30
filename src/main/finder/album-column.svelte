@@ -15,8 +15,8 @@
       {#each albums as album (album)}
         <li>
           <AlbumItem
-            item="{album}"
-            isSelected="{selected === album.name}"
+            item={album}
+            isSelected={selected === album.name}
             {selectAlbum}
           />
         </li>

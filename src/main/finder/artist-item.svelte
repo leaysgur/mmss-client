@@ -7,7 +7,7 @@
 <div
   class="ArtistItem"
   class:isSelected
-  on:mouseenter="{() => selectArtist(item)}"
+  on:mouseenter={() => selectArtist(item)}
 >
   <div>{item.name}</div>
   <div class="sub">{item.albums.length} album(s)</div>

@@ -19,8 +19,8 @@
       {#each artists as artist (artist)}
         <li>
           <ArtistItem
-            item="{artist}"
-            isSelected="{selected === artist.name}"
+            item={artist}
+            isSelected={selected === artist.name}
             {selectArtist}
           />
         </li>
