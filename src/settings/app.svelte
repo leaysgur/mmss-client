@@ -16,7 +16,7 @@
     <input type="text" bind:value={token} />
   </label>
   <hr />
-  <a href="/">player</a>
+  <a href="/">main</a>
   |
   <a href="/?mode=search">search</a>
 </main>
