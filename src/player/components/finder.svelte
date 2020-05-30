@@ -1,6 +1,7 @@
 <script>
   import ArtistColumn from "./artist-column.svelte";
   import AlbumColumn from "./album-column.svelte";
+  import SongColumn from "./song-column.svelte";
 
   export let artists;
   let albums = [];
@@ -24,7 +25,7 @@
 <div class="Finder">
   <ArtistColumn {artists} selected="{selected.artist}" {selectArtist} />
   <AlbumColumn {albums} selected="{selected.album}" {selectAlbum} />
-  <div>song: {songs.length}</div>
+  <SongColumn {songs} />
 </div>
 
 <style>
