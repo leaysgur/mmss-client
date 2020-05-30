@@ -1,7 +1,7 @@
 import { storageTokenKey } from "./constants";
 import SettingsApp from "./settings/app.svelte";
 import SearchApp from "./search/app.svelte";
-import PlayerApp from "./player/app.svelte";
+import MainApp from "./main/app.svelte";
 
 export const bootstrap = async ({ location, localStorage, Api }) => {
   const params = new URLSearchParams(location.search.slice(1));
@@ -30,8 +30,8 @@ export const bootstrap = async ({ location, localStorage, Api }) => {
     // If search specified
     if (mode === "search") return { App: SearchApp, props: { json } };
 
-    // Else navigate to player
-    return { App: PlayerApp, props: { json, api } };
+    // Else navigate to player main
+    return { App: MainApp, props: { json, api } };
   } catch (err) {
     return {
       App: SettingsApp,
