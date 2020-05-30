@@ -2,13 +2,8 @@
   import ArtistItem from "./artist-item.svelte";
 
   export let artists;
+  export let selected;
   export let selectArtist;
-
-  let selected = null;
-  function setSelected(artist) {
-    selected = artist;
-    selectArtist(artist);
-  }
 </script>
 
 <div class="ArtistColumn">
@@ -25,8 +20,8 @@
         <li>
           <ArtistItem
             item="{artist}"
-            isSelected="{selected === artist}"
-            {setSelected}
+            isSelected="{selected === artist.name}"
+            {selectArtist}
           />
         </li>
       {/each}

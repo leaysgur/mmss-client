@@ -1,18 +1,29 @@
 <script>
   import ArtistColumn from "./artist-column.svelte";
+  import AlbumColumn from "./album-column.svelte";
 
   export let artists;
   let albums = [];
   let songs = [];
 
+  const selected = {
+    artist: "",
+    album: "",
+  };
   function selectArtist(artist) {
+    selected.artist = artist.name;
+    selected.album = "";
     albums = artist.albums;
+  }
+  function selectAlbum(album) {
+    selected.album = album.name;
+    songs = album.songs;
   }
 </script>
 
 <div class="Finder">
-  <ArtistColumn {artists} {selectArtist} />
-  <div>album: {albums.length}</div>
+  <ArtistColumn {artists} selected="{selected.artist}" {selectArtist} />
+  <AlbumColumn {albums} selected="{selected.album}" {selectAlbum} />
   <div>song: {songs.length}</div>
 </div>
 

@@ -1,20 +1,20 @@
 <script>
   export let item;
   export let isSelected;
-  export let selectArtist;
+  export let selectAlbum;
 </script>
 
 <div
-  class="ArtistItem"
+  class="AlbumItem"
   class:isSelected
-  on:mouseenter="{() => selectArtist(item)}"
+  on:mouseenter="{() => selectAlbum(item)}"
 >
   <div>{item.name}</div>
-  <div class="sub">{item.albums.length} album(s)</div>
+  <div class="sub">{item.year} / {item.songs.length} song(s)</div>
 </div>
 
 <style>
-  .ArtistItem {
+  .AlbumItem {
     box-sizing: border-box;
     margin: 2px;
     padding: 5px 10px;
@@ -25,11 +25,11 @@
     border-left: 4px solid #fff;
   }
 
-  .ArtistItem.isSelected {
+  .AlbumItem.isSelected {
     border-left: 4px solid #08f;
   }
 
-  .ArtistItem .sub {
+  .AlbumItem .sub {
     padding-top: 5px;
     color: #b3b3b3;
     text-align: right;
