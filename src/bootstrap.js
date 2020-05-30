@@ -1,7 +1,7 @@
 import { storageTokenKey } from "./constants";
-import SettingsApp from "./settings/App.svelte";
-import SearchApp from "./search/App.svelte";
-import PlayerApp from "./player/App.svelte";
+import SettingsApp from "./settings/app.svelte";
+import SearchApp from "./search/app.svelte";
+import PlayerApp from "./player/app.svelte";
 
 export const bootstrap = async ({ location, localStorage, Api }) => {
   const params = new URLSearchParams(location.search.slice(1));

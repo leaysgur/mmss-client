@@ -1,7 +1,7 @@
 <script>
-  import Finder from "./components/Finder.svelte";
-  import Playlist from "./components/Playlist.svelte";
-  import Player from "./components/Player.svelte";
+  import Finder from "./components/finder.svelte";
+  import Playlist from "./components/playlist.svelte";
+  import Player from "./components/player.svelte";
 
   export let json;
   export let api;
