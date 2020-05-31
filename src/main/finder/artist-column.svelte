@@ -5,6 +5,7 @@
   export let artists;
   export let selected;
   export let selectArtist;
+  export let playArtist;
 </script>
 
 <ColumnView>
@@ -18,7 +19,7 @@
       <li>
         <RowView
           isSelected={selected === artist.name}
-          selectItem={() => selectArtist(artist)}
+          on:mouseenter={() => selectArtist(artist)}
         >
           <div slot="main">{artist.name}</div>
           <div slot="sub-left" />

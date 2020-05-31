@@ -14,7 +14,7 @@
       <li>
         <RowView
           isSelected={selected === album.name}
-          selectItem={() => selectAlbum(album)}
+          on:mouseenter={() => selectAlbum(album)}
         >
           <div slot="main">{album.name}</div>
           <div slot="sub-left" />

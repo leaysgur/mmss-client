@@ -1,9 +1,8 @@
 <script>
   export let isSelected = false;
-  export let selectItem = () => {};
 </script>
 
-<div class="Row" class:isSelected on:mouseenter={selectItem}>
+<div class="Row" class:isSelected on:mouseenter on:click>
   <slot name="main" />
   <div class="sub">
     <slot name="sub-left" />

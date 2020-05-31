@@ -21,12 +21,27 @@
     selected.album = album.name;
     songs = album.songs;
   }
+
+  function playArtist(artist) {
+    console.log(artist);
+  }
+  function playAlbum(album) {
+    console.log(album);
+  }
+  function playSong(song) {
+    console.log(song);
+  }
 </script>
 
 <div class="Finder">
-  <ArtistColumn {artists} selected={selected.artist} {selectArtist} />
-  <AlbumColumn {albums} selected={selected.album} {selectAlbum} />
-  <SongColumn {songs} />
+  <ArtistColumn
+    {artists}
+    selected={selected.artist}
+    {selectArtist}
+    {playArtist}
+  />
+  <AlbumColumn {albums} selected={selected.album} {selectAlbum} {playAlbum} />
+  <SongColumn {songs} {playSong} />
 </div>
 
 <style>
