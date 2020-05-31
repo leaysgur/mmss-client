@@ -23,13 +23,16 @@
   }
 
   function playArtist(artist) {
-    console.log(artist);
+    const items = artist.albums.map((a) => a.songs).flat();
+    console.log(items);
   }
   function playAlbum(album) {
-    console.log(album);
+    const items = album.songs;
+    console.log(items);
   }
   function playSong(song) {
-    console.log(song);
+    const items = [song];
+    console.log(items);
   }
 </script>
 

@@ -4,6 +4,7 @@
   import RowView from "./row-view.svelte";
 
   export let songs;
+  export let playSong;
 </script>
 
 <ColumnView>
@@ -11,7 +12,7 @@
   <ul slot="body">
     {#each songs as song (song)}
       <li>
-        <RowView>
+        <RowView on:click={() => playSong(song)}>
           <div slot="main">{song.name}</div>
           <div slot="sub-left">{song.artist}</div>
           <div slot="sub-right">

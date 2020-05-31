@@ -20,6 +20,7 @@
         <RowView
           isSelected={selected === artist.name}
           on:mouseenter={() => selectArtist(artist)}
+          on:click={() => playArtist(artist)}
         >
           <div slot="main">{artist.name}</div>
           <div slot="sub-left" />

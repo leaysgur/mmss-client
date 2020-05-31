@@ -5,6 +5,7 @@
   export let albums;
   export let selected;
   export let selectAlbum;
+  export let playAlbum;
 </script>
 
 <ColumnView>
@@ -15,6 +16,7 @@
         <RowView
           isSelected={selected === album.name}
           on:mouseenter={() => selectAlbum(album)}
+          on:click={() => playAlbum(album)}
         >
           <div slot="main">{album.name}</div>
           <div slot="sub-left" />
