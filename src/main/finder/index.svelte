@@ -4,6 +4,7 @@
   import SongColumn from "./song-column.svelte";
 
   export let artists;
+  export let initQueue;
   let albums = [];
   let songs = [];
 
@@ -24,15 +25,15 @@
 
   function playArtist(artist) {
     const items = artist.albums.map((a) => a.songs).flat();
-    console.log(items);
+    initQueue(items);
   }
   function playAlbum(album) {
     const items = album.songs;
-    console.log(items);
+    initQueue(items);
   }
   function playSong(song) {
     const items = [song];
-    console.log(items);
+    initQueue(items);
   }
 </script>
 

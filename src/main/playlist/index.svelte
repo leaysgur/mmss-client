@@ -1,11 +1,11 @@
 <script>
-
+  export let queue;
 </script>
 
-<div>Playlist</div>
+<div class="Playlist isShown">Playlist: {queue.length}</div>
 
 <style>
-  div {
+  .Playlist {
     --_playlistHeight: 33vh;
     --_playlistRowHeight: 20px;
 
@@ -18,9 +18,10 @@
     font-size: 0.8rem;
     transform: translateY(100vh);
     transition: transform 0.25s ease;
+    will-change: transform;
   }
 
-  div.isShown {
+  .Playlist.isShown {
     transform: translateY(0);
   }
 </style>
