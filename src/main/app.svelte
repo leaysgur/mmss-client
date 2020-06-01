@@ -6,28 +6,34 @@
   export let json;
   export let api;
 
+  let nowPlayingIdx = -1;
   let playlist = [];
   function initPlaylist(items) {
     playlist = items;
+    nowPlayingIdx = 0;
   }
+  $: nowPlaying = playlist[nowPlayingIdx];
 
   const hoveringState = {
     playlist: false,
     player: false,
   };
-  $: isPlaylistVisible = hoveringState.playlist || hoveringState.player;
+  /* $: isPlaylistVisible = hoveringState.playlist || hoveringState.player; */
+  const isPlaylistVisible = true;
 </script>
 
 <main>
   <Finder artists={json} {initPlaylist} />
   <Playlist
-    {playlist}
     isVisible={isPlaylistVisible}
+    {playlist}
+    {nowPlayingIdx}
     on:mouseenter={() => (hoveringState.playlist = true)}
     on:mouseleave={() => (hoveringState.playlist = false)}
   />
   <Player
     {api}
+    {nowPlaying}
     on:mouseenter={() => (hoveringState.player = true)}
     on:mouseleave={() => (hoveringState.player = false)}
   />

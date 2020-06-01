@@ -3,12 +3,52 @@
   import Audio from "./audio.svelte";
 
   export let api;
-  api.getTrack;
+  export let nowPlaying;
+
+  let loadingProgress = 0;
+  function showProgress() {
+    loadingProgress = 99;
+  }
+  function clearProgress() {
+    loadingProgress = 100;
+    setTimeout(() => (loadingProgress = 0), 500);
+  }
+
+  const mediaCache = new Map();
+  let audioSrc;
+  function updateAudioSrc(res) {
+    if (audioSrc) URL.revokeObjectURL(audioSrc);
+
+    if (res instanceof Blob) {
+      audioSrc = URL.createObjectURL(res);
+      return;
+    }
+
+    console.error(res);
+  }
+  $: {
+    (async () => {
+      if (!nowPlaying) return;
+
+      showProgress();
+      const cache = mediaCache.get(nowPlaying.path);
+      if (cache instanceof Blob) {
+        updateAudioSrc(cache);
+        clearProgress();
+        return;
+      }
+
+      const res = await api.getTrack(nowPlaying.path);
+      mediaCache.set(nowPlaying.path, res);
+      updateAudioSrc(res);
+      clearProgress();
+    })();
+  }
 </script>
 
 <div class="Player" on:mouseenter on:mouseleave>
   <div class="progress">
-    <ProgressBar width={50} />
+    <ProgressBar progress={loadingProgress} />
   </div>
   <div class="info">xxx</div>
   <div class="controls">
@@ -19,7 +59,7 @@
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
-      <Audio on:ended={() => console.warn('TODO')} />
+      <Audio src={audioSrc} on:ended={() => console.warn('TODO')} />
     </div>
   </div>
 </div>

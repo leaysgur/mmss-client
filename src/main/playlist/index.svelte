@@ -3,6 +3,7 @@
 
   export let isVisible;
   export let playlist;
+  export let nowPlayingIdx;
 </script>
 
 <div class="Playlist" class:isVisible on:mouseenter on:mouseleave>
@@ -15,7 +16,7 @@
   <ul class="body">
     {#each playlist as item, idx (item)}
       <li class="row">
-        <PlaylistItem no={idx + 1} {item} isPlaying={idx === 1} />
+        <PlaylistItem no={idx + 1} {item} isPlaying={idx === nowPlayingIdx} />
       </li>
     {/each}
   </ul>

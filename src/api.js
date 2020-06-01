@@ -19,7 +19,7 @@ export class Api {
     const params = new URLSearchParams();
     params.set("path", path);
 
-    const res = await fetch(`${this._url}/track${params.toString()}`, {
+    const res = await fetch(`${this._url}/track?${params.toString()}`, {
       headers: this._headers,
     });
 

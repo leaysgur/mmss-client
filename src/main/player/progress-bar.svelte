@@ -1,9 +1,12 @@
 <script>
-  export let width = 0;
+  export let progress = 0;
+
+  $: width = `${progress}%`;
+  $: opacity = progress === 0 ? 0 : 1;
 </script>
 
 <div class="ProgressBar">
-  <div class="inner" style="width: {width}%" />
+  <div class="inner" style="width: {width}; opacity: {opacity}" />
 </div>
 
 <style>
@@ -15,5 +18,7 @@
   .ProgressBar .inner {
     height: 100%;
     background-color: var(--linkColor);
+    will-change: width;
+    transition: width 0.2s ease;
   }
 </style>
