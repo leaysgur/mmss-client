@@ -50,7 +50,9 @@
   <div class="progress">
     <ProgressBar progress={loadingProgress} />
   </div>
-  <div class="info">xxx</div>
+  <div class="info">
+    {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : ''}
+  </div>
   <div class="controls">
     <a href="/">
       <img src="/image/i-backward.svg" alt="backward" />
