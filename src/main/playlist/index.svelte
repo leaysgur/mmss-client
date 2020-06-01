@@ -53,7 +53,7 @@
     height: var(--_playlistRowHeight);
     display: flex;
     align-items: center;
-    background-color: #9cc2c3;
+    background-color: var(--themeColor);
     color: #fff;
     text-transform: uppercase;
   }

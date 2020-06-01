@@ -25,7 +25,7 @@
     justify-content: space-between;
     padding: 0 10px;
     height: 30px;
-    background-color: #9cc2c3;
+    background-color: var(--themeColor);
     color: #fff;
     text-transform: uppercase;
     font-size: 0.8rem;
