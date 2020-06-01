@@ -6,12 +6,14 @@
   export let selected;
   export let selectArtist;
   export let playArtist;
+  export let isSortedByName;
+  export let toggleNameSort;
 </script>
 
 <ColumnView>
   <p slot="head">Artists</p>
-  <div slot="controller" class="ArtistController">
-    TODO
+  <div slot="controller" class="ArtistController" on:click={() => toggleNameSort()}>
+    {isSortedByName ? "a-z" : "latest"}
     <img src="/image/i-sort.svg" alt="sort" />
   </div>
   <ul slot="body">

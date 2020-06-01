@@ -3,10 +3,25 @@
   import AlbumColumn from "./album-column.svelte";
   import SongColumn from "./song-column.svelte";
 
-  export let artists;
+  export let json;
   export let initPlaylist;
+
+  let artists = [...json];
   let albums = [];
   let songs = [];
+
+  let isSortedByName = false;
+  $: {
+    if (isSortedByName) {
+      artists.sort((a, b) => (a.name < b.name ? -1 : 1));
+      artists = [...artists];
+    } else {
+      artists = [...json];
+    }
+  }
+  function toggleNameSort() {
+    isSortedByName = !isSortedByName;
+  }
 
   const selected = {
     artist: "",
@@ -43,6 +58,8 @@
     selected={selected.artist}
     {selectArtist}
     {playArtist}
+    {isSortedByName}
+    {toggleNameSort}
   />
   <AlbumColumn {albums} selected={selected.album} {selectAlbum} {playAlbum} />
   <SongColumn {songs} {playSong} />

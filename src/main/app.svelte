@@ -37,7 +37,7 @@
 </script>
 
 <main>
-  <Finder artists={json} {initPlaylist} />
+  <Finder {json} {initPlaylist} />
   <Playlist
     isVisible={isPlaylistVisible}
     {playlist}
