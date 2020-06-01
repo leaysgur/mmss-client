@@ -34,7 +34,7 @@
     --_playlistRowHeight: 20px;
 
     position: fixed;
-    bottom: var(--footerHeight);
+    bottom: var(--playerHeight);
     left: 0;
     right: 0;
     height: var(--_playlistHeight);

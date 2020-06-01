@@ -77,7 +77,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: var(--footerHeight);
+    height: var(--playerHeight);
     padding: 0 30px;
     box-sizing: border-box;
     background-color: #f1f3f4;

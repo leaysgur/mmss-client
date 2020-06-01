@@ -70,11 +70,11 @@
 <style>
   main {
     position: relative;
-    height: var(--mmssHeight);
+    height: var(--_mainHeight);
     overflow: hidden;
 
-    --mmssHeight: 100vh;
-    --finderHeight: calc(var(--mmssHeight) - var(--footerHeight));
-    --footerHeight: 10vh;
+    --_mainHeight: 100vh;
+    --finderHeight: calc(var(--_mainHeight) - var(--playerHeight));
+    --playerHeight: 10vh;
   }
 </style>
