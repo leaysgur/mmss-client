@@ -6,15 +6,15 @@
   export let json;
   export let api;
 
-  let queue = [];
-  function initQueue(items) {
-    queue = items;
+  let playlist = [];
+  function initPlaylist(items) {
+    playlist = items;
   }
 </script>
 
 <main>
-  <Finder artists={json} {initQueue} />
-  <Playlist {queue} />
+  <Finder artists={json} {initPlaylist} />
+  <Playlist {playlist} />
   <Player {api} />
 </main>
 

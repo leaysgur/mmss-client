@@ -1,8 +1,8 @@
 <script>
-  export let queue;
+  export let playlist;
 </script>
 
-<div class="Playlist isShown">Playlist: {queue.length}</div>
+<div class="Playlist isShown">Playlist: {playlist.length}</div>
 
 <style>
   .Playlist {
