@@ -14,16 +14,13 @@
     nowPlayingIdx = 0;
   }
   function goForward() {
-    nowPlayingIdx =
-      nowPlayingIdx === lastIdx ? 0 : nowPlayingIdx + 1;
+    nowPlayingIdx = nowPlayingIdx === lastIdx ? 0 : nowPlayingIdx + 1;
   }
   function goBackword() {
-    nowPlayingIdx =
-      nowPlayingIdx === 0 ?  lastIdx : nowPlayingIdx - 1;
+    nowPlayingIdx = nowPlayingIdx === 0 ? lastIdx : nowPlayingIdx - 1;
   }
   function jump(idx) {
-    if (0 <= idx && idx <= lastIdx)
-      nowPlayingIdx = idx;
+    if (0 <= idx && idx <= lastIdx) nowPlayingIdx = idx;
   }
   $: nowPlaying = playlist[nowPlayingIdx];
 
@@ -32,6 +29,22 @@
     player: false,
   };
   $: isPlaylistVisible = hoveringState.playlist || hoveringState.player;
+
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.setActionHandler("nexttrack", () => goForward());
+    navigator.mediaSession.setActionHandler("previoustrack", () =>
+      goBackword()
+    );
+  }
+  $: {
+    if ("mediaSession" in navigator && nowPlaying) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: nowPlaying.name,
+        artist: nowPlaying.artist,
+        album: nowPlaying.album,
+      });
+    }
+  }
 </script>
 
 <main>
