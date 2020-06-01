@@ -4,6 +4,7 @@
   export let isVisible;
   export let playlist;
   export let nowPlayingIdx;
+  export let jump;
 </script>
 
 <div class="Playlist" class:isVisible on:mouseenter on:mouseleave>
@@ -16,7 +17,12 @@
   <ul class="body">
     {#each playlist as item, idx (item)}
       <li class="row">
-        <PlaylistItem no={idx + 1} {item} isPlaying={idx === nowPlayingIdx} />
+        <PlaylistItem
+          no={idx + 1}
+          {item}
+          isPlaying={idx === nowPlayingIdx}
+          on:click={() => jump(idx)}
+        />
       </li>
     {/each}
   </ul>

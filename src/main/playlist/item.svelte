@@ -18,7 +18,7 @@
       {#if isPlaying}
         <span>{item.name}</span>
       {:else}
-        <a href="/">{item.name}</a>
+        <a href="/" on:click|preventDefault>{item.name}</a>
       {/if}
     </div>
     <div class="entry" title={item.artist}>{item.artist}</div>

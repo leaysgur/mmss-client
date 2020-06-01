@@ -8,17 +8,22 @@
 
   let nowPlayingIdx = -1;
   let playlist = [];
+  $: lastIdx = playlist.length - 1;
   function initPlaylist(items) {
     playlist = items;
     nowPlayingIdx = 0;
   }
   function goForward() {
     nowPlayingIdx =
-      nowPlayingIdx === playlist.length - 1 ? 0 : nowPlayingIdx + 1;
+      nowPlayingIdx === lastIdx ? 0 : nowPlayingIdx + 1;
   }
   function goBackword() {
     nowPlayingIdx =
-      nowPlayingIdx === 0 ? playlist.length - 1 : nowPlayingIdx - 1;
+      nowPlayingIdx === 0 ?  lastIdx : nowPlayingIdx - 1;
+  }
+  function jump(idx) {
+    if (0 <= idx && idx <= lastIdx)
+      nowPlayingIdx = idx;
   }
   $: nowPlaying = playlist[nowPlayingIdx];
 
@@ -37,6 +42,7 @@
     isVisible={isPlaylistVisible}
     {playlist}
     {nowPlayingIdx}
+    {jump}
     on:mouseenter={() => (hoveringState.playlist = true)}
     on:mouseleave={() => (hoveringState.playlist = false)}
   />
