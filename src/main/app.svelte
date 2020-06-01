@@ -31,9 +31,7 @@
     playlist: false,
     player: false,
   };
-  // TODO: debug
-  /* $: isPlaylistVisible = hoveringState.playlist || hoveringState.player; */
-  const isPlaylistVisible = true;
+  $: isPlaylistVisible = hoveringState.playlist || hoveringState.player;
 </script>
 
 <main>

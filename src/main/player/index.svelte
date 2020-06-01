@@ -9,11 +9,11 @@
 
   let loadingProgress = 0;
   function showProgress() {
+    // Motion is done by CSS
     loadingProgress = 99;
   }
   function clearProgress() {
-    loadingProgress = 100;
-    setTimeout(() => (loadingProgress = 0), 500);
+    loadingProgress = 0;
   }
 
   const mediaCache = new Map();
@@ -28,6 +28,7 @@
 
     console.error(res);
   }
+
   $: {
     (async () => {
       if (!nowPlaying) return;
@@ -46,9 +47,11 @@
       clearProgress();
     })();
   }
+
+  $: isDisabled = !audioSrc || loadingProgress !== 0;
 </script>
 
-<div class="Player" on:mouseenter on:mouseleave>
+<div class="Player" class:isDisabled on:mouseenter on:mouseleave>
   <div class="progress">
     <ProgressBar progress={loadingProgress} />
   </div>
