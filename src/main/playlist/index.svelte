@@ -1,8 +1,24 @@
 <script>
+  import PlaylistItem from "./item.svelte";
+
   export let playlist;
 </script>
 
-<div class="Playlist isShown">Playlist: {playlist.length}</div>
+<div class="Playlist">
+  <div class="head">
+    <PlaylistItem />
+  </div>
+  {#if playlist.length === 0}
+    <div class="empty">No items</div>
+  {/if}
+  <ul class="body">
+    {#each playlist as item, idx (item)}
+      <li class="row">
+        <PlaylistItem no={idx + 1} {item} isPlaying={idx === 1} />
+      </li>
+    {/each}
+  </ul>
+</div>
 
 <style>
   .Playlist {
@@ -23,5 +39,31 @@
 
   .Playlist.isShown {
     transform: translateY(0);
+  }
+
+  .Playlist .head {
+    position: relative;
+    height: var(--_playlistRowHeight);
+    background-color: #9cc2c3;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .Playlist .body {
+    height: calc(var(--_playlistHeight) - var(--_playlistRowHeight));
+    overflow: scroll;
+  }
+
+  .Playlist .row {
+    height: var(--_playlistRowHeight);
+    background-color: #fff;
+  }
+  .Playlist .row:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+
+  .Playlist .empty {
+    text-align: center;
+    padding-top: 10vh;
   }
 </style>
