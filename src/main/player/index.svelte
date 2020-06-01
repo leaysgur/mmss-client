@@ -51,18 +51,18 @@
   $: isDisabled = !audioSrc || loadingProgress !== 0;
 </script>
 
-<div class="Player" class:isDisabled on:mouseenter on:mouseleave>
+<div class="Player" on:mouseenter on:mouseleave>
   <div class="progress">
     <ProgressBar progress={loadingProgress} />
   </div>
   <div class="info">
     {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : ''}
   </div>
-  <div class="controls">
-    <a href="/" on:click|preventDefault={() => goBackword()}>
+  <div class="controls" class:isDisabled>
+    <a href="/" on:click|preventDefault={() => isDisabled || goBackword()}>
       <img src="/image/i-backward.svg" alt="backward" />
     </a>
-    <a href="/" on:click|preventDefault={() => goForward()}>
+    <a href="/" on:click|preventDefault={() => isDisabled || goForward()}>
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
@@ -82,10 +82,6 @@
     box-sizing: border-box;
     background-color: #f1f3f4;
   }
-  .Player.isDisabled {
-    pointer-events: none;
-    opacity: 0.6;
-  }
 
   .Player .progress {
     position: absolute;
@@ -95,6 +91,7 @@
   }
 
   .Player .info {
+    line-height: 15px;
     padding: 15px 0 5px;
     font-size: 0.8rem;
     text-align: center;
@@ -102,6 +99,10 @@
 
   .Player .controls {
     display: flex;
+  }
+
+  .Player .controls.isDisabled {
+    opacity: 0.5;
   }
 
   .Player .controls a {
