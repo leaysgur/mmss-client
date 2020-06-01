@@ -12,12 +12,21 @@
     playlist = items;
     nowPlayingIdx = 0;
   }
+  function goForward() {
+    nowPlayingIdx =
+      nowPlayingIdx === playlist.length - 1 ? 0 : nowPlayingIdx + 1;
+  }
+  function goBackword() {
+    nowPlayingIdx =
+      nowPlayingIdx === 0 ? playlist.length - 1 : nowPlayingIdx - 1;
+  }
   $: nowPlaying = playlist[nowPlayingIdx];
 
   const hoveringState = {
     playlist: false,
     player: false,
   };
+  // TODO: debug
   /* $: isPlaylistVisible = hoveringState.playlist || hoveringState.player; */
   const isPlaylistVisible = true;
 </script>
@@ -34,6 +43,8 @@
   <Player
     {api}
     {nowPlaying}
+    {goForward}
+    {goBackword}
     on:mouseenter={() => (hoveringState.player = true)}
     on:mouseleave={() => (hoveringState.player = false)}
   />

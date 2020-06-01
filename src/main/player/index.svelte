@@ -4,6 +4,8 @@
 
   export let api;
   export let nowPlaying;
+  export let goForward;
+  export let goBackword;
 
   let loadingProgress = 0;
   function showProgress() {
@@ -54,14 +56,14 @@
     {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : ''}
   </div>
   <div class="controls">
-    <a href="/">
+    <a href="/" on:click|preventDefault={() => goBackword()}>
       <img src="/image/i-backward.svg" alt="backward" />
     </a>
-    <a href="/">
+    <a href="/" on:click|preventDefault={() => goForward()}>
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
-      <Audio src={audioSrc} on:ended={() => console.warn('TODO')} />
+      <Audio src={audioSrc} on:ended={() => goForward()} />
     </div>
   </div>
 </div>
