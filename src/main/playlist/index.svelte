@@ -50,8 +50,9 @@
   }
 
   .Playlist .head {
-    position: relative;
     height: var(--_playlistRowHeight);
+    display: flex;
+    align-items: center;
     background-color: #9cc2c3;
     color: #fff;
     text-transform: uppercase;
@@ -64,6 +65,8 @@
 
   .Playlist .row {
     height: var(--_playlistRowHeight);
+    display: flex;
+    align-items: center;
     background-color: #fff;
   }
   .Playlist .row:nth-child(even) {

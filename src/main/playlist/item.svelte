@@ -40,6 +40,7 @@
   .Item {
     display: grid;
     grid-template-columns: 4% 4% 40% 20% 20% 10%;
+    width: 100%;
   }
 
   .Item .no {
