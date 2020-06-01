@@ -6,7 +6,7 @@
   api.getTrack;
 </script>
 
-<div class="Player">
+<div class="Player" on:mouseenter on:mouseleave>
   <div class="progress">
     <ProgressBar width={50} />
   </div>

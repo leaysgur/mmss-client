@@ -1,10 +1,11 @@
 <script>
   import PlaylistItem from "./item.svelte";
 
+  export let isVisible;
   export let playlist;
 </script>
 
-<div class="Playlist">
+<div class="Playlist" class:isVisible on:mouseenter on:mouseleave>
   <div class="head">
     <PlaylistItem />
   </div>
@@ -37,7 +38,7 @@
     will-change: transform;
   }
 
-  .Playlist.isShown {
+  .Playlist.isVisible {
     transform: translateY(0);
   }
 

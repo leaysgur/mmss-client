@@ -10,12 +10,27 @@
   function initPlaylist(items) {
     playlist = items;
   }
+
+  const hoveringState = {
+    playlist: false,
+    player: false,
+  };
+  $: isPlaylistVisible = hoveringState.playlist || hoveringState.player;
 </script>
 
 <main>
   <Finder artists={json} {initPlaylist} />
-  <Playlist {playlist} />
-  <Player {api} />
+  <Playlist
+    {playlist}
+    isVisible={isPlaylistVisible}
+    on:mouseenter={() => (hoveringState.playlist = true)}
+    on:mouseleave={() => (hoveringState.playlist = false)}
+  />
+  <Player
+    {api}
+    on:mouseenter={() => (hoveringState.player = true)}
+    on:mouseleave={() => (hoveringState.player = false)}
+  />
 </main>
 
 <style>
