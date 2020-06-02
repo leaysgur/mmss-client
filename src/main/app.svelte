@@ -1,69 +1,54 @@
 <script>
+  import { onMount } from "svelte";
   import Finder from "./finder/index.svelte";
   import Playlist from "./playlist/index.svelte";
   import Player from "./player/index.svelte";
+  import { createStore } from "./store";
 
   export let json;
   export let api;
 
-  let nowPlayingIdx = -1;
-  let playlist = [];
-  $: lastIdx = playlist.length - 1;
-  function initPlaylist(items) {
-    playlist = items;
-    nowPlayingIdx = 0;
-  }
-  function goForward() {
-    nowPlayingIdx = nowPlayingIdx === lastIdx ? 0 : nowPlayingIdx + 1;
-  }
-  function goBackword() {
-    nowPlayingIdx = nowPlayingIdx === 0 ? lastIdx : nowPlayingIdx - 1;
-  }
-  function jump(idx) {
-    if (0 <= idx && idx <= lastIdx) nowPlayingIdx = idx;
-  }
-  $: nowPlaying = playlist[nowPlayingIdx];
+  const {
+    playlist,
+    initPlaylistByArtist,
+    initPlaylistByAlbum,
+    initPlaylistBySong,
+    nowPlayingIdx,
+    nowPlaying,
+    goForward,
+    goBackword,
+    jump,
+    bindMediaSession,
+    isPlaylistVisible,
+    setPlaylistHover,
+    setPlayerHover,
+  } = createStore();
 
-  const hoveringState = {
-    playlist: false,
-    player: false,
-  };
-  $: isPlaylistVisible = hoveringState.playlist || hoveringState.player;
-
-  if ("mediaSession" in navigator) {
-    navigator.mediaSession.setActionHandler("nexttrack", () => goForward());
-    navigator.mediaSession.setActionHandler("previoustrack", () =>
-      goBackword()
-    );
-  }
-  $: {
-    if ("mediaSession" in navigator && nowPlaying) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: nowPlaying.name,
-        artist: nowPlaying.artist,
-        album: nowPlaying.album,
-      });
-    }
-  }
+  onMount(bindMediaSession);
 </script>
 
 <main>
-  <Finder {json} {initPlaylist} />
+  <Finder
+    {json}
+    {initPlaylistByArtist}
+    {initPlaylistByAlbum}
+    {initPlaylistBySong}
+  />
   <Playlist
-    isVisible={isPlaylistVisible}
-    {playlist}
-    {nowPlayingIdx}
+    isVisible={$isPlaylistVisible}
+    playlist={$playlist}
+    nowPlayingIdx={$nowPlayingIdx}
     {jump}
-    on:mouseenter={() => (hoveringState.playlist = true)}
-    on:mouseleave={() => (hoveringState.playlist = false)}
+    on:mouseenter={() => setPlaylistHover(true)}
+    on:mouseleave={() => setPlaylistHover(false)}
   />
   <Player
     {api}
     {nowPlaying}
     {goForward}
     {goBackword}
-    on:mouseenter={() => (hoveringState.player = true)}
-    on:mouseleave={() => (hoveringState.player = false)}
+    on:mouseenter={() => setPlayerHover(true)}
+    on:mouseleave={() => setPlayerHover(false)}
   />
 </main>
 

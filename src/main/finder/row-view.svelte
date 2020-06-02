@@ -1,5 +1,5 @@
 <script>
-  export let isSelected = false;
+  export let isSelected;
 </script>
 
 <div class="Row" class:isSelected on:mouseenter on:click>

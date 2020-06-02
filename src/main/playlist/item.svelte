@@ -32,7 +32,7 @@
     <div class="entry">Song</div>
     <div class="entry">Artist</div>
     <div class="entry">Album</div>
-    <div class="duration">Time</div>
+    <div class="duration">Duration</div>
   </div>
 {/if}
 

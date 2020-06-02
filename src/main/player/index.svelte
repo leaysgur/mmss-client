@@ -1,72 +1,47 @@
 <script>
   import ProgressBar from "./progress-bar.svelte";
   import Audio from "./audio.svelte";
+  import { createStore } from "./store";
 
   export let api;
   export let nowPlaying;
   export let goForward;
   export let goBackword;
 
-  let loadingProgress = 0;
-  function showProgress() {
-    // Motion is done by CSS
-    loadingProgress = 99;
+  const {
+    loadingProgress,
+    audioSrc,
+    isControlsDisabled,
+    onNowPlayingChange,
+  } = createStore();
+
+  $: if ($nowPlaying) {
+    onNowPlayingChange(api, $nowPlaying.path);
   }
-  function clearProgress() {
-    loadingProgress = 0;
-  }
-
-  const mediaCache = new Map();
-  let audioSrc;
-  function updateAudioSrc(res) {
-    if (audioSrc) URL.revokeObjectURL(audioSrc);
-
-    if (res instanceof Blob) {
-      audioSrc = URL.createObjectURL(res);
-      return;
-    }
-
-    console.error(res);
-  }
-
-  $: {
-    (async () => {
-      if (!nowPlaying) return;
-
-      showProgress();
-      const cache = mediaCache.get(nowPlaying.path);
-      if (cache instanceof Blob) {
-        updateAudioSrc(cache);
-        clearProgress();
-        return;
-      }
-
-      const res = await api.getTrack(nowPlaying.path);
-      mediaCache.set(nowPlaying.path, res);
-      updateAudioSrc(res);
-      clearProgress();
-    })();
-  }
-
-  $: isDisabled = !audioSrc || loadingProgress !== 0;
 </script>
 
 <div class="Player" on:mouseenter on:mouseleave>
   <div class="progress">
-    <ProgressBar progress={loadingProgress} />
+    <ProgressBar progress={$loadingProgress} />
   </div>
   <div class="info">
-    {nowPlaying ? `${nowPlaying.artist} - ${nowPlaying.name}` : ''}
+    {$nowPlaying ? `${$nowPlaying.artist} - ${$nowPlaying.name}` : ''}
   </div>
-  <div class="controls" class:isDisabled>
-    <a href="/" on:click|preventDefault={() => isDisabled || goBackword()}>
+  <div class="controls" class:isDisabled={$isControlsDisabled}>
+    <a
+      href="/"
+      on:click|preventDefault={() => $isControlsDisabled || goBackword()}
+    >
       <img src="/image/i-backward.svg" alt="backward" />
     </a>
-    <a href="/" on:click|preventDefault={() => isDisabled || goForward()}>
+    <a
+      href="/"
+      on:click|preventDefault={() => $isControlsDisabled || goForward()}
+    >
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
-      <Audio src={audioSrc} on:ended={() => goForward()} />
+      <Audio src={$audioSrc} on:ended={() => goForward()} />
     </div>
   </div>
 </div>

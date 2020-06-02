@@ -2,67 +2,45 @@
   import ArtistColumn from "./artist-column.svelte";
   import AlbumColumn from "./album-column.svelte";
   import SongColumn from "./song-column.svelte";
+  import { createStore } from "./store";
 
   export let json;
-  export let initPlaylist;
+  export let initPlaylistByArtist;
+  export let initPlaylistByAlbum;
+  export let initPlaylistBySong;
 
-  let artists = [...json];
-  let albums = [];
-  let songs = [];
+  const {
+    artists,
+    albums,
+    songs,
+    sortArtist,
+    isSortedByName,
+    toggleNameSort,
+    selectedArtist,
+    selectedAlbum,
+    selectArtist,
+    selectAlbum,
+  } = createStore({ json });
 
-  let isSortedByName = false;
-  $: {
-    if (isSortedByName) {
-      artists.sort((a, b) => (a.name < b.name ? -1 : 1));
-      artists = [...artists];
-    } else {
-      artists = [...json];
-    }
-  }
-  function toggleNameSort() {
-    isSortedByName = !isSortedByName;
-  }
-
-  const selected = {
-    artist: "",
-    album: "",
-  };
-  function selectArtist(artist) {
-    selected.artist = artist.name;
-    selected.album = "";
-    albums = artist.albums;
-    songs = [];
-  }
-  function selectAlbum(album) {
-    selected.album = album.name;
-    songs = album.songs;
-  }
-
-  function playArtist(artist) {
-    const items = artist.albums.map((a) => a.songs).flat();
-    initPlaylist(items);
-  }
-  function playAlbum(album) {
-    const items = album.songs;
-    initPlaylist(items);
-  }
-  function playSong(song) {
-    const items = [song];
-    initPlaylist(items);
-  }
+  $: sortArtist($isSortedByName);
 </script>
 
 <div class="Finder">
   <ArtistColumn
-    {artists}
-    selected={selected.artist}
+    artists={$artists}
+    selected={$selectedArtist}
     {selectArtist}
-    {playArtist}
-    {isSortedByName}
+    playArtist={initPlaylistByArtist}
+    isSortedByName={$isSortedByName}
     {toggleNameSort}
   />
-  <AlbumColumn {albums} selected={selected.album} {selectAlbum} {playAlbum} />
-  <SongColumn {songs} {playSong} />
+  <AlbumColumn
+    albums={$albums}
+    selected={$selectedAlbum}
+    {selectAlbum}
+    playAlbum={initPlaylistByAlbum}
+  />
+  <SongColumn songs={$songs} playSong={initPlaylistBySong} />
 </div>
 
 <style>
