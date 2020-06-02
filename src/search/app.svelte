@@ -29,7 +29,7 @@
       {/each}
     </ul>
   {:else}
-    <div class="results">Not Found</div>
+    <div class="Results">Not Found</div>
   {/if}
 </main>
 
