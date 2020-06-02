@@ -1,21 +1,19 @@
-import { writable, get } from "svelte/store";
+import { writable, derived, get } from "svelte/store";
 
 export const createStore = ({ json }) => {
-  const artists = writable(json.slice());
-  const albums = writable([]);
-  const songs = writable([]);
-
   const isSortedByName = writable(false);
   const toggleNameSort = () => {
     isSortedByName.set(!get(isSortedByName));
   };
 
-  const sortArtist = (isNameSort) => {
-    const sorted = isNameSort
+  const artists = derived(isSortedByName, ($isSortedByName, set) => {
+    const sorted = $isSortedByName
       ? [...json].sort((a, b) => (a.name < b.name ? -1 : 1))
       : [...json];
-    artists.set(sorted);
-  };
+    set(sorted);
+  });
+  const albums = writable([]);
+  const songs = writable([]);
 
   const selectedArtist = writable("");
   const selectedAlbum = writable("");
@@ -36,7 +34,6 @@ export const createStore = ({ json }) => {
     artists,
     albums,
     songs,
-    sortArtist,
     isSortedByName,
     toggleNameSort,
     selectedArtist,

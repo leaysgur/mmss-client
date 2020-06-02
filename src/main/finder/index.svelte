@@ -13,7 +13,6 @@
     artists,
     albums,
     songs,
-    sortArtist,
     isSortedByName,
     toggleNameSort,
     selectedArtist,
@@ -21,8 +20,6 @@
     selectArtist,
     selectAlbum,
   } = createStore({ json });
-
-  $: sortArtist($isSortedByName);
 </script>
 
 <div class="Finder">
