@@ -4,7 +4,7 @@
   export let reason;
   export let token;
 
-  // save token on update
+  // Save token on update
   $: localStorage.setItem(storageTokenKey, token);
 </script>
 

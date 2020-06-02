@@ -1,14 +1,15 @@
 import { storageTokenKey } from "./constants";
+import { Api } from "./api";
 import SettingsApp from "./settings/app.svelte";
 import SearchApp from "./search/app.svelte";
 import MainApp from "./main/app.svelte";
 
-export const bootstrap = async ({ location, localStorage, Api }) => {
+export const bootstrap = async ({ location, localStorage }) => {
   const params = new URLSearchParams(location.search.slice(1));
   const mode = params.get("mode") || "player";
   const token = localStorage.getItem(storageTokenKey) || "";
 
-  // If settings specified, just navigate
+  // If settings is specified, just navigate
   if (mode === "settings")
     return {
       App: SettingsApp,
@@ -20,14 +21,13 @@ export const bootstrap = async ({ location, localStorage, Api }) => {
     return { App: SettingsApp, props: { reason: "Token not found", token } };
 
   const api = new Api({ url: "http://localhost:8080", token });
-
   try {
     const json = await api.getIndex();
 
     if (json.error)
       return { App: SettingsApp, props: { reason: json.error, token } };
 
-    // If search specified
+    // If search is specified
     if (mode === "search") return { App: SearchApp, props: { json } };
 
     // Else navigate to player main
