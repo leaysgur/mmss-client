@@ -1,12 +1,18 @@
 export class Api {
-  constructor({ url, token }) {
+  constructor(url) {
     this._url = url;
+    this._headers = null;
+  }
+
+  setToken(token) {
     this._headers = {
       Authorization: `Bearer ${token}`,
     };
   }
 
   async getIndex() {
+    if (!this._headers) throw new Error("Auth token has not set!");
+
     const res = await fetch(`${this._url}/index`, {
       headers: this._headers,
     });
@@ -16,6 +22,8 @@ export class Api {
   }
 
   async getTrack(path) {
+    if (!this._headers) throw new Error("Auth token has not set!");
+
     const params = new URLSearchParams();
     params.set("path", path);
 

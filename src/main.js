@@ -1,9 +1,14 @@
 import { bootstrap } from "./bootstrap";
+import { Api } from "./api";
+
+// eslint-disable-next-line
+const apiUrl = __isProduction__ ? "/api" : "http://localhost:8080";
 
 (async () => {
   const { App, props } = await bootstrap({
     location: window.location,
     localStorage: window.localStorage,
+    api: new Api(apiUrl),
   });
 
   const $root = document.getElementById("root");
