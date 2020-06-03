@@ -1,5 +1,5 @@
-import { bootstrap } from "./bootstrap";
-import { Api } from "./api";
+import { bootstrap } from "./bootstrap.js";
+import { Api } from "./api.js";
 
 // eslint-disable-next-line
 const apiUrl = __isProduction__ ? "/api" : "http://localhost:8080";

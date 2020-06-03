@@ -1,5 +1,5 @@
 <script>
-  import { artistSearch } from "./search";
+  import { artistSearch } from "./search.js";
 
   export let json;
 

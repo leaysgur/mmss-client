@@ -1,5 +1,5 @@
 <script>
-  import { storageTokenKey } from "../constants";
+  import { storageTokenKey } from "../constants.js";
 
   export let reason;
   export let token;

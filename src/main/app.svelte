@@ -3,7 +3,7 @@
   import Finder from "./finder/index.svelte";
   import Playlist from "./playlist/index.svelte";
   import Player from "./player/index.svelte";
-  import { createStore } from "./store";
+  import { createStore } from "./store/index.js";
 
   export let json;
   export let api;

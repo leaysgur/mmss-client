@@ -1,4 +1,4 @@
-import { storageTokenKey } from "./constants";
+import { storageTokenKey } from "./constants.js";
 import SettingsApp from "./settings/app.svelte";
 import SearchApp from "./search/app.svelte";
 import MainApp from "./main/app.svelte";

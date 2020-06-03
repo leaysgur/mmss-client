@@ -1,7 +1,7 @@
 <script>
   import ProgressBar from "./progress-bar.svelte";
   import Audio from "./audio.svelte";
-  import { createStore } from "./store";
+  import { createStore } from "./store.js";
 
   export let api;
   export let nowPlaying;

@@ -2,7 +2,7 @@
   import ArtistColumn from "./artist-column.svelte";
   import AlbumColumn from "./album-column.svelte";
   import SongColumn from "./song-column.svelte";
-  import { createStore } from "./store";
+  import { createStore } from "./store.js";
 
   export let json;
   export let initPlaylistByArtist;
