@@ -60,6 +60,6 @@
 
     --_mainHeight: 100vh;
     --finderHeight: calc(var(--_mainHeight) - var(--playerHeight));
-    --playerHeight: 10vh;
+    --playerHeight: 8vh;
   }
 </style>
