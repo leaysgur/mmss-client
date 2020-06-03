@@ -1,9 +1,4 @@
-# Misc
-yarn.lock
-node_modules
+/node_modules/
+/public/build/
 
 .DS_Store
-
-# Pj
-dist
-src/music.json

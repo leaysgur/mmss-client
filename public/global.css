@@ -1,0 +1,31 @@
+html {
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  background-color: #f6f6f6;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--linkColor);
+  text-decoration: none;
+}
+
+:root {
+  --linkColor: #08f;
+  --themeColor: #9cc2c3;
+}
+
+.Loading {
+  text-align: center;
+  padding-top: 10vh;
+}
