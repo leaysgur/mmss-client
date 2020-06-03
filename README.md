@@ -16,18 +16,24 @@ My Mp3 Streaming Server CLIENT.
   - if else
 
 ### Settings
-- edit and save auth token in localStorage
+- Edit and save auth token in localStorage
 
 ### Search
-- search through JSON
+- Search through JSON
   - by artist name
-  - by album name
 
 ### Player
-- select and play music
+- Select and play music
+- Sync w/ MediaSession API
 
 
 ## Development
 ```
 npm run dev
+```
+
+## Production
+```
+npm run build
+# deploy public directory
 ```
