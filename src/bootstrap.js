@@ -5,8 +5,8 @@ import MainApp from "./main/app.svelte";
 
 export const bootstrap = async ({ location, localStorage, api }) => {
   const params = new URLSearchParams(location.search.slice(1));
-  const mode = params.get("mode") || "player";
-  const token = localStorage.getItem(storageTokenKey) || "";
+  const mode = params.get("mode") ?? "player";
+  const token = localStorage.getItem(storageTokenKey) ?? "";
 
   // If settings is specified, just navigate
   if (mode === "settings")

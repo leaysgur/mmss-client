@@ -1,17 +1,14 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 2019,
+    ecmaVersion: 2020,
     sourceType: "module",
   },
   env: {
     es6: true,
     browser: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-  ],
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
   plugins: ["svelte3"],
   overrides: [
     {
