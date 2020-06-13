@@ -1,12 +1,11 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import ProgressBar from "./progress-bar.svelte";
   import Audio from "./audio.svelte";
   import { createStore } from "./store.js";
 
   export let api;
   export let nowPlaying;
-  export let goForward;
-  export let goBackword;
 
   const {
     loadingProgress,
@@ -14,6 +13,8 @@
     isControlsDisabled,
     onNowPlayingChange,
   } = createStore();
+
+  const dispatch = createEventDispatcher();
 
   $: if ($nowPlaying) {
     onNowPlayingChange(api, $nowPlaying.path);
@@ -30,18 +31,18 @@
   <div class="controls" class:isDisabled={$isControlsDisabled}>
     <a
       href="/"
-      on:click|preventDefault={() => $isControlsDisabled || goBackword()}
+      on:click|preventDefault={() => $isControlsDisabled || dispatch('gobackward')}
     >
       <img src="/image/i-backward.svg" alt="backward" />
     </a>
     <a
       href="/"
-      on:click|preventDefault={() => $isControlsDisabled || goForward()}
+      on:click|preventDefault={() => $isControlsDisabled || dispatch('goforward')}
     >
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
-      <Audio src={$audioSrc} on:ended={() => goForward()} />
+      <Audio src={$audioSrc} on:ended={() => dispatch("srcended")} />
     </div>
   </div>
 </div>

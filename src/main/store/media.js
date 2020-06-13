@@ -32,7 +32,7 @@ export const createStore = () => {
     const curIdx = get(nowPlayingIdx);
     nowPlayingIdx.set(curIdx === get(lastIdx) ? 0 : curIdx + 1);
   };
-  const goBackword = () => {
+  const goBackward = () => {
     const curIdx = get(nowPlayingIdx);
     nowPlayingIdx.set(curIdx === 0 ? get(lastIdx) : curIdx - 1);
   };
@@ -47,7 +47,7 @@ export const createStore = () => {
 
     navigator.mediaSession.setActionHandler("nexttrack", () => goForward());
     navigator.mediaSession.setActionHandler("previoustrack", () =>
-      goBackword()
+      goBackward()
     );
 
     const dispose = nowPlaying.subscribe(($nowPlaying) => {
@@ -74,7 +74,7 @@ export const createStore = () => {
     initPlaylistByAlbum,
     initPlaylistBySong,
     goForward,
-    goBackword,
+    goBackward,
     jump,
     bindMediaSession,
   };

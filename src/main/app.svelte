@@ -16,7 +16,7 @@
     nowPlayingIdx,
     nowPlaying,
     goForward,
-    goBackword,
+    goBackward,
     jump,
     bindMediaSession,
     isPlaylistVisible,
@@ -45,8 +45,9 @@
   <Player
     {api}
     {nowPlaying}
-    {goForward}
-    {goBackword}
+    on:goforward={() => goForward()}
+    on:gobackward={() => goBackward()}
+    on:srcended={() => goForward()}
     on:mouseenter={() => setPlayerHover(true)}
     on:mouseleave={() => setPlayerHover(false)}
   />
