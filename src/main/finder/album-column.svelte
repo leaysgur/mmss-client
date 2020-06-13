@@ -1,11 +1,13 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import ColumnView from "./column-view.svelte";
   import RowView from "./row-view.svelte";
 
   export let albums;
   export let selected;
   export let selectAlbum;
-  export let playAlbum;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <ColumnView>
@@ -16,7 +18,7 @@
         <RowView
           isSelected={selected === album.name}
           on:mouseenter={() => selectAlbum(album)}
-          on:click={() => playAlbum(album)}
+          on:click={() => dispatch("playalbum", { album })}
         >
           <div slot="main">{album.name}</div>
           <div slot="sub-left" />

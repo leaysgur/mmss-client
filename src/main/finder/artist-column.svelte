@@ -1,13 +1,15 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import ColumnView from "./column-view.svelte";
   import RowView from "./row-view.svelte";
 
   export let artists;
   export let selected;
   export let selectArtist;
-  export let playArtist;
   export let isSortedByName;
   export let toggleNameSort;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <ColumnView>
@@ -22,7 +24,7 @@
         <RowView
           isSelected={selected === artist.name}
           on:mouseenter={() => selectArtist(artist)}
-          on:click={() => playArtist(artist)}
+          on:click={() => dispatch("playartist", { artist })}
         >
           <div slot="main">{artist.name}</div>
           <div slot="sub-left" />

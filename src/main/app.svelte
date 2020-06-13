@@ -30,15 +30,15 @@
 <main>
   <Finder
     {json}
-    {initPlaylistByArtist}
-    {initPlaylistByAlbum}
-    {initPlaylistBySong}
+    on:playartist={({ detail }) => initPlaylistByArtist(detail.artist)}
+    on:playalbum={({ detail }) => initPlaylistByAlbum(detail.album)}
+    on:playsong={({ detail }) => initPlaylistBySong(detail.song)}
   />
   <Playlist
     isVisible={$isPlaylistVisible}
     playlist={$playlist}
     nowPlayingIdx={$nowPlayingIdx}
-    on:jump={(ev) => jump(ev.detail.idx)}
+    on:jump={({ detail }) => jump(detail.idx)}
     on:mouseenter={() => setPlaylistHover(true)}
     on:mouseleave={() => setPlaylistHover(false)}
   />
