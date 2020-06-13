@@ -18,10 +18,13 @@
     goForward,
     goBackward,
     jump,
+    playNext,
     bindMediaSession,
     isPlaylistVisible,
+    isRandom,
     setPlaylistHover,
     setPlayerHover,
+    setRandom,
   } = createStore();
 
   onMount(bindMediaSession);
@@ -45,9 +48,11 @@
   <Player
     {api}
     {nowPlaying}
+    {isRandom}
+    on:setrandom={({ detail }) => setRandom(detail.value)}
     on:goforward={() => goForward()}
     on:gobackward={() => goBackward()}
-    on:srcended={() => goForward()}
+    on:srcended={() => playNext()}
     on:mouseenter={() => setPlayerHover(true)}
     on:mouseleave={() => setPlayerHover(false)}
   />
@@ -61,6 +66,6 @@
 
     --_mainHeight: 100vh;
     --finderHeight: calc(var(--_mainHeight) - var(--playerHeight));
-    --playerHeight: 8vh;
+    --playerHeight: 10vh;
   }
 </style>

@@ -4,6 +4,7 @@ export const createStore = () => {
   const playlist = writable([]);
   const nowPlayingIdx = writable(-1);
   const lastIdx = derived(playlist, ($playlist) => $playlist.length - 1);
+  const isRandom = writable(false);
 
   const nowPlaying = derived(
     [playlist, nowPlayingIdx],
@@ -42,6 +43,18 @@ export const createStore = () => {
     nowPlayingIdx.set(idx);
   };
 
+  const playNext = () => {
+    // If random mode is disabled, play next one
+    if (!get(isRandom)) return goForward();
+
+    // Pick random idx, return next idx if same
+    const nextIdx = (get(playlist).length * Math.random()) | 0;
+    if (nextIdx === get(nowPlayingIdx)) return goForward();
+    jump(nextIdx);
+  };
+
+  const setRandom = (bool) => isRandom.set(bool);
+
   const bindMediaSession = () => {
     if ("mediaSession" in navigator === false) return;
 
@@ -70,12 +83,15 @@ export const createStore = () => {
     playlist,
     nowPlayingIdx,
     nowPlaying,
+    isRandom,
     initPlaylistByArtist,
     initPlaylistByAlbum,
     initPlaylistBySong,
     goForward,
     goBackward,
     jump,
+    playNext,
+    setRandom,
     bindMediaSession,
   };
 };

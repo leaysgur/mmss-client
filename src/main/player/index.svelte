@@ -6,6 +6,7 @@
 
   export let api;
   export let nowPlaying;
+  export let isRandom;
 
   const {
     loadingProgress,
@@ -31,6 +32,15 @@
   <div class="controls" class:isDisabled={$isControlsDisabled}>
     <a
       href="/"
+      class:isDisabled={!$isRandom}
+      on:click|preventDefault={() => dispatch('setrandom', {
+          value: !$isRandom,
+        })}
+    >
+      <img src="/image/i-random.svg" alt="random" />
+    </a>
+    <a
+      href="/"
       on:click|preventDefault={() => $isControlsDisabled || dispatch('gobackward')}
     >
       <img src="/image/i-backward.svg" alt="backward" />
@@ -42,7 +52,7 @@
       <img src="/image/i-forward.svg" alt="forward" />
     </a>
     <div class="audio">
-      <Audio src={$audioSrc} on:ended={() => dispatch("srcended")} />
+      <Audio src={$audioSrc} on:ended={() => dispatch('srcended')} />
     </div>
   </div>
 </div>
@@ -86,6 +96,10 @@
     justify-content: center;
     align-items: center;
     width: 25px;
+  }
+
+  .Player .controls a.isDisabled {
+    opacity: 0.5;
   }
 
   .Player .controls a img {
