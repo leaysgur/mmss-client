@@ -38,7 +38,7 @@
     isVisible={$isPlaylistVisible}
     playlist={$playlist}
     nowPlayingIdx={$nowPlayingIdx}
-    {jump}
+    on:jump={(ev) => jump(ev.detail.idx)}
     on:mouseenter={() => setPlaylistHover(true)}
     on:mouseleave={() => setPlaylistHover(false)}
   />

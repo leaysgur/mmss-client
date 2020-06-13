@@ -1,10 +1,12 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import PlaylistItem from "./item.svelte";
 
   export let isVisible;
   export let playlist;
   export let nowPlayingIdx;
-  export let jump;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <div class="Playlist" class:isVisible on:mouseenter on:mouseleave>
@@ -21,7 +23,7 @@
           no={idx + 1}
           {item}
           isPlaying={idx === nowPlayingIdx}
-          on:click={() => jump(idx)}
+          on:click={() => dispatch('jump', { idx })}
         />
       </li>
     {/each}
