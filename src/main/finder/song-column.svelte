@@ -14,7 +14,9 @@
   <ul slot="body">
     {#each songs as song (song)}
       <li>
-        <RowView on:click={() => dispatch('playsong', { song })}>
+        <RowView
+          on:click={() => dispatch('playsong', { song })}
+        >
           <div slot="main">{song.name}</div>
           <div slot="sub-left">{song.artist}</div>
           <div slot="sub-right">

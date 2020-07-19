@@ -5,6 +5,7 @@
 
   export let albums;
   export let selected;
+  export let playing;
   export let selectAlbum;
 
   const dispatch = createEventDispatcher();
@@ -17,6 +18,7 @@
       <li>
         <RowView
           isSelected={selected === album.name}
+          isPlaying={playing === album.name}
           on:mouseenter={() => selectAlbum(album)}
           on:click={() => dispatch("playalbum", { album })}
         >

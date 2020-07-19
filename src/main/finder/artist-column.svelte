@@ -5,6 +5,7 @@
 
   export let artists;
   export let selected;
+  export let playing;
   export let selectArtist;
   export let isSortedByName;
   export let toggleNameSort;
@@ -14,8 +15,12 @@
 
 <ColumnView>
   <p slot="head">Artists</p>
-  <div slot="controller" class="ArtistController" on:click={() => toggleNameSort()}>
-    {isSortedByName ? "a-z" : "latest"}
+  <div
+    slot="controller"
+    class="ArtistController"
+    on:click={() => toggleNameSort()}
+  >
+    {isSortedByName ? 'a-z' : 'latest'}
     <img src="/image/i-sort.svg" alt="sort" />
   </div>
   <ul slot="body">
@@ -23,8 +28,9 @@
       <li>
         <RowView
           isSelected={selected === artist.name}
+          isPlaying={playing === artist.name}
           on:mouseenter={() => selectArtist(artist)}
-          on:click={() => dispatch("playartist", { artist })}
+          on:click={() => dispatch('playartist', { artist })}
         >
           <div slot="main">{artist.name}</div>
           <div slot="sub-left" />

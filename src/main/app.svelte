@@ -33,6 +33,7 @@
 <main>
   <Finder
     {json}
+    {nowPlaying}
     on:playartist={({ detail }) => initPlaylistByArtist(detail.artist)}
     on:playalbum={({ detail }) => initPlaylistByAlbum(detail.album)}
     on:playsong={({ detail }) => initPlaylistBySong(detail.song)}

@@ -1,8 +1,9 @@
 <script>
-  export let isSelected;
+  export let isSelected = false;
+  export let isPlaying = false;
 </script>
 
-<div class="Row" class:isSelected on:mouseenter on:click>
+<div class="Row" class:isSelected class:isPlaying on:mouseenter on:click>
   <slot name="main" />
   <div class="sub">
     <slot name="sub-left" />
@@ -22,8 +23,9 @@
     border-left: 4px solid #fff;
   }
 
-  .Row.isSelected {
-    border-left: 4px solid #08f;
+  .Row.isSelected,
+  .Row.isPlaying {
+    border-color: #08f;
   }
 
   .Row .sub {

@@ -5,6 +5,7 @@
   import { createStore } from "./store.js";
 
   export let json;
+  export let nowPlaying;
 
   const {
     artists,
@@ -23,6 +24,7 @@
   <ArtistColumn
     artists={$artists}
     selected={$selectedArtist}
+    playing={$nowPlaying?.artist}
     {selectArtist}
     isSortedByName={$isSortedByName}
     {toggleNameSort}
@@ -31,6 +33,7 @@
   <AlbumColumn
     albums={$albums}
     selected={$selectedAlbum}
+    playing={$nowPlaying?.album}
     {selectAlbum}
     on:playalbum
   />
