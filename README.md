@@ -29,6 +29,7 @@ My Mp3 Streaming Server CLIENT.
 
 ## Development
 ```
+# start mmss-server locally and
 npm run dev
 ```
 
