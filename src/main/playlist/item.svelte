@@ -1,9 +1,9 @@
 <script>
   import { formatTime } from "../utils";
 
-  export let no;
-  export let item;
-  export let isPlaying;
+  export let no = -1;
+  export let item = null;
+  export let isPlaying = false;
 </script>
 
 {#if item}
