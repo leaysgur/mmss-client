@@ -41,12 +41,14 @@
     </a>
     <a
       href="/"
+      class:isDisabled={!$audioSrc}
       on:click|preventDefault={() => $isControlsDisabled || dispatch('gobackward')}
     >
       <img src="/image/i-backward.svg" alt="backward" />
     </a>
     <a
       href="/"
+      class:isDisabled={!$audioSrc}
       on:click|preventDefault={() => $isControlsDisabled || dispatch('goforward')}
     >
       <img src="/image/i-forward.svg" alt="forward" />
@@ -99,7 +101,7 @@
   }
 
   .Player .controls a.isDisabled {
-    opacity: 0.5;
+    opacity: 0.25;
   }
 
   .Player .controls a img {
