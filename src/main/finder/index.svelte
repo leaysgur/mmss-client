@@ -24,7 +24,7 @@
   <ArtistColumn
     artists={$artists}
     selected={$selectedArtist}
-    playing={$nowPlaying?.artist}
+    playing={$nowPlaying ? $nowPlaying.artist : null}
     {selectArtist}
     isSortedByName={$isSortedByName}
     {toggleNameSort}
@@ -33,7 +33,7 @@
   <AlbumColumn
     albums={$albums}
     selected={$selectedAlbum}
-    playing={$nowPlaying?.album}
+    playing={$nowPlaying ? $nowPlaying.album : null}
     {selectAlbum}
     on:playalbum
   />
