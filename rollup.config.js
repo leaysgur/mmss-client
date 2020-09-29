@@ -1,3 +1,4 @@
+/* eslint-env node */
 import replace from "@rollup/plugin-replace";
 import resolve from "@rollup/plugin-node-resolve";
 import svelte from "rollup-plugin-svelte";

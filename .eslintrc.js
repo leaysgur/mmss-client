@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   root: true,
   parserOptions: {
@@ -8,7 +9,7 @@ module.exports = {
     es6: true,
     browser: true,
   },
-  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  extends: ["eslint:recommended"],
   plugins: ["svelte3"],
   overrides: [
     {
