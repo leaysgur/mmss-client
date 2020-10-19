@@ -1,7 +1,6 @@
 import { bootstrap } from "./bootstrap.js";
 import { Api } from "./api.js";
 
-// eslint-disable-next-line
 const apiUrl = import.meta.env.MODE !== "development" ? "/api" : "http://localhost:8080";
 
 (async () => {
