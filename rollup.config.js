@@ -2,6 +2,7 @@
 import replace from "@rollup/plugin-replace";
 import resolve from "@rollup/plugin-node-resolve";
 import svelte from "rollup-plugin-svelte";
+import css from 'rollup-plugin-css-only';
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 
@@ -22,8 +23,10 @@ export default {
 
     svelte({
       dev: !production,
-      css: (css) => css.write("public/build/bundle.css"),
+      emitCss: true,
     }),
+
+    css({ output: "public/build/bundle.css" }),
 
     resolve({
       browser: true,
